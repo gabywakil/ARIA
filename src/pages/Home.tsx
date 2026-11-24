@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Icon, type IconName } from '../components/Icon'
 import { ProductCard } from '../components/ProductCard'
@@ -6,7 +6,8 @@ import { img } from '../data/images'
 import { CATEGORIES, PRODUCTS, money, productById, productImage, type Product } from '../data/products'
 import { BRANDS, FAQ, NEWS, SERVICES, SITE, STATS, STEPS, TESTIMONIALS } from '../data/site'
 import { useCart } from '../state/cart'
-import { useToast } from '../state/toast'
+import { useFluidRail } from '../hooks/useFluidRail'
+import { SpringValue } from '../lib/spring'
 import './home.css'
 
 /* ---------------- Hero: sala de exhibición ---------------- */
@@ -23,7 +24,6 @@ function Hero() {
   const [active, setActive] = useState(0)
   const product = productById.get(SHOWROOM[active].id)!
   const { add } = useCart()
-  const toast = useToast()
   const specs = Object.entries(product.specs).slice(0, 3)
 
   return (
@@ -73,10 +73,7 @@ function Hero() {
                 <Link to={`/producto/${product.slug}`} className="btn btn--line">Ver ficha</Link>
                 <button
                   className="btn"
-                  onClick={() => {
-                    add(product.id)
-                    toast(`${product.name} agregado al carrito`)
-                  }}
+                  onClick={() => add(product.id)}
                 >
                   <Icon name="cart" size={18} /> Agregar
                 </button>
@@ -97,14 +94,42 @@ for (const p of PRODUCTS) COUNT.set(p.category, (COUNT.get(p.category) ?? 0) + 1
 function CategoryIndex() {
   const listRef = useRef<HTMLUListElement>(null)
   const [hover, setHover] = useState<number | null>(null)
+  // Dos resortes independientes (X e Y): la foto sigue al cursor con inercia física
+  const springs = useRef<{ x: SpringValue; y: SpringValue } | null>(null)
+  const fresh = useRef(true)
 
-  // La posición del cursor se escribe directo en CSS: no provoca renders
-  const onMove = (e: React.PointerEvent) => {
+  useEffect(() => {
     const el = listRef.current
     if (!el) return
+    const x = new SpringValue(0, (v) => el.style.setProperty('--mx', `${v}px`))
+    const y = new SpringValue(0, (v) => el.style.setProperty('--my', `${v}px`))
+    springs.current = { x, y }
+    return () => {
+      x.stop()
+      y.stop()
+    }
+  }, [])
+
+  const onMove = (e: React.PointerEvent) => {
+    const el = listRef.current
+    const s = springs.current
+    if (!el || !s || e.pointerType !== 'mouse') return
     const r = el.getBoundingClientRect()
-    el.style.setProperty('--mx', `${e.clientX - r.left}px`)
-    el.style.setProperty('--my', `${e.clientY - r.top}px`)
+    const tx = e.clientX - r.left
+    const ty = e.clientY - r.top
+    if (fresh.current) {
+      // Primera vez: aparece donde está el cursor, sin viajar desde la esquina
+      s.x.set(tx)
+      s.y.set(ty)
+      fresh.current = false
+    } else {
+      s.x.to(tx, { damping: 1, response: 0.38 })
+      s.y.to(ty, { damping: 1, response: 0.38 })
+    }
+  }
+  const onLeave = () => {
+    setHover(null)
+    fresh.current = true
   }
 
   return (
@@ -113,7 +138,7 @@ function CategoryIndex() {
         <h2 className="sec__title">Todo lo que vendemos, en un solo lugar.</h2>
         <p className="sec__lead">Seis líneas de producto con el mismo respaldo: garantía, factura en línea y un asesor que te conoce.</p>
       </div>
-      <ul className="cindex" ref={listRef} onPointerMove={onMove} onPointerLeave={() => setHover(null)}>
+      <ul className="cindex" ref={listRef} onPointerMove={onMove} onPointerLeave={onLeave}>
         {CATEGORIES.map((c, i) => (
           <li key={c.slug}>
             <Link to={`/catalogo/${c.slug}`} className="cindex__row" onPointerEnter={() => setHover(i)} onFocus={() => setHover(i)}>
@@ -142,11 +167,7 @@ function CategoryIndex() {
 const FEATURED = [5, 9, 13, 4, 8, 6, 12, 16].map((id) => productById.get(id)!)
 
 function Featured() {
-  const rail = useRef<HTMLDivElement>(null)
-  const scroll = (dir: number) => {
-    const el = rail.current
-    if (el) el.scrollBy({ left: dir * el.clientWidth * 0.8, behavior: 'smooth' })
-  }
+  const { ref: rail, step } = useFluidRail<HTMLDivElement>()
   return (
     <section className="sec">
       <div className="wrap sec__head sec__head--row">
@@ -154,12 +175,21 @@ function Featured() {
           <h2 className="sec__title">Lo más buscado esta semana.</h2>
         </div>
         <div className="rail__ctrl">
-          <button className="iconbtn" aria-label="Anteriores" onClick={() => scroll(-1)}><Icon name="arrowLeft" /></button>
-          <button className="iconbtn" aria-label="Siguientes" onClick={() => scroll(1)}><Icon name="arrowRight" /></button>
+          <button className="iconbtn" aria-label="Anteriores" onClick={() => step(-1)}><Icon name="arrowLeft" /></button>
+          <button className="iconbtn" aria-label="Siguientes" onClick={() => step(1)}><Icon name="arrowRight" /></button>
           <Link to="/catalogo" className="btn btn--line btn--sm">Ver todo</Link>
         </div>
       </div>
-      <div className="rail" ref={rail} tabIndex={0} aria-label="Productos destacados">
+      <div
+        className="rail"
+        ref={rail}
+        tabIndex={0}
+        aria-label="Productos destacados"
+        onKeyDown={(e) => {
+          if (e.key === 'ArrowRight') { e.preventDefault(); step(1) }
+          if (e.key === 'ArrowLeft') { e.preventDefault(); step(-1) }
+        }}
+      >
         {FEATURED.map((p) => (
           <div className="rail__item" key={p.id}>
             <ProductCard product={p} />
@@ -366,6 +396,15 @@ function Visit() {
             <li><Icon name="clock" /> {SITE.hours}</li>
             <li><Icon name="phone" /> {SITE.phone}</li>
           </ul>
+          <table className="spec visit__cov">
+            <caption className="vh">Tiempos de entrega</caption>
+            <tbody>
+              <tr><th scope="row">Lechería, Barcelona y Puerto La Cruz</th><td>El mismo día</td></tr>
+              <tr><th scope="row">Resto de Anzoátegui</th><td>24 horas</td></tr>
+              <tr><th scope="row">Caracas y el centro del país</th><td>48 horas</td></tr>
+              <tr><th scope="row">Resto de Venezuela</th><td>3 a 5 días</td></tr>
+            </tbody>
+          </table>
           <div className="hero__cta">
             <Link to="/contacto" className="btn">Agendar cita</Link>
             <a className="btn btn--line" href={`https://wa.me/${SITE.whatsapp}`} target="_blank" rel="noreferrer">
@@ -421,6 +460,178 @@ function Faq() {
   )
 }
 
+/* ---------------- Producto destacado (editorial) ---------------- */
+
+const SPOT = productById.get(7)!
+const SPOT_FIGS = [
+  { v: '806', u: 'cc', l: 'Cuatro cilindros en línea' },
+  { v: '111', u: 'hp', l: 'Potencia máxima' },
+  { v: '14.500', u: 'km', l: 'Un solo dueño, con historial' },
+  { v: '6', u: 'meses', l: 'De garantía ARIA' },
+]
+
+function Spotlight() {
+  return (
+    <section className="sec wrap">
+      <div className="spot">
+        <Link to={`/producto/${SPOT.slug}`} className="spot__media" aria-label={`Ver ${SPOT.name}`}>
+          <img src={productImage(SPOT)} alt={SPOT.name} loading="lazy" />
+        </Link>
+        <div className="spot__card">
+          <p className="muted">Llegó esta semana</p>
+          <h2 className="spot__title display">{SPOT.name}</h2>
+          <p className="spot__text">Naked de media cilindrada, revisada pieza por pieza en nuestro taller: frenos, cadena, cauchos y electrónica. Lista para salir el mismo día.</p>
+          <div className="spot__buy">
+            <span className="spot__price num">{money(SPOT.price)}</span>
+            <Link to={`/producto/${SPOT.slug}`} className="btn">Ver la ficha</Link>
+          </div>
+        </div>
+      </div>
+      <dl className="spot__figs">
+        {SPOT_FIGS.map((f) => (
+          <div key={f.l}>
+            <dt className="muted">{f.l}</dt>
+            <dd className="num"><span className="display">{f.v}</span> {f.u}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+  )
+}
+
+/* ---------------- Financiación ---------------- */
+
+const FINANCEABLE = PRODUCTS.filter((p) => p.price >= 1000 && (p.category === 'Motos' || p.category === 'Vehículos'))
+const TERMS = [6, 12, 24, 36]
+
+function FinanceHome() {
+  const [id, setId] = useState(FINANCEABLE[0].id)
+  const [down, setDown] = useState(30)
+  const [months, setMonths] = useState(12)
+  const p = productById.get(id)!
+  const fee = (p.price * (1 - down / 100)) / months
+
+  return (
+    <section className="sec wrap">
+      <div className="fin">
+        <div className="fin__q">
+          <h2 className="sec__title">Estrena hoy, paga en cuotas.</h2>
+          <p className="sec__lead">Elige tu moto o vehículo, mueve la inicial y el plazo, y mira tu cuota al instante. Sin papeleo para simular.</p>
+          <label className="field">
+            <span className="field__label">Quiero financiar</span>
+            <select className="input" value={id} onChange={(e) => setId(+e.target.value)}>
+              {FINANCEABLE.map((f) => (
+                <option key={f.id} value={f.id}>{f.name} ({money(f.price)})</option>
+              ))}
+            </select>
+          </label>
+          <label className="field">
+            <span className="finance__row"><span className="field__label">Inicial</span><strong className="num">{down} % ({money((p.price * down) / 100)})</strong></span>
+            <input type="range" min={20} max={70} step={5} value={down} onChange={(e) => setDown(+e.target.value)} />
+          </label>
+          <div className="field">
+            <span className="field__label">Plazo</span>
+            <div className="seg" role="group" aria-label="Plazo en meses">
+              {TERMS.map((t) => (
+                <button key={t} className="seg__opt" aria-pressed={months === t} onClick={() => setMonths(t)}>{t} meses</button>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div className="fin__a" aria-live="polite">
+          <div className={`shot shot--${p.look} fin__shot`}>
+            <img src={productImage(p)} alt={p.name} loading="lazy" key={p.id} />
+          </div>
+          <p className="muted">Tu cuota mensual</p>
+          <p className="fin__fee num display">{money(fee)}</p>
+          <p className="muted">durante {months} meses, después de una inicial de {money((p.price * down) / 100)}.</p>
+          <div className="planner__actions">
+            <Link to={`/producto/${p.slug}`} className="btn">Ver {p.brand}</Link>
+            <Link to="/contacto" className="btn btn--line">Solicitar crédito</Link>
+          </div>
+          <p className="planner__note">Simulación sin intereses, sujeta a aprobación.</p>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/* ---------------- Compra protegida ---------------- */
+
+const PROTECT: { icon: IconName; t: string; d: string }[] = [
+  { icon: 'tag', t: 'Precio final por escrito', d: 'La cotización incluye IVA, póliza y entrega. Lo que ves es lo que pagas.' },
+  { icon: 'card', t: 'Pago confirmado antes de despachar', d: 'Verificamos tu pago y te avisamos por WhatsApp con el número de factura.' },
+  { icon: 'shield', t: 'Garantía en tu factura', d: 'El plazo de garantía queda impreso en el documento, con nuestro RIF.' },
+  { icon: 'wrench', t: 'Primera revisión sin costo', d: 'Tu moto o planta vuelve al taller a los 1.000 km o al primer mes, por nuestra cuenta.' },
+]
+
+function Protected() {
+  return (
+    <section className="sec wrap">
+      <div className="prot">
+        <div className="prot__head">
+          <h2 className="sec__title">Compra protegida, de principio a fin.</h2>
+          <p className="sec__lead">Comprar una moto o una planta es una decisión grande. Por eso cada compra en ARIA tiene cuatro respaldos.</p>
+          <Link to="/servicios" className="link">Cómo trabajamos</Link>
+        </div>
+        <ul className="prot__list">
+          {PROTECT.map((x) => (
+            <li key={x.t}>
+              <span className="prot__ic"><Icon name={x.icon} size={24} /></span>
+              <h3>{x.t}</h3>
+              <p className="muted">{x.d}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )
+}
+
+/* ---------------- Instagram ---------------- */
+
+const GRAM = ['vento', 'spike', 'casco', 'jacket', 'solar', 'gen'] as const
+
+function Gram() {
+  return (
+    <section className="sec wrap">
+      <div className="sec__head sec__head--row">
+        <div style={{ display: 'grid', gap: 12 }}>
+          <h2 className="sec__title">Lo nuevo, primero en Instagram.</h2>
+          <p className="sec__lead">Llegadas, ofertas de la semana y entregas a clientes en @ariainventory.</p>
+        </div>
+        <a className="btn btn--line btn--sm" href={SITE.instagram} target="_blank" rel="noreferrer"><Icon name="instagram" size={18} /> Seguir</a>
+      </div>
+      <ul className="gram">
+        {GRAM.map((k) => (
+          <li key={k}>
+            <a href={SITE.instagram} target="_blank" rel="noreferrer" aria-label="Ver publicación en Instagram">
+              <img src={img[k]} alt="" loading="lazy" />
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}
+
+/* ---------------- Cierre ---------------- */
+
+function Closing() {
+  return (
+    <section className="closing wrap">
+      <h2 className="closing__title display">Tu próxima moto ya está en Lechería.</h2>
+      <div className="closing__row">
+        <p className="sec__lead">Ven a verla, pruébala y llévatela con factura y garantía. O pídela desde aquí y te la llevamos.</p>
+        <div className="hero__cta">
+          <Link to="/catalogo/motos" className="btn">Ver motos</Link>
+          <Link to="/contacto" className="btn btn--line">Agendar visita</Link>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 /* ---------------- Página ---------------- */
 
 export default function Home() {
@@ -445,14 +656,19 @@ export default function Home() {
       </section>
       <CategoryIndex />
       <Featured />
+      <Spotlight />
       <PowerPlanner />
+      <FinanceHome />
+      <Protected />
       <Steps />
       <ServicesStrip />
       <AlliesCta />
       <Voices />
+      <Gram />
       <NewsList />
       <Visit />
       <Faq />
+      <Closing />
     </>
   )
 }

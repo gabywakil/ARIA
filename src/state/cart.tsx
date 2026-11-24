@@ -1,5 +1,6 @@
-import { createContext, useCallback, useContext, useEffect, useMemo, useReducer, type ReactNode } from 'react'
+import { createContext, useCallback, useContext, useEffect, useMemo, useReducer, useRef, useState, type ReactNode } from 'react'
 import { IVA, productById } from '../data/products'
+import { tap } from '../lib/spring'
 
 export type Line = { id: number; qty: number }
 export type Invoice = {
@@ -55,7 +56,11 @@ function reducer(s: State, a: Action): State {
   }
 }
 
+export type Added = { id: number; qty: number; n: number }
+
 type Ctx = {
+  added: Added | null
+  clearAdded: () => void
   lines: Line[]
   invoices: Invoice[]
   count: number
@@ -81,7 +86,15 @@ export function CartProvider({ children }: { children: ReactNode }) {
     }
   }, [state])
 
-  const add = useCallback((id: number, qty?: number) => dispatch({ type: 'add', id, qty }), [])
+  const [added, setAdded] = useState<Added | null>(null)
+  const n = useRef(0)
+  const add = useCallback((id: number, qty?: number) => {
+    dispatch({ type: 'add', id, qty })
+    n.current += 1
+    tap() // háptica en el mismo instante en que cambia el carrito
+    setAdded({ id, qty: qty ?? 1, n: n.current })
+  }, [])
+  const clearAdded = useCallback(() => setAdded(null), [])
   const setQty = useCallback((id: number, qty: number) => dispatch({ type: 'set', id, qty }), [])
   const remove = useCallback((id: number) => dispatch({ type: 'remove', id }), [])
   const saveInvoice = useCallback((invoice: Invoice) => dispatch({ type: 'invoice', invoice }), [])
@@ -96,8 +109,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
       subtotal += p.price * l.qty
     }
     const tax = subtotal * IVA
-    return { lines: state.lines, invoices: state.invoices, count, subtotal, tax, total: subtotal + tax, add, setQty, remove, saveInvoice }
-  }, [state, add, setQty, remove, saveInvoice])
+    return { added, clearAdded, lines: state.lines, invoices: state.invoices, count, subtotal, tax, total: subtotal + tax, add, setQty, remove, saveInvoice }
+  }, [state, added, clearAdded, add, setQty, remove, saveInvoice])
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>
 }

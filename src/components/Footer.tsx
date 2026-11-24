@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom'
 import { CATEGORIES } from '../data/products'
-import { img } from '../data/images'
 import { SITE } from '../data/site'
 import { Icon } from './Icon'
+import { Logo } from './Logo'
 
 const year = new Date().getFullYear()
 
@@ -11,7 +11,7 @@ export function Footer() {
     <footer className="ftr">
       <div className="wrap ftr__grid">
         <div className="ftr__brand">
-          <img src={img.logo} alt="ARIA Inventory & Mobility" width={150} height={34} />
+          <Logo size="lg" />
           <p>Motos, vehículos, energía y ferretería con garantía real, desde Lechería para todo el país.</p>
           <a className="ftr__ig" href={SITE.instagram} target="_blank" rel="noreferrer">
             <Icon name="instagram" size={18} /> @ariainventory

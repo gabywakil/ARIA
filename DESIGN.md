@@ -56,3 +56,16 @@ Una sola familia: **Instrument Sans** (variable, con eje de ancho).
 - *Primer borrador:* etiquetas pequeñas en mayúsculas encima de cada título. **Las quité**: son plantilla y no informan nada.
 - *Primer borrador:* tarjetas idénticas con la misma sombra para todo. **Lo cambié** por tablas y filas con líneas finas; las tarjetas quedan solo para productos.
 - *Primer borrador:* fuente del sistema (estilo Apple). **La cambié** por Instrument Sans condensada, que le da identidad propia a ARIA sin perder la limpieza que el cliente aprobó.
+
+## Movimiento (skill apple-design)
+- **Resortes, no duraciones:** `src/lib/spring.ts` usa los dos parámetros de Apple (damping y response). Por defecto damping 1, sin rebote; rebote suave (0,8) solo después de un gesto con impulso.
+- **Interrumpible:** cada animación parte del valor que está en pantalla y conserva la velocidad. La hoja del carrito y el riel se pueden agarrar en pleno movimiento.
+- **Impulso proyectado:** al soltar, se calcula a dónde llegaría el gesto (`project`, desaceleración 0,998) y se ajusta al punto más cercano a esa proyección.
+- **Bordes elásticos:** el riel y la hoja resisten progresivamente al pasar el límite (`rubberband`).
+- **Respuesta al presionar:** botones, filtros, tarjetas y filas se hunden en el `pointerdown`, en 100 ms.
+- **Materiales:** encabezado, barra del catálogo, hoja del carrito y tarjeta del destacado son capas translúcidas con desenfoque; el borde del encabezado es una sombra difusa que solo aparece al hacer scroll.
+- **Simetría espacial:** el panel del carrito nace del ícono del carrito y vuelve a él; el menú del celular entra y sale por arriba.
+- **Accesibilidad:** con menos movimiento todo pasa a fundidos; con menos transparencia, las capas se vuelven sólidas; con más contraste, los bordes se oscurecen.
+
+## Logo
+Logotipo en vector (`src/components/Logo.tsx`): símbolo verde con la A como un camino, palabra ARIA en la tipografía de la marca condensada y descriptor “Inventory & Mobility”. Reemplaza la imagen PNG con fondo blanco.

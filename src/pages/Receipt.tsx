@@ -1,6 +1,6 @@
 import { Link, useParams } from 'react-router-dom'
 import { Icon } from '../components/Icon'
-import { img } from '../data/images'
+import { Logo } from '../components/Logo'
 import { money } from '../data/products'
 import { SITE } from '../data/site'
 import { useCart } from '../state/cart'
@@ -38,7 +38,7 @@ export default function Receipt() {
 
       <article className="doc" aria-label={`${inv.kind} ${inv.number}`}>
         <header className="doc__top">
-          <img src={img.logo} alt="ARIA Inventory & Mobility" />
+          <Logo />
           <p className="doc__id">{inv.kind}<strong>{inv.number}</strong>{inv.date}</p>
         </header>
         <div className="doc__parties">

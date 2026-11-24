@@ -1,5 +1,6 @@
 import { lazy, Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
+import { CartSheet } from './components/CartSheet'
 import { Footer } from './components/Footer'
 import { Header } from './components/Header'
 import { ScrollToTop } from './components/ScrollToTop'
@@ -51,6 +52,7 @@ export function App() {
           </Suspense>
         </main>
         <Footer />
+        <CartSheet />
       </CartProvider>
     </ToastProvider>
   )

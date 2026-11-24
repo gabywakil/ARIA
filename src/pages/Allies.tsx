@@ -33,15 +33,17 @@ export default function Allies() {
   const [f, setF] = useState<F>(EMPTY)
   const [interests, setInterests] = useState<Set<string>>(() => new Set())
   const [tried, setTried] = useState(false)
+  const [touched, setTouched] = useState<ReadonlySet<string>>(() => new Set())
+  const blur = (k: string) => () => setTouched((t) => new Set(t).add(k))
   const [done, setDone] = useState(false)
   const errors = check(f, interests)
-  const err = (k: keyof typeof errors) => (tried ? errors[k] : undefined)
+  const err = (k: keyof typeof errors) => (tried || touched.has(k) ? errors[k] : undefined)
   const set = <K extends keyof F>(k: K, v: F[K]) => setF((x) => ({ ...x, [k]: v }))
 
   const text = (k: keyof F, label: string, props: React.InputHTMLAttributes<HTMLInputElement> = {}) => (
     <label className="field">
       <span className="field__label">{label}</span>
-      <input className="input" value={f[k] as string} onChange={(e) => set(k, e.target.value as never)} aria-invalid={err(k) ? true : undefined} {...props} />
+      <input className="input" value={f[k] as string} onChange={(e) => set(k, e.target.value as never)} onBlur={blur(k)} aria-invalid={err(k) ? true : undefined} {...props} />
       {err(k) ? <span className="field__error">{err(k)}</span> : null}
     </label>
   )
@@ -86,7 +88,7 @@ export default function Allies() {
                   {text('rif', 'RIF', { placeholder: 'J-12345678-9' })}
                   <label className="field">
                     <span className="field__label">Tipo de negocio</span>
-                    <select className="input" value={f.type} onChange={(e) => set('type', e.target.value)} aria-invalid={err('type') ? true : undefined}>
+                    <select className="input" value={f.type} onChange={(e) => set('type', e.target.value)} onBlur={blur('type')} aria-invalid={err('type') ? true : undefined}>
                       <option value="">Elige una opción</option>
                       {TYPES.map((t) => <option key={t}>{t}</option>)}
                     </select>

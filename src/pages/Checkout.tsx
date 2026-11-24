@@ -30,10 +30,11 @@ export default function Checkout() {
   const [form, setForm] = useState<Form>(EMPTY)
   const [method, setMethod] = useState<string>(METHODS[0].id)
   const [tried, setTried] = useState(false)
+  const [touched, setTouched] = useState<ReadonlySet<string>>(() => new Set())
   const { lines, count, subtotal, tax, total, saveInvoice } = useCart()
   const nav = useNavigate()
   const errors = validate(form)
-  const show = (k: keyof Form) => (tried ? errors[k] : undefined)
+  const show = (k: keyof Form) => (tried || touched.has(k) ? errors[k] : undefined)
 
   if (count === 0) {
     return (
@@ -73,6 +74,7 @@ export default function Checkout() {
         className="input"
         value={form[k]}
         onChange={(e) => setForm((f) => ({ ...f, [k]: e.target.value }))}
+        onBlur={() => setTouched((t) => new Set(t).add(k))}
         aria-invalid={show(k) ? true : undefined}
         aria-describedby={show(k) ? `err-${k}` : undefined}
         {...props}

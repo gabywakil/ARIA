@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
-import { img } from '../data/images'
 import { NAV } from '../data/site'
 import { useCart } from '../state/cart'
 import { Icon } from './Icon'
+import { Logo } from './Logo'
 
 export function Header() {
   const { count } = useCart()
@@ -30,10 +30,11 @@ export function Header() {
   }, [open])
 
   return (
+    <>
     <header className="hdr" data-scrolled={scrolled ? '' : undefined} data-open={open ? '' : undefined}>
       <div className="hdr__in">
         <Link to="/" className="hdr__logo" aria-label="ARIA, ir al inicio">
-          <img src={img.logo} alt="ARIA Inventory & Mobility" width={150} height={34} />
+          <Logo />
         </Link>
         <nav className="hdr__nav" aria-label="Principal">
           {NAV.map((n) => (
@@ -44,13 +45,15 @@ export function Header() {
         </nav>
         <Link to="/carrito" className="hdr__cart" aria-label={`Carrito, ${count} productos`}>
           <Icon name="cart" />
-          <span className="hdr__count" data-empty={count === 0 ? '' : undefined}>{count}</span>
+          <span key={count} className="hdr__count" data-empty={count === 0 ? '' : undefined}>{count}</span>
         </Link>
         <button className="hdr__menu" aria-expanded={open} aria-controls="menu-movil" aria-label={open ? 'Cerrar menú' : 'Abrir menú'} onClick={() => setOpen((o) => !o)}>
           <Icon name={open ? 'close' : 'menu'} size={22} />
         </button>
       </div>
-      <nav id="menu-movil" className="hdr__sheet" aria-label="Menú" hidden={!open}>
+    </header>
+    {/* Fuera del encabezado: su desenfoque crearía un contexto que encoge el menú */}
+      <nav id="menu-movil" className="hdr__sheet" aria-label="Menú" inert={!open} data-open={open ? '' : undefined}>
         <NavLink to="/" end className="hdr__sheetlink">Inicio</NavLink>
         {NAV.map((n) => (
           <NavLink key={n.to} to={n.to} className="hdr__sheetlink">
@@ -59,6 +62,6 @@ export function Header() {
         ))}
         <NavLink to="/noticias" className="hdr__sheetlink">Noticias</NavLink>
       </nav>
-    </header>
+    </>
   )
 }

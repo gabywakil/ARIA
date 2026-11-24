@@ -46,8 +46,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   :root {
-    --t-fast: 1ms;
-    --t-med: 1ms;
-    --t-slow: 1ms;
+    --t-fast: 120ms;
+    --t-med: 200ms;
+    --t-slow: 240ms;
   }
 }

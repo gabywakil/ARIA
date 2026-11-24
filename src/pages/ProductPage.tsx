@@ -5,7 +5,6 @@ import { ProductCard, ProductShot } from '../components/ProductCard'
 import { IVA, PRODUCTS, money, productBySlug, slugByCategory } from '../data/products'
 import { SITE } from '../data/site'
 import { useCart } from '../state/cart'
-import { useToast } from '../state/toast'
 import NotFound from './NotFound'
 import './pages.css'
 
@@ -38,8 +37,7 @@ export default function ProductPage() {
   const { slug = '' } = useParams()
   const p = productBySlug.get(slug)
   const [qty, setQty] = useState(1)
-  const { add } = useCart()
-  const toast = useToast()
+  const { add, clearAdded } = useCart()
   const nav = useNavigate()
   if (!p) return <NotFound />
 
@@ -72,8 +70,8 @@ export default function ProductPage() {
                 <output aria-live="polite">{qty}</output>
                 <button aria-label="Agregar uno" onClick={() => setQty((q) => q + 1)}><Icon name="plus" size={18} /></button>
               </div>
-              <button className="btn" onClick={() => { add(p.id, qty); toast(`${p.name} agregado al carrito`) }}>Agregar al carrito</button>
-              <button className="btn btn--line" onClick={() => { add(p.id, qty); nav('/carrito') }}>Comprar ahora</button>
+              <button className="btn" onClick={() => add(p.id, qty)}>Agregar al carrito</button>
+              <button className="btn btn--line" onClick={() => { add(p.id, qty); clearAdded(); nav('/carrito') }}>Comprar ahora</button>
             </div>
             <a className="link pdp__wa" href={wa} target="_blank" rel="noreferrer"><Icon name="chat" size={18} /> Preguntar por WhatsApp</a>
             <ul className="feature-list" style={{ fontSize: 'var(--fs-sm)' }}>

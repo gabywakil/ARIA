@@ -1,5 +1,5 @@
 /* ---------- Catálogo ---------- */
-.cat__bar { display: grid; gap: 16px; padding-block: 24px; position: sticky; top: var(--hdr-h); z-index: 5; background: rgb(255 255 255 / 0.92); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+.cat__bar { display: grid; gap: 16px; padding-block: 20px; position: sticky; top: var(--hdr-h); z-index: 5; background: rgb(255 255 255 / 0.72); -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px); box-shadow: 0 1px 0 var(--line); }
 .cat__tools { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 10px; align-items: center; }
 .cat__search { position: relative; }
 .cat__search svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--ink-2); pointer-events: none; }
@@ -32,7 +32,6 @@
 .pdp__wa { justify-self: start; }
 .pdp__h { font-size: var(--fs-lg); font-weight: 600; margin-bottom: 4px; }
 .finance { display: grid; gap: 14px; }
-.finance__row { display: flex; justify-content: space-between; font-size: var(--fs-sm); }
 .finance__fee { font-size: var(--fs-2xl); font-stretch: var(--narrow); font-weight: 600; letter-spacing: -0.02em; }
 @media (max-width: 860px) {
   .pdp { grid-template-columns: 1fr; }
@@ -80,7 +79,7 @@
 .receipt { max-width: 820px; margin-inline: auto; padding-block: 32px var(--section); display: grid; gap: 24px; }
 .doc { border: 1px solid var(--line); border-radius: var(--r-lg); padding: clamp(1.5rem, 1rem + 2vw, 3rem); display: grid; gap: 28px; }
 .doc__top { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; align-items: start; }
-.doc__top img { height: 34px; width: auto; mix-blend-mode: multiply; }
+
 .doc__id { text-align: right; font-size: var(--fs-sm); color: var(--ink-2); }
 .doc__id strong { display: block; color: var(--ink); font-size: var(--fs-xl); font-stretch: var(--narrow); letter-spacing: -0.02em; }
 .doc__parties { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; font-size: var(--fs-sm); }

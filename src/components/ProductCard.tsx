@@ -2,7 +2,6 @@ import { memo } from 'react'
 import { Link } from 'react-router-dom'
 import { money, productImage, type Product } from '../data/products'
 import { useCart } from '../state/cart'
-import { useToast } from '../state/toast'
 import { Icon } from './Icon'
 
 export function ProductShot({ product, className = '', eager = false }: { product: Product; className?: string; eager?: boolean }) {
@@ -15,7 +14,6 @@ export function ProductShot({ product, className = '', eager = false }: { produc
 
 export const ProductCard = memo(function ProductCard({ product }: { product: Product }) {
   const { add } = useCart()
-  const toast = useToast()
   return (
     <article className="pcard">
       <Link to={`/producto/${product.slug}`} className="pcard__link">
@@ -37,10 +35,7 @@ export const ProductCard = memo(function ProductCard({ product }: { product: Pro
         <button
           className="iconbtn iconbtn--solid"
           aria-label={`Agregar ${product.name} al carrito`}
-          onClick={() => {
-            add(product.id)
-            toast(`${product.name} agregado al carrito`)
-          }}
+          onClick={() => add(product.id)}
         >
           <Icon name="plus" />
         </button>

@@ -8,7 +8,6 @@ import genmaq from '../assets/img/genmaq.jpg'
 import gsx from '../assets/img/gsx.jpg'
 import jacket from '../assets/img/jacket.jpg'
 import k3 from '../assets/img/k3.jpg'
-import logo from '../assets/img/logo.png'
 import maurer from '../assets/img/maurer.jpg'
 import moto from '../assets/img/moto.jpg'
 import mt03 from '../assets/img/mt03.jpg'
@@ -23,7 +22,7 @@ import worker from '../assets/img/worker.jpg'
 import z800 from '../assets/img/z800.jpg'
 
 export const img = {
-  atv, casco, corolla, ducati, gen, genmaq, gsx, jacket, k3, logo, maurer, moto,
+  atv, casco, corolla, ducati, gen, genmaq, gsx, jacket, k3, maurer, moto,
   mt03, solar, spike, suv, tools, toyama, tracker, vento, worker, z800,
 } as const
 

@@ -12,6 +12,7 @@ export default function Contact() {
   const [phone, setPhone] = useState('')
   const [msg, setMsg] = useState('')
   const [tried, setTried] = useState(false)
+  const [touched, setTouched] = useState<ReadonlySet<string>>(() => new Set())
   const [done, setDone] = useState(false)
   const errs = {
     name: name.trim().length < 3 ? 'Escribe tu nombre.' : '',
@@ -50,13 +51,13 @@ export default function Contact() {
                 </div>
                 <label className="field">
                   <span className="field__label">Nombre</span>
-                  <input className="input" autoComplete="name" value={name} onChange={(e) => setName(e.target.value)} aria-invalid={tried && errs.name ? true : undefined} />
-                  {tried && errs.name ? <span className="field__error">{errs.name}</span> : null}
+                  <input className="input" autoComplete="name" value={name} onChange={(e) => setName(e.target.value)} onBlur={() => setTouched((t) => new Set(t).add('name'))} aria-invalid={(tried || touched.has('name')) && errs.name ? true : undefined} />
+                  {(tried || touched.has('name')) && errs.name ? <span className="field__error">{errs.name}</span> : null}
                 </label>
                 <label className="field">
                   <span className="field__label">Teléfono o WhatsApp</span>
-                  <input className="input" type="tel" autoComplete="tel" value={phone} onChange={(e) => setPhone(e.target.value)} aria-invalid={tried && errs.phone ? true : undefined} />
-                  {tried && errs.phone ? <span className="field__error">{errs.phone}</span> : null}
+                  <input className="input" type="tel" autoComplete="tel" value={phone} onChange={(e) => setPhone(e.target.value)} onBlur={() => setTouched((t) => new Set(t).add('phone'))} aria-invalid={(tried || touched.has('phone')) && errs.phone ? true : undefined} />
+                  {(tried || touched.has('phone')) && errs.phone ? <span className="field__error">{errs.phone}</span> : null}
                 </label>
                 <label className="field">
                   <span className="field__label">Mensaje (opcional)</span>

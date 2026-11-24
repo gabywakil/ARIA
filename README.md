@@ -27,7 +27,10 @@ src/
   components/  encabezado, pie, tarjeta de producto, íconos
   pages/       una página por ruta (se cargan bajo demanda)
   styles/      tokens de diseño (tokens.css) y estilos base
+  lib/spring.ts  resortes, impulso y rubber-band al estilo Apple
+  hooks/       riel con arrastre físico
 DESIGN.md      sistema de diseño: color, tipografía, layout y principios
+.agents/skills skill apple-design instalada con `npx skills add`
 prototipo/     el prototipo HTML anterior, como referencia
 ```
 

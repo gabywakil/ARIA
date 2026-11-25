@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import showroom from '../assets/photos/showroom-sentra.jpg'
+import trunk from '../assets/photos/sentra-maleta.jpg'
 import { CountUp, LitText, Magnetic, Tilt, Words, glow, useScrollProgress } from '../components/fx'
 import { Icon } from '../components/Icon'
 import { ProductCard, ProductShot } from '../components/ProductCard'
@@ -113,11 +114,10 @@ const SALA_DEF = [
   { slug: 'vento-dakar-300', big: '25', unit: 'HP', label: 'doble propósito, 300 cc' },
   { slug: 'forza-evo-450', big: '152', unit: 'km/h', label: 'velocidad máxima, inyección' },
   { slug: 'loncin-xwolf-1000', big: '2', unit: 'puestos', label: 'la cuatrimoto más potente de Loncin' },
-  { slug: 'zx-auto-terralord', big: '3', unit: 'años', label: 'de garantía o 100.000 km' },
+  { slug: 'hisun-utv-hs1000-crew', big: '5', unit: 'puestos', label: 'UTV de cabina doble' },
   { slug: 'zx-auto-grandlion', big: '4x4', unit: '', label: 'automática, doble cabina' },
   { slug: 'hyundai-gd-power-generador-100-kva', big: '100', unit: 'kVA', label: 'insonorizada, diésel' },
   { slug: 'greenenergy-inversor-de-almacenamiento-vs', big: '12.500', unit: 'VA', label: 'inversor híbrido' },
-  { slug: 'greenenergy-panel-solar-m10-hi-eff-twin-mono-550-w', big: '550', unit: 'W', label: '25 años de garantía de energía' },
 ]
 
 function Sala() {
@@ -240,10 +240,10 @@ function Counters({ refs }: { refs: number }) {
 
 const CAT_IMG: Record<string, { image: string; cls: string }> = {
   motos: { image: 'vento-nitrox', cls: 'ct--wide' },
-  cuatrimotos: { image: 'loncin-xwolf1000', cls: 'ct--wide' },
-  vehiculos: { image: 'grandlion', cls: 'ct--wide' },
-  plantas: { image: 'gd-100', cls: '' },
-  'energia-solar': { image: 'green-inv', cls: '' },
+  cuatrimotos: { image: 'loncin-xwolf700', cls: 'ct--wide' },
+  vehiculos: { image: 'corolla-par', cls: 'ct--wide' },
+  plantas: { image: 'gd-75', cls: '' },
+  'energia-solar': { image: 'panel550', cls: '' },
   ferreteria: { image: 'construy-cunete-importado', cls: 'ct--wide' },
 }
 
@@ -278,11 +278,22 @@ function Categories() {
   )
 }
 
+/* Fotos que ya salen arriba en el inicio: las secciones de abajo no las repiten. */
+const USED_ABOVE = new Set<string>([
+  ...HERO_LAYERS.map((l) => l.image),
+  ...Object.values(CAT_IMG).map((c) => c.image),
+])
+
 /* ---------------- Destacados (riel con física) ---------------- */
 
 function Featured() {
-  const { products } = useStore()
-  const list = useMemo(() => products.filter((p) => p.featured && p.category !== 'Ferretería').slice(0, 12), [products])
+  const { products, bySlug } = useStore()
+  const list = useMemo(() => {
+    const used = new Set(USED_ABOVE)
+    SALA_DEF.forEach((s) => { const p = bySlug.get(s.slug); if (p) used.add(p.image) })
+    const pool = products.filter((p) => p.image && p.category !== 'Ferretería' && !used.has(p.image))
+    return [...pool.filter((p) => p.featured), ...pool.filter((p) => !p.featured)].slice(0, 10)
+  }, [products, bySlug])
   const { ref: rail, step } = useFluidRail<HTMLDivElement>()
   return (
     <section className="sec">
@@ -321,7 +332,15 @@ function Featured() {
 
 function Hardware({ refs }: { refs: number }) {
   const { products } = useStore()
-  const pick = (brand: string, n: number) => products.filter((p) => p.brand === brand).slice(0, n)
+  const pick = (brand: string, n: number) => {
+    // una por sección, para que las tres fotos sean distintas entre sí
+    const seen = new Set<string | undefined>()
+    return products.filter((p) => {
+      if (p.brand !== brand || !p.image || USED_ABOVE.has(p.image) || seen.has(p.sub + p.name.split(' ')[0])) return false
+      seen.add(p.sub + p.name.split(' ')[0])
+      return true
+    }).filter((p, i, arr) => arr.findIndex((q) => q.sub === p.sub) === i || brand === 'ConstruY').slice(0, n)
+  }
   const cols = [
     { brand: 'Tolsen', text: 'Herramientas manuales, eléctricas, inalámbricas, de medición, jardín y más.', items: pick('Tolsen', 3) },
     { brand: 'Nexon', text: 'Mallas, alambre, pintura, cerrajería, electrodos y electricidad.', items: pick('Nexon', 3) },
@@ -439,7 +458,6 @@ function PowerPlanner() {
         {rec ? (
           <>
             <div className="planner__rec">
-              <ProductShot product={rec} />
               <div>
                 <p className="muted">Te recomendamos</p>
                 <h3 className="planner__name">{rec.brand} {rec.name}</h3>
@@ -500,7 +518,6 @@ function FinanceHome() {
         </div>
       </div>
       <div className="fin__a" aria-live="polite">
-        <ProductShot product={p} className="fin__shot" key={p.id} />
         <p className="muted">Tu cuota mensual</p>
         <p className="fin__fee num display">{money(fee)}</p>
         <p className="muted">durante {months} meses, después de una inicial de {money((value * down) / 100)}.</p>
@@ -645,7 +662,7 @@ function Visit() {
             <a className="btn btn--line" href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noreferrer"><Icon name="chat" size={18} /> WhatsApp</a>
           </div>
         </div>
-        <img className="visit__photo" src={showroom} alt="Sala de exhibición con un Nissan Sentra" loading="lazy" />
+        <img className="visit__photo" src={trunk} alt="Nissan Sentra blanco en la sala de exhibición de ARIA" loading="lazy" />
       </div>
     </section>
   )

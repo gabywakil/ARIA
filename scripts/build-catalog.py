@@ -28,17 +28,48 @@ def slug(s):
     return re.sub(r'[^a-z0-9]+', '-', s.lower()).strip('-')
 
 
-def save_img(src_path, key, max_side=900):
-    """Recorta el borde transparente, limita el tamaño y guarda WebP con transparencia."""
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+try:
+    import esrgan  # Real-ESRGAN (tools/esrgan.py): mejora la nitidez de fotos pequeñas
+    esrgan.use_fast()
+except Exception as e:  # sin el modelo, se guarda la imagen tal cual
+    print('sin mejora de calidad:', e, file=sys.stderr)
+    esrgan = None
+from phash import dh, dist
+_hashes = []
+
+
+class LowQuality(Exception):
+    pass
+
+
+def save_img(src_path, key, max_side=1000, dedupe=False):
+    """Recorta el borde transparente, mejora la nitidez si la foto es pequeña,
+    evita fotos repetidas y guarda WebP con transparencia."""
     out = os.path.join(OUT_IMG, key + '.webp')
     im = Image.open(src_path).convert('RGBA')
     bb = im.getchannel('A').point(lambda v: 255 if v > 20 else 0).getbbox()
     if bb:
         im = im.crop(bb)
+    import numpy as _np
+    _a = _np.asarray(im)
+    _c = [_a[0, 0], _a[0, -1], _a[-1, 0], _a[-1, -1]]
+    if sum(1 for c in _c if c[3] > 200 and int(c[0]) + int(c[1]) + int(c[2]) < 120) >= 3:
+        raise LowQuality('fondo negro')
+    if min(im.size) < 110 or max(im.size) < 220:
+        raise LowQuality(f'muy pequeña {im.size}')
+    h = dh(im)
+    if dedupe and any(dist(h, o) <= 26 for o in _hashes):
+        raise LowQuality('foto repetida')
+    _hashes.append(h)
+    if os.path.exists(out) and os.path.getmtime(out) > os.path.getmtime(src_path):
+        return key  # ya procesada
+    if esrgan and max(im.size) < max_side:
+        im = esrgan.upscale(im, max_side)
     s = min(1, max_side / max(im.size))
     if s < 1:
         im = im.resize((round(im.width * s), round(im.height * s)), Image.LANCZOS)
-    im.save(out, 'WEBP', quality=84, method=6)
+    im.save(out, 'WEBP', quality=86, method=6)
     return key
 
 
@@ -56,8 +87,11 @@ def add(category, brand, name, image, highlight, description, specs, sub=None, f
     ))
 
 
-def cut(key, max_side=900):
-    return save_img(os.path.join(CUT, key + '.png'), key, max_side)
+def cut(key, max_side=1000):
+    src = os.path.join(CUT, key + '.png')
+    if not os.path.exists(src):  # sin foto de buena calidad: el producto sale sin imagen
+        return ''
+    return save_img(src, key, max_side)
 
 
 # ------------------------------------------------------------------ MOTOS
@@ -238,9 +272,9 @@ for brand in ('tolsen', 'nexon'):
         per_section[(brand, sec)] = n + 1
         key = f"{brand}-{slug(title)}-{it['rows'][0]['code'].lower()}"[:80]
         try:
-            save_img(os.path.join(EX, it['image']), slug(key), 700)
+            save_img(os.path.join(EX, it['image']), slug(key), 1000, dedupe=True)
         except Exception as e:
-            print('sin imagen', key, e, file=sys.stderr)
+            print('omitida', key, e, file=sys.stderr)
             continue
         variants = [dict(code=r['code'], size=r['size'], price=r['price'] or None) for r in it['rows']]
         add('Ferretería', it['brand'], title, slug(key), f"{len(variants)} {'medidas' if len(variants) > 1 else 'medida'}, código {variants[0]['code']}" if len(variants) > 1 else f"Código {variants[0]['code']}",

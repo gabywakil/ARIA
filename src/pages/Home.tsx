@@ -1,134 +1,259 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Icon, type IconName } from '../components/Icon'
-import { ProductCard } from '../components/ProductCard'
-import { img } from '../data/images'
-import { CATEGORIES, PRODUCTS, money, productById, productImage, type Product } from '../data/products'
-import { BRANDS, FAQ, NEWS, SITE, STEPS, TESTIMONIALS } from '../data/site'
+import { Icon } from '../components/Icon'
+import { ProductCard, ProductShot } from '../components/ProductCard'
+import { cut, type CutKey } from '../data/cutouts'
+import { img, type ImgKey } from '../data/images'
+import { PRODUCTS, money, productById, type Product } from '../data/products'
+import { BRANDS, FAQ, SITE, STEPS, TESTIMONIALS } from '../data/site'
 import { CountUp, LitText, Magnetic, Tilt, Words, glow, useScrollProgress } from '../components/fx'
 import { useFluidRail } from '../hooks/useFluidRail'
-import { project, reducedMotion } from '../lib/spring'
+import { SpringValue, reducedMotion } from '../lib/spring'
 import './home.css'
 
-/* ---------------- Hero (como el prototipo, con física) ---------------- */
+/* =====================================================================
+   HERO "ESTUDIO": tres productos reales en profundidad sobre el piso blanco.
+   Se mueven en capas con el cursor (giro 3D) y se separan al hacer scroll.
+   ===================================================================== */
 
-const SLIDES = [
-  { id: 5, fit: 'cover' },
-  { id: 9, fit: 'contain' },
-  { id: 13, fit: 'cover' },
-  { id: 4, fit: 'contain' },
-  { id: 8, fit: 'contain' },
-].map((s) => ({ ...s, p: productById.get(s.id)! }))
-const AUTOPLAY = 5200
+const HERO_LAYERS = [
+  { key: 'genmaq' as const, id: 13, cls: 'hl--back', depth: 0.35 },
+  { key: 'tracker' as const, id: 8, cls: 'hl--mid', depth: 0.6 },
+  { key: 'gsx' as const, id: 5, cls: 'hl--front', depth: 1 },
+]
 
-function Hero() {
-  const [i, setI] = useState(0)
-  const [paused, setPaused] = useState(false)
-  const stage = useRef<HTMLDivElement>(null)
-  const pills = useRef<HTMLDivElement>(null)
-  const slide = SLIDES[i]
+function HeroStudio() {
+  const scene = useRef<HTMLDivElement>(null)
+  // Resortes para el giro con el cursor: se siente físico y se puede interrumpir
+  const [rot] = useState(() => {
+    const paint = () => {
+      const el = scene.current
+      if (!el) return
+      el.style.setProperty('--rx', `${o.x.value}`)
+      el.style.setProperty('--ry', `${o.y.value}`)
+    }
+    const o = { x: new SpringValue(0, paint), y: new SpringValue(0, paint) }
+    return o
+  })
 
-  // Avanza solo, salvo que la persona esté encima o la pestaña esté oculta
   useEffect(() => {
-    if (paused || reducedMotion()) return
-    const t = window.setTimeout(() => setI((n) => (n + 1) % SLIDES.length), AUTOPLAY)
-    return () => window.clearTimeout(t)
-  }, [i, paused])
-
-  // Profundidad al hacer scroll: el escenario se aleja y las píldoras flotan a distinta velocidad
-  useEffect(() => {
-    if (reducedMotion()) return
+    const el = scene.current
+    if (!el || reducedMotion()) return
     let raf = 0
     const update = () => {
       raf = 0
-      const y = Math.min(scrollY, innerHeight)
-      const st = stage.current
-      if (st) st.style.transform = `translateY(${y * 0.08}px) scale(${1 - y / innerHeight * 0.05})`
-      pills.current?.querySelectorAll<HTMLElement>('[data-sp]').forEach((el) => {
-        el.style.translate = `0 ${y * Number(el.dataset.sp)}px`
-      })
+      el.style.setProperty('--sp', String(Math.min(1, scrollY / (innerHeight * 0.9))))
     }
     const on = () => (raf ||= requestAnimationFrame(update))
     addEventListener('scroll', on, { passive: true })
     return () => {
       removeEventListener('scroll', on)
       cancelAnimationFrame(raf)
+      rot.x.stop()
+      rot.y.stop()
     }
-  }, [])
-
-  // Deslizar con el dedo: decide con el impulso proyectado, no con la distancia
-  const drag = useRef<{ x: number; t: number } | null>(null)
-  const go = (d: number) => setI((n) => (n + d + SLIDES.length) % SLIDES.length)
+  }, [rot])
 
   return (
-    <section className="hh">
-      <div className="wrap hh__intro">
-        <span className="tag" data-rv>ARIA Inventory &amp; Mobility</span>
-        <h1 className="hw display">
-          <Words text="Movilidad y energía, elevadas." delay={120} />
+    <section
+      className="hs"
+      onPointerMove={(e) => {
+        if (e.pointerType !== 'mouse' || reducedMotion()) return
+        rot.x.to(e.clientX / innerWidth - 0.5, { damping: 1, response: 0.6 })
+        rot.y.to(e.clientY / innerHeight - 0.5, { damping: 1, response: 0.6 })
+      }}
+      onPointerLeave={() => {
+        rot.x.to(0, { damping: 0.8, response: 0.8 })
+        rot.y.to(0, { damping: 0.8, response: 0.8 })
+      }}
+    >
+      <div className="wrap hs__intro">
+        <span className="tag hs__tag"><span className="hs__dot" /> Nuevos ingresos cada semana en Lechería</span>
+        <h1 className="hs__title display">
+          <Words text="Movilidad y energía," delay={80} />
+          <span className="hs__line2"><Words text="elevadas." delay={380} /></span>
         </h1>
-        <p className="hp">
-          Motos, vehículos, plantas eléctricas y energía solar de marcas seleccionadas. Con garantía real y atención directa en Lechería.
-        </p>
-        <div className="hb">
+        <p className="hs__lead">Motos, vehículos y plantas eléctricas de marcas seleccionadas, con garantía real, factura en línea y un asesor que te atiende por tu nombre.</p>
+        <div className="hs__cta">
           <Magnetic><Link to="/catalogo" className="btn btn--lg">Explorar catálogo</Link></Magnetic>
-          <Magnetic><Link to="/aliados" className="btn btn--line btn--lg">Ser aliado</Link></Magnetic>
+          <Magnetic><Link to="/contacto" className="btn btn--line btn--lg">Agendar una visita</Link></Magnetic>
         </div>
       </div>
-      <div className="wrap" ref={pills}>
-        <div
-          className="hstage"
-          ref={stage}
-          onPointerEnter={() => setPaused(true)}
-          onPointerLeave={() => setPaused(false)}
-          onPointerDown={(e) => (drag.current = { x: e.clientX, t: performance.now() })}
-          onPointerUp={(e) => {
-            const d = drag.current
-            drag.current = null
-            if (!d) return
-            const dx = e.clientX - d.x
-            const v = (dx / Math.max(1, performance.now() - d.t)) * 1000
-            const landing = dx + project(v)
-            if (Math.abs(dx) > 12 && Math.abs(landing) > 80) go(landing < 0 ? 1 : -1)
-          }}
-        >
-          {SLIDES.map((s, n) => (
-            <Link
-              key={s.id}
-              to={`/producto/${s.p.slug}`}
-              className={`hstage__sl hstage__sl--${s.fit}`}
-              data-on={n === i ? '' : undefined}
-              aria-hidden={n !== i}
-              tabIndex={n === i ? 0 : -1}
-              draggable={false}
-            >
-              <img src={productImage(s.p)} alt={s.p.name} draggable={false} fetchPriority={n === 0 ? 'high' : 'low'} />
+
+      <div className="hs__scene" ref={scene} aria-label="Productos en exhibición">
+        <span className="hs__word" aria-hidden="true">ARIA</span>
+        <div className="hs__floor" aria-hidden="true" />
+        {HERO_LAYERS.map((l) => {
+          const p = productById.get(l.id)!
+          return (
+            <Link key={l.key} to={`/producto/${p.slug}`} className={`hl ${l.cls}`} style={{ '--z': l.depth } as React.CSSProperties} aria-label={p.name}>
+              <span className="hl__shadow" aria-hidden="true" />
+              <img src={cut[l.key]} alt={p.name} fetchPriority={l.cls === 'hl--front' ? 'high' : 'auto'} draggable={false} />
             </Link>
-          ))}
-          <div className="gl gl--1" data-sp="-0.06"><span className="gl__in"><Icon name="shield" size={18} /> Garantía hasta 2 años</span></div>
-          <div className="gl gl--2" data-sp="0.05"><span className="gl__in"><Icon name="truck" size={18} /> Entrega coordinada</span></div>
-          <div className="gl gl--3" data-sp="-0.035"><span className="gl__in"><Icon name="doc" size={18} /> Factura en línea</span></div>
-          <div className="cap">
-            <div className="cap__txt" key={slide.id}>
-              <b>{slide.p.name}</b>
-              <small>{slide.p.highlight}, desde {money(slide.p.price)}</small>
-            </div>
-            <div className="dots" role="tablist" aria-label="Productos en exhibición">
-              {SLIDES.map((s, n) => (
-                <button
-                  key={s.id}
-                  role="tab"
-                  aria-selected={n === i}
-                  aria-label={s.p.name}
-                  className="dot"
-                  data-on={n === i ? '' : undefined}
-                  data-paused={paused ? '' : undefined}
-                  style={{ '--dur': `${AUTOPLAY}ms` } as React.CSSProperties}
-                  onClick={() => setI(n)}
-                />
+          )
+        })}
+        <div className="gl gl--a"><span className="gl__in"><Icon name="shield" size={18} /> Garantía hasta 2 años</span></div>
+        <div className="gl gl--b"><span className="gl__in"><Icon name="doc" size={18} /> Factura en línea</span></div>
+        <div className="gl gl--c"><span className="gl__in"><Icon name="truck" size={18} /> Entrega a todo el país</span></div>
+      </div>
+    </section>
+  )
+}
+
+/* =====================================================================
+   SALA DE EXHIBICIÓN: la pantalla se queda fija y, con el scroll,
+   cada producto entra girando sobre el piso mientras su ficha se arma.
+   ===================================================================== */
+
+const SALA = [
+  { id: 5, key: 'gsx' as const, cat: 'Motos', big: '199', unit: 'hp', label: 'de potencia' },
+  { id: 7, key: 'z800' as const, cat: 'Motos', big: '806', unit: 'cc', label: 'cuatro cilindros' },
+  { id: 9, key: 'corolla' as const, cat: 'Vehículos', big: '21', unit: 'km/L', label: 'híbrida' },
+  { id: 8, key: 'tracker' as const, cat: 'Vehículos', big: '1.2', unit: 'turbo', label: 'automática' },
+  { id: 13, key: 'genmaq' as const, cat: 'Plantas', big: '30', unit: 'kVA', label: 'insonorizada' },
+  { id: 15, key: 'ducati' as const, cat: 'Plantas', big: '2,5', unit: 'kVA', label: 'arranque eléctrico' },
+].map((s) => ({ ...s, p: productById.get(s.id)! }))
+
+function Sala() {
+  const [active, setActive] = useState(0)
+  const items = useRef<HTMLDivElement>(null)
+  const bar = useRef<HTMLDivElement>(null)
+
+  const ref = useScrollProgress<HTMLElement>((prog) => {
+    const n = SALA.length
+    const x = prog * (n - 1) // posición continua entre productos
+    const reduce = reducedMotion()
+    items.current?.querySelectorAll<HTMLElement>('.sala__item').forEach((el, k) => {
+      const d = x - k // <0: viene; >0: ya pasó
+      // Cada producto queda quieto la mayor parte del tramo y el cambio ocurre en una ventana corta:
+      // el que sale termina de girar antes de que entre el siguiente (nunca se ven dos encimados).
+      const t = Math.max(0, Math.min(1, (Math.abs(d) - 0.22) / 0.28))
+      const e = t * t * (3 - 2 * t) // suavizado
+      const dir = Math.sign(d)
+      el.style.opacity = String(1 - e)
+      el.style.visibility = e >= 1 ? 'hidden' : 'visible'
+      el.style.transform = reduce
+        ? ''
+        : `translateX(${-dir * e * 38}%) rotateY(${dir * e * 55}deg) scale(${1 - e * 0.12})`
+    })
+    bar.current?.style.setProperty('transform', `scaleX(${prog})`)
+    const idx = Math.round(x)
+    setActive((a) => (a === idx ? a : idx)) // solo re-renderiza al cambiar de producto
+  }, 0, 1)
+
+  const s = SALA[active]
+  return (
+    <section className="sala" ref={ref} style={{ '--n': SALA.length } as React.CSSProperties}>
+      <div className="sala__pin">
+        <div className="wrap sala__grid">
+          <div className="sala__left">
+            <span className="tag">La sala</span>
+            <h2 className="sec__title">Recorre la sala sin salir de casa.</h2>
+            <ol className="sala__list">
+              {SALA.map((x, k) => (
+                <li key={x.id} data-on={k === active ? '' : undefined}>
+                  <span className="sala__cat">{x.cat}</span>
+                  <span className="sala__nm">{x.p.name}</span>
+                </li>
               ))}
+            </ol>
+          </div>
+          <div className="sala__stage" ref={items}>
+            <span className="sala__bg" aria-hidden="true" key={s.cat}>{s.cat}</span>
+            <div className="sala__floor" aria-hidden="true" />
+            {SALA.map((x) => (
+              <div key={x.id} className="sala__item">
+                <img src={cut[x.key]} alt={x.p.name} loading="lazy" draggable={false} />
+              </div>
+            ))}
+          </div>
+          <div className="sala__info" key={s.id} aria-live="polite">
+            <p className="sala__big display num">{s.big}<small>{s.unit}</small></p>
+            <p className="muted">{s.label}</p>
+            <h3 className="sala__name">{s.p.name}</h3>
+            <table className="spec sala__spec">
+              <tbody>
+                {Object.entries(s.p.specs).slice(0, 3).map(([k, v]) => (
+                  <tr key={k}><th scope="row">{k}</th><td>{v}</td></tr>
+                ))}
+              </tbody>
+            </table>
+            <div className="sala__buy">
+              <span className="sala__price num">{money(s.p.price)}</span>
+              <Link to={`/producto/${s.p.slug}`} className="btn">Ver ficha</Link>
             </div>
           </div>
+        </div>
+        <div className="wrap"><div className="sala__track"><div className="sala__bar" ref={bar} /></div></div>
+      </div>
+    </section>
+  )
+}
+
+/* =====================================================================
+   CATEGORÍAS: mosaico limpio, el producto gira levemente al pasar el mouse
+   ===================================================================== */
+
+const CAT_TILES: { slug: string; name: string; text: string; cut?: CutKey; photo?: ImgKey; cls: string }[] = [
+  { slug: 'motos', name: 'Motos', text: 'Urbanas, naked y deportivas.', cut: 'z800', cls: 'ct--wide' },
+  { slug: 'vehiculos', name: 'Vehículos', text: 'SUV y sedanes 0 km.', cut: 'k3', cls: 'ct--wide' },
+  { slug: 'plantas', name: 'Plantas', text: 'Venta y alquiler.', cut: 'toyama', cls: '' },
+  { slug: 'energia-solar', name: 'Energía solar', text: 'Inversores Greenenergy.', photo: 'solar', cls: '' },
+  { slug: 'accesorios', name: 'Accesorios', text: 'Cascos y chaquetas.', photo: 'casco', cls: '' },
+  { slug: 'ferreteria', name: 'Ferretería', text: 'Línea Maurer y más.', photo: 'tools', cls: '' },
+]
+
+function Categories() {
+  return (
+    <section className="sec wrap">
+      <div className="sec__head sec__head--row" data-rv>
+        <div style={{ display: 'grid', gap: 12 }}>
+          <span className="tag">Categorías</span>
+          <h2 className="sec__title">Todo lo que mueve tu día.</h2>
+        </div>
+        <Link to="/catalogo" className="btn btn--line btn--sm">Ver catálogo</Link>
+      </div>
+      <div className="ctg" data-rv>
+        {CAT_TILES.map((c) => (
+          <Link key={c.slug} to={`/catalogo/${c.slug}`} className={`ct ${c.cls} ${c.cut ? 'ct--cut' : 'ct--photo'}`} onPointerMove={glow}>
+            <div className="ct__txt">
+              <h3>{c.name}</h3>
+              <p>{c.text}</p>
+            </div>
+            <span className="ct__go" aria-hidden="true"><Icon name="arrowRight" size={18} /></span>
+            {c.cut ? <img className="ct__img" src={cut[c.cut]} alt="" loading="lazy" /> : <img className="ct__img" src={img[c.photo!]} alt="" loading="lazy" />}
+          </Link>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+/* =====================================================================
+   HERRAMIENTAS: calculadora de planta y de cuotas en pestañas
+   ===================================================================== */
+
+function Tools() {
+  const [tab, setTab] = useState<'planta' | 'cuotas'>('planta')
+  return (
+    <section className="sec wrap">
+      <div className="tools" data-rv>
+        <div className="tools__head">
+          <div style={{ display: 'grid', gap: 12 }}>
+            <span className="tag">Herramientas</span>
+            <h2 className="sec__title">Decide con números, no con dudas.</h2>
+          </div>
+          <div className="seg tools__tabs" role="tablist" aria-label="Herramienta">
+            <button role="tab" className="seg__opt" aria-selected={tab === 'planta'} aria-pressed={tab === 'planta'} onClick={() => setTab('planta')}>
+              <Icon name="bolt" size={16} /> Calcular mi planta
+            </button>
+            <button role="tab" className="seg__opt" aria-selected={tab === 'cuotas'} aria-pressed={tab === 'cuotas'} onClick={() => setTab('cuotas')}>
+              <Icon name="card" size={16} /> Simular cuotas
+            </button>
+          </div>
+        </div>
+        <div className="tools__body" key={tab} role="tabpanel">
+          {tab === 'planta' ? <PowerPlanner /> : <FinanceHome />}
         </div>
       </div>
     </section>
@@ -151,6 +276,7 @@ function Marquee() {
   )
 }
 
+
 /* ---------------- Cifras ---------------- */
 
 const COUNTERS = [
@@ -169,109 +295,6 @@ function Counters() {
           <span className="muted">{c.l}</span>
         </div>
       ))}
-    </section>
-  )
-}
-
-/* ---------------- Elige tu camino (tarjetas apiladas) ---------------- */
-
-const STACK: { name: string; slug: string; title: string; text: string; points: string[]; image: Product['image']; fit: 'cover' | 'contain' }[] = [
-  { name: 'Motos', slug: 'motos', title: 'Motos para cada camino.', text: 'Urbanas, naked y deportivas de Vento, HJM, Aichi, Suzuki, Yamaha y Kawasaki.', points: ['Póliza incluida en Vento', 'Financiación desde 30 % de inicial', 'Revisión en nuestro taller'], image: 'gsx', fit: 'cover' },
-  { name: 'Vehículos', slug: 'vehiculos', title: 'Tu próximo carro, sin sorpresas.', text: 'SUV y sedanes nuevos de Chevrolet, Toyota, Kia y Changan, con garantía de fábrica.', points: ['Precio final por escrito', 'Hasta 3 años de garantía', 'Entrega con papeles al día'], image: 'corolla', fit: 'contain' },
-  { name: 'Plantas', slug: 'plantas', title: 'Que el corte no te detenga.', text: 'Plantas de 2,5 a 30 kVA de Cummins, Genmaq, Toyama y Ducati. Para comprar o alquilar.', points: ['Instalación con técnico', 'Alquiler por día, semana o mes', 'Mantenimiento programado'], image: 'genmaq', fit: 'cover' },
-  { name: 'Energía solar', slug: 'energia-solar', title: 'Energía propia, factura más baja.', text: 'Inversores híbridos Greenenergy de 3.000 a 12.500 VA con baterías de litio.', points: ['Estudio de consumo sin costo', 'Instalación certificada', 'Monitoreo desde el celular'], image: 'solar', fit: 'cover' },
-  { name: 'Ferretería', slug: 'ferreteria', title: 'Herramientas que aguantan la obra.', text: 'Herramientas manuales, de obra y la línea Maurer, con precio por volumen para aliados.', points: ['Stock permanente', 'Precio especial por volumen', 'Despacho a obra'], image: 'maurer', fit: 'cover' },
-]
-
-function Stack() {
-  const ref = useRef<HTMLDivElement>(null)
-  // Cada tarjeta se encoge un poco cuando la siguiente la tapa: sensación de profundidad
-  useEffect(() => {
-    if (reducedMotion()) return
-    const cards = Array.from(ref.current?.children ?? []) as HTMLElement[]
-    let raf = 0
-    const update = () => {
-      raf = 0
-      cards.forEach((c, n) => {
-        const next = cards[n + 1]
-        if (!next) return
-        const top = parseFloat(getComputedStyle(c).top) || 0
-        const d = next.getBoundingClientRect().top - top
-        const k = Math.max(0, Math.min(1, 1 - d / c.offsetHeight))
-        c.style.transform = `scale(${1 - k * 0.05})`
-        c.style.filter = k > 0.02 ? `brightness(${1 - k * 0.08})` : ''
-      })
-    }
-    const on = () => (raf ||= requestAnimationFrame(update))
-    addEventListener('scroll', on, { passive: true })
-    return () => {
-      removeEventListener('scroll', on)
-      cancelAnimationFrame(raf)
-    }
-  }, [])
-
-  return (
-    <section className="sec wrap">
-      <div className="center-head" data-rv>
-        <span className="tag">Todo en un solo lugar</span>
-        <h2 className="sec__title">Elige tu camino.</h2>
-      </div>
-      <div className="stack" ref={ref}>
-        {STACK.map((c, n) => (
-          <article key={c.slug} className="scard" style={{ '--i': n } as React.CSSProperties}>
-            <div className="scard__txt">
-              <span className="tag">{c.name}</span>
-              <h3 className="sec__title">{c.title}</h3>
-              <p className="muted">{c.text}</p>
-              <ul className="feature-list">
-                {c.points.map((x) => <li key={x}><Icon name="check" size={18} /> {x}</li>)}
-              </ul>
-              <Link className="btn" to={`/catalogo/${c.slug}`}>Explorar {c.name.toLowerCase()}</Link>
-            </div>
-            <div className={`scard__media scard__media--${c.fit}`}>
-              <img src={img[c.image]} alt="" loading="lazy" />
-            </div>
-          </article>
-        ))}
-      </div>
-    </section>
-  )
-}
-
-/* ---------------- Buscador por presupuesto ---------------- */
-
-const FIND_CATS = ['Todos', 'Motos', 'Vehículos', 'Plantas', 'Energía solar', 'Accesorios', 'Ferretería'] as const
-
-function Finder() {
-  const [cat, setCat] = useState<(typeof FIND_CATS)[number]>('Todos')
-  const [budget, setBudget] = useState(8000)
-  const res = PRODUCTS.filter((p) => (cat === 'Todos' || p.category === cat) && p.price <= budget).toSorted((a, b) => b.price - a.price)
-  return (
-    <section className="sec wrap">
-      <div className="center-head" data-rv>
-        <span className="tag">Buscador</span>
-        <h2 className="sec__title">Encuentra el tuyo en segundos.</h2>
-      </div>
-      <div className="finder" data-rv>
-        <div className="seg" role="group" aria-label="Categoría">
-          {FIND_CATS.map((c) => (
-            <button key={c} className="seg__opt" aria-pressed={cat === c} onClick={() => setCat(c)}>{c}</button>
-          ))}
-        </div>
-        <label className="field finder__range">
-          <span className="finance__row"><span className="field__label">Presupuesto máximo</span><strong className="num finder__val">{money(budget)}</strong></span>
-          <input type="range" min={100} max={35000} step={100} value={budget} onChange={(e) => setBudget(+e.target.value)} />
-        </label>
-        <p className="muted" aria-live="polite">{res.length === 1 ? '1 resultado' : `${res.length} resultados`}</p>
-        {res.length ? (
-          <div className="pgrid">
-            {res.slice(0, 4).map((p) => <ProductCard key={p.id} product={p} />)}
-          </div>
-        ) : (
-          <p className="muted">Sube el presupuesto para ver opciones.</p>
-        )}
-        {res.length > 4 ? <Link className="link" to={cat === 'Todos' ? '/catalogo' : `/catalogo/${CATEGORIES.find((c) => c.name === cat)?.slug}`}>Ver los {res.length} resultados</Link> : null}
-      </div>
     </section>
   )
 }
@@ -316,6 +339,7 @@ function Featured() {
   )
 }
 
+
 /* ---------------- ¿Qué planta necesitas? ---------------- */
 
 const LOADS = [
@@ -349,10 +373,9 @@ function PowerPlanner() {
     })
 
   return (
-    <section className="sec wrap">
-      <div className="planner" data-rv>
+    <div className="planner">
         <div className="planner__q">
-          <h2 className="sec__title">¿Qué planta necesitas?</h2>
+          <h3 className="tool__title">¿Qué planta necesitas?</h3>
           <p className="sec__lead">Marca lo que quieres mantener encendido durante un corte y te decimos qué equipo te sirve, para comprar o alquilar.</p>
           <div className="planner__loads" role="group" aria-label="Equipos a conectar">
             {LOADS.map((l) => (
@@ -369,9 +392,7 @@ function PowerPlanner() {
           <p className="muted">Consumo estimado, más 25 % de margen para el arranque.</p>
           <hr className="rule" />
           <div className="planner__rec">
-            <div className={`shot shot--${rec.look}`}>
-              <img src={productImage(rec)} alt={rec.name} loading="lazy" />
-            </div>
+            <ProductShot product={rec} />
             <div>
               <p className="muted">Te recomendamos</p>
               <h3 className="planner__name">{rec.name}</h3>
@@ -384,10 +405,10 @@ function PowerPlanner() {
           </div>
           <p className="planner__note">Valores orientativos. Un técnico confirma la carga antes de instalar.</p>
         </div>
-      </div>
-    </section>
+    </div>
   )
 }
+
 
 /* ---------------- Por qué ARIA (bento con brillo) ---------------- */
 
@@ -413,6 +434,7 @@ function Bento() {
     </section>
   )
 }
+
 
 /* ---------------- Cómo funciona (línea que se llena) ---------------- */
 
@@ -444,6 +466,7 @@ function HowItWorks() {
   )
 }
 
+
 /* ---------------- Testimonios que rotan ---------------- */
 
 function Voices() {
@@ -471,6 +494,7 @@ function Voices() {
   )
 }
 
+
 /* ---------------- Aliados (tarjeta verde) ---------------- */
 
 function AlliesCta() {
@@ -494,29 +518,8 @@ function AlliesCta() {
 }
 
 
-/* ---------------- Noticias + visita + FAQ ---------------- */
 
-function NewsList() {
-  return (
-    <section className="sec wrap">
-      <div className="sec__head sec__head--row" data-rv>
-        <h2 className="sec__title">Guías y novedades.</h2>
-        <Link to="/noticias" className="btn btn--line btn--sm">Ver todas</Link>
-      </div>
-      <ul className="newsl" data-rv>
-        {NEWS.map((n) => (
-          <li key={n.slug}>
-            <Link to={`/noticias/${n.slug}`} className="newsl__row">
-              <span className="newsl__tag">{n.tag}</span>
-              <span className="newsl__title">{n.title}</span>
-              <span className="newsl__date muted">{n.date}</span>
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </section>
-  )
-}
+/* ---------------- Noticias + visita + FAQ ---------------- */
 
 function Visit() {
   return (
@@ -594,44 +597,6 @@ function Faq() {
   )
 }
 
-/* ---------------- Producto destacado (editorial) ---------------- */
-
-const SPOT = productById.get(7)!
-const SPOT_FIGS = [
-  { v: '806', u: 'cc', l: 'Cuatro cilindros en línea' },
-  { v: '111', u: 'hp', l: 'Potencia máxima' },
-  { v: '14.500', u: 'km', l: 'Un solo dueño, con historial' },
-  { v: '6', u: 'meses', l: 'De garantía ARIA' },
-]
-
-function Spotlight() {
-  return (
-    <section className="sec wrap">
-      <div className="spot" data-rv>
-        <Link to={`/producto/${SPOT.slug}`} className="spot__media" aria-label={`Ver ${SPOT.name}`}>
-          <img src={productImage(SPOT)} alt={SPOT.name} loading="lazy" />
-        </Link>
-        <div className="spot__card">
-          <p className="muted">Llegó esta semana</p>
-          <h2 className="spot__title display">{SPOT.name}</h2>
-          <p className="spot__text">Naked de media cilindrada, revisada pieza por pieza en nuestro taller: frenos, cadena, cauchos y electrónica. Lista para salir el mismo día.</p>
-          <div className="spot__buy">
-            <span className="spot__price num">{money(SPOT.price)}</span>
-            <Link to={`/producto/${SPOT.slug}`} className="btn">Ver la ficha</Link>
-          </div>
-        </div>
-      </div>
-      <dl className="spot__figs">
-        {SPOT_FIGS.map((f) => (
-          <div key={f.l}>
-            <dt className="muted">{f.l}</dt>
-            <dd className="num"><span className="display">{f.v}</span> {f.u}</dd>
-          </div>
-        ))}
-      </dl>
-    </section>
-  )
-}
 
 /* ---------------- Financiación ---------------- */
 
@@ -646,10 +611,9 @@ function FinanceHome() {
   const fee = (p.price * (1 - down / 100)) / months
 
   return (
-    <section className="sec wrap">
-      <div className="fin" data-rv>
+    <div className="fin">
         <div className="fin__q">
-          <h2 className="sec__title">Estrena hoy, paga en cuotas.</h2>
+          <h3 className="tool__title">Estrena hoy, paga en cuotas.</h3>
           <p className="sec__lead">Elige tu moto o vehículo, mueve la inicial y el plazo, y mira tu cuota al instante. Sin papeleo para simular.</p>
           <label className="field">
             <span className="field__label">Quiero financiar</span>
@@ -673,9 +637,7 @@ function FinanceHome() {
           </div>
         </div>
         <div className="fin__a" aria-live="polite">
-          <div className={`shot shot--${p.look} fin__shot`}>
-            <img src={productImage(p)} alt={p.name} loading="lazy" key={p.id} />
-          </div>
+          <ProductShot product={p} className="fin__shot" key={p.id} />
           <p className="muted">Tu cuota mensual</p>
           <p className="fin__fee num display">{money(fee)}</p>
           <p className="muted">durante {months} meses, después de una inicial de {money((p.price * down) / 100)}.</p>
@@ -685,69 +647,10 @@ function FinanceHome() {
           </div>
           <p className="planner__note">Simulación sin intereses, sujeta a aprobación.</p>
         </div>
-      </div>
-    </section>
+    </div>
   )
 }
 
-/* ---------------- Compra protegida ---------------- */
-
-const PROTECT: { icon: IconName; t: string; d: string }[] = [
-  { icon: 'tag', t: 'Precio final por escrito', d: 'La cotización incluye IVA, póliza y entrega. Lo que ves es lo que pagas.' },
-  { icon: 'card', t: 'Pago confirmado antes de despachar', d: 'Verificamos tu pago y te avisamos por WhatsApp con el número de factura.' },
-  { icon: 'shield', t: 'Garantía en tu factura', d: 'El plazo de garantía queda impreso en el documento, con nuestro RIF.' },
-  { icon: 'wrench', t: 'Primera revisión sin costo', d: 'Tu moto o planta vuelve al taller a los 1.000 km o al primer mes, por nuestra cuenta.' },
-]
-
-function Protected() {
-  return (
-    <section className="sec wrap">
-      <div className="prot" data-rv>
-        <div className="prot__head">
-          <h2 className="sec__title">Compra protegida, de principio a fin.</h2>
-          <p className="sec__lead">Comprar una moto o una planta es una decisión grande. Por eso cada compra en ARIA tiene cuatro respaldos.</p>
-          <Link to="/servicios" className="link">Cómo trabajamos</Link>
-        </div>
-        <ul className="prot__list">
-          {PROTECT.map((x) => (
-            <li key={x.t}>
-              <span className="prot__ic"><Icon name={x.icon} size={24} /></span>
-              <h3>{x.t}</h3>
-              <p className="muted">{x.d}</p>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </section>
-  )
-}
-
-/* ---------------- Instagram ---------------- */
-
-const GRAM = ['vento', 'spike', 'casco', 'jacket', 'solar', 'gen'] as const
-
-function Gram() {
-  return (
-    <section className="sec wrap">
-      <div className="sec__head sec__head--row" data-rv>
-        <div style={{ display: 'grid', gap: 12 }}>
-          <h2 className="sec__title">Lo nuevo, primero en Instagram.</h2>
-          <p className="sec__lead">Llegadas, ofertas de la semana y entregas a clientes en @ariainventory.</p>
-        </div>
-        <a className="btn btn--line btn--sm" href={SITE.instagram} target="_blank" rel="noreferrer"><Icon name="instagram" size={18} /> Seguir</a>
-      </div>
-      <ul className="gram" data-rv>
-        {GRAM.map((k) => (
-          <li key={k}>
-            <a href={SITE.instagram} target="_blank" rel="noreferrer" aria-label="Ver publicación en Instagram">
-              <img src={img[k]} alt="" loading="lazy" />
-            </a>
-          </li>
-        ))}
-      </ul>
-    </section>
-  )
-}
 
 /* ---------------- Cierre ---------------- */
 
@@ -766,30 +669,26 @@ function Closing() {
   )
 }
 
+
 /* ---------------- Página ---------------- */
 
 export default function Home() {
   return (
     <>
-      <Hero />
+      <HeroStudio />
       <Marquee />
+      <Sala />
       <section className="sec wrap lit-wrap">
         <LitText text="Somos ARIA. Seleccionamos motos, vehículos, plantas eléctricas y energía solar para que muevas tu vida e ilumines tu negocio, con garantía real y una atención que te conoce por tu nombre." />
       </section>
       <Counters />
-      <Stack />
-      <Finder />
+      <Categories />
       <Featured />
-      <Spotlight />
       <Bento />
-      <PowerPlanner />
-      <FinanceHome />
+      <Tools />
       <HowItWorks />
       <Voices />
-      <Protected />
       <AlliesCta />
-      <Gram />
-      <NewsList />
       <Visit />
       <Faq />
       <Closing />

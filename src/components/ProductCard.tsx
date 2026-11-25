@@ -6,7 +6,7 @@ import { Icon } from './Icon'
 
 export function ProductShot({ product, className = '', eager = false }: { product: Product; className?: string; eager?: boolean }) {
   return (
-    <div className={`shot shot--${product.look} ${className}`}>
+    <div className={`shot shot--${product.cutout ? 'studio' : product.look} ${className}`}>
       <img src={productImage(product)} alt={product.name} loading={eager ? 'eager' : 'lazy'} decoding="async" />
     </div>
   )

@@ -49,8 +49,11 @@ Fuente del sistema, como en el prototipo aprobado: SF Pro en iPhone y Mac, Segoe
 4. **El movimiento responde a la persona** (seleccionar, abrir, agregar al carrito). No hay animaciones de entrada en cada sección.
 5. **Base de calidad:** contraste AA, foco visible, `prefers-reduced-motion`, móvil desde 360 px.
 
-## Inicio (versión aprobada por el cliente)
-El inicio retoma el prototipo HTML que le gustó al cliente: hero centrado con palabras que entran con desenfoque, escenario con carrusel y píldoras de vidrio con profundidad, cinta de marcas, texto que se ilumina con el scroll, cifras que cuentan, tarjetas apiladas, buscador por presupuesto, riel con inclinación 3D, bento con brillo, pasos con línea que se llena, testimonios que rotan, tarjeta verde de aliados y botones magnéticos. Todo con resortes (`src/lib/spring.ts`) y efectos en `src/components/fx.tsx`.
+## Inicio: estudio de producto + sala que gira
+- **Fotos de estudio:** motos, carros y plantas recortados sin fondo (`src/assets/cut`, WebP transparente) con sombra de contacto, para que todo parezca fotografiado en la misma sala. Se usan en el inicio, el catálogo, las fichas y el carrito.
+- **Hero "estudio":** titular con palabras que entran desenfocadas; debajo, tres productos reales en profundidad (moto, SUV y planta) sobre un piso blanco, con la palabra ARIA en contorno detrás. Las capas giran con el cursor (resortes) y se separan al hacer scroll. Píldoras de vidrio flotando.
+- **La sala:** sección fija mientras se hace scroll; cada producto sale girando y entra el siguiente, sin encimarse, mientras su cifra clave y su ficha se arman al lado.
+- **Ritmo:** se quitaron las secciones repetidas (tarjetas apiladas, buscador, Instagram, noticias, compra protegida). Las calculadoras quedaron juntas en "Herramientas" con pestañas.
 
 ## Logo
 Se usa el logo original de ARIA en PNG transparente (sin el fondo blanco), a 2x.

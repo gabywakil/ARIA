@@ -1,0 +1,5733 @@
+[
+{
+"id": 101,
+"slug": "vento-reptile-trek-200",
+"category": "Cuatrimotos y UTV",
+"sub": "Cuatrimotos",
+"brand": "Vento",
+"name": "Reptile Trek 200",
+"image": "vento-reptile",
+"condition": "Nuevo",
+"highlight": "200 cc, 12,8 HP",
+"description": "Cuatrimoto Vento de 200 cc para campo y trabajo. Todas las motos Vento salen con póliza de seguro.",
+"specs": {
+"Motor": "4 tiempos, enfriado por aire",
+"Cilindros": "1",
+"Cilindrada": "200 cc",
+"Potencia máxima": "12,8 HP",
+"Ignición": "CDI electrónica"
+}
+},
+{
+"id": 102,
+"slug": "vento-dakar-300",
+"category": "Motos",
+"sub": "Doble propósito",
+"brand": "Vento",
+"name": "Dakar 300",
+"image": "vento-dakar",
+"condition": "Nuevo",
+"highlight": "300 cc, 25 HP, doble propósito",
+"description": "Doble propósito con baúl, protector de motor y parabrisas, lista para carretera y tierra. Todas las motos Vento salen con póliza de seguro.",
+"specs": {
+"Motor": "4 tiempos, enfriado por aceite",
+"Cilindros": "1",
+"Cilindrada": "300 cc",
+"Potencia máxima": "25 HP a 8.500 RPM",
+"Torque": "22 Nm a 6.500 RPM",
+"Ignición": "CDI electrónica"
+},
+"featured": true
+},
+{
+"id": 103,
+"slug": "vento-gts-300",
+"category": "Motos",
+"sub": "Doble propósito",
+"brand": "Vento",
+"name": "GTS 300",
+"image": "vento-gts",
+"condition": "Nuevo",
+"highlight": "272,9 cc, 25 HP, radiador de aceite",
+"description": "Doble propósito con motor enfriado por radiador de aceite. Todas las motos Vento salen con póliza de seguro.",
+"specs": {
+"Motor": "4 tiempos, radiador de aceite",
+"Cilindros": "1",
+"Cilindrada": "272,9 cc",
+"Potencia máxima": "25 HP",
+"Ignición": "CDI electrónica"
+}
+},
+{
+"id": 104,
+"slug": "vento-nitrox-300-t3",
+"category": "Motos",
+"sub": "Naked y deportivas",
+"brand": "Vento",
+"name": "Nitrox 300 T3",
+"image": "vento-nitrox",
+"condition": "Nuevo",
+"highlight": "300 cc, 25 HP, naked",
+"description": "Naked deportiva de 300 cc con rines rojos y faro LED. Todas las motos Vento salen con póliza de seguro.",
+"specs": {
+"Motor": "4 tiempos, enfriado por aceite",
+"Cilindros": "1",
+"Cilindrada": "300 cc",
+"Potencia máxima": "25 HP",
+"Ignición": "CDI electrónica"
+},
+"featured": true
+},
+{
+"id": 105,
+"slug": "vento-thunderstar-300-xl",
+"category": "Motos",
+"sub": "Custom",
+"brand": "Vento",
+"name": "Thunderstar 300 XL",
+"image": "vento-thunderstar",
+"condition": "Nuevo",
+"highlight": "300 cc, 24 HP, custom",
+"description": "Custom de 300 cc con respaldo para pasajero y posición relajada. Todas las motos Vento salen con póliza de seguro.",
+"specs": {
+"Motor": "4 tiempos, enfriado por aceite",
+"Cilindros": "1",
+"Cilindrada": "300 cc",
+"Potencia máxima": "24 HP",
+"Ignición": "CDI electrónica"
+}
+},
+{
+"id": 106,
+"slug": "vento-cyclone-200",
+"category": "Motos",
+"sub": "Naked y deportivas",
+"brand": "Vento",
+"name": "Cyclone 200",
+"image": "vento-cyclone",
+"condition": "Nuevo",
+"highlight": "200 cc, 16 HP",
+"description": "Urbana deportiva de 200 cc, económica y ágil. Todas las motos Vento salen con póliza de seguro.",
+"specs": {
+"Motor": "4 tiempos, enfriado por aire",
+"Cilindros": "1",
+"Cilindrada": "200 cc",
+"Potencia máxima": "16 HP",
+"Ignición": "CDI electrónica"
+}
+},
+{
+"id": 107,
+"slug": "forza-sf501-250",
+"category": "Motos",
+"sub": "Naked y deportivas",
+"brand": "Forza",
+"name": "SF501 250",
+"image": "forza-sf501",
+"condition": "Nuevo",
+"highlight": "250 cc, 125 km/h",
+"description": "Naked de estilo café racer con motor monocilíndrico apoyado por radiador de aceite.",
+"specs": {
+"Motor": "Monocilíndrico 4 tiempos, aire con radiador de aceite",
+"Cilindrada": "250 cc",
+"Velocidad máxima": "125 km/h"
+}
+},
+{
+"id": 108,
+"slug": "forza-batllos-250",
+"category": "Motos",
+"sub": "Naked y deportivas",
+"brand": "Forza",
+"name": "Batllos 250",
+"image": "forza-batllos",
+"condition": "Nuevo",
+"highlight": "250 cc, 110 km/h",
+"description": "Naked de 250 cc con eje balanceador para menos vibración.",
+"specs": {
+"Motor": "Monocilíndrico 4 tiempos, aire, árbol de levas en cabeza, eje balanceador",
+"Cilindrada": "250 cc",
+"Velocidad máxima": "110 km/h"
+}
+},
+{
+"id": 109,
+"slug": "forza-scrambler-300",
+"category": "Motos",
+"sub": "Custom",
+"brand": "Forza",
+"name": "Scrambler 300",
+"image": "forza-scrambler",
+"condition": "Nuevo",
+"highlight": "300 cc, 142 km/h, refrigerada por agua",
+"description": "Scrambler de 300 cc con cuatro válvulas y refrigeración líquida.",
+"specs": {
+"Motor": "4 tiempos, refrigerado por agua, 4 válvulas",
+"Cilindrada": "300 cc",
+"Velocidad máxima": "142 km/h"
+},
+"featured": true
+},
+{
+"id": 110,
+"slug": "forza-evo-450",
+"category": "Motos",
+"sub": "Naked y deportivas",
+"brand": "Forza",
+"name": "Evo 450",
+"image": "forza-evo",
+"condition": "Nuevo",
+"highlight": "450 cc, 152 km/h, inyección",
+"description": "La más potente de Forza: 450 cc, refrigeración líquida e inyección electrónica.",
+"specs": {
+"Motor": "4 tiempos, 4 válvulas, refrigerado por líquido",
+"Alimentación": "Inyección electrónica",
+"Cilindrada": "450 cc",
+"Velocidad máxima": "152 km/h"
+},
+"featured": true
+},
+{
+"id": 111,
+"slug": "forza-savage-125",
+"category": "Cuatrimotos y UTV",
+"sub": "Cuatrimotos",
+"brand": "Forza",
+"name": "Savage 125",
+"image": "forza-savage",
+"condition": "Nuevo",
+"highlight": "125 cc, automática",
+"description": "Cuatrimoto automática de 125 cc para jóvenes y paseos.",
+"specs": {
+"Transmisión": "Automática",
+"Cilindrada": "125 cc",
+"Velocidad máxima": "50 km/h",
+"Carga máxima": "80 kg"
+}
+},
+{
+"id": 112,
+"slug": "forza-nova-150",
+"category": "Motos",
+"sub": "Urbanas y de trabajo",
+"brand": "Forza",
+"name": "Nova 150",
+"image": "forza-nova",
+"condition": "Nuevo",
+"highlight": "150 cc, arranque eléctrico",
+"description": "Mini moto de 150 cc con arranque eléctrico, ideal para ciudad.",
+"specs": {
+"Motor": "Monocilíndrico 4 tiempos, aire",
+"Arranque": "Eléctrico",
+"Cilindrada": "150 cc",
+"Carga máxima": "150 kg"
+}
+},
+{
+"id": 113,
+"slug": "aichi-spike-con-freno-de-disco",
+"category": "Motos",
+"sub": "Urbanas y de trabajo",
+"brand": "Aichi",
+"name": "Spike con freno de disco",
+"image": "spike-disco",
+"condition": "Nuevo",
+"highlight": "Freno de disco delantero, 35 km/L",
+"description": "La Spike en edición con freno de disco delantero. Económica, resistente y con garantía de 2 años.",
+"specs": {
+"Luces": "Halógenas",
+"Tacómetro": "Análogo",
+"Rendimiento": "35 km por litro",
+"Garantía": "2 años o 20.000 km",
+"Freno delantero": "Disco"
+},
+"featured": true
+},
+{
+"id": 114,
+"slug": "aichi-spike-doble-banda",
+"category": "Motos",
+"sub": "Urbanas y de trabajo",
+"brand": "Aichi",
+"name": "Spike doble banda",
+"image": "spike-banda",
+"condition": "Nuevo",
+"highlight": "Freno doble banda, 35 km/L",
+"description": "La moto de trabajo de Aichi con sistema de freno doble banda.",
+"specs": {
+"Luces": "Halógenas",
+"Tacómetro": "Análogo",
+"Rendimiento": "35 km por litro",
+"Garantía": "2 años o 20.000 km",
+"Freno": "Doble banda"
+}
+},
+{
+"id": 115,
+"slug": "hjm-hm150-street-jb-2027",
+"category": "Motos",
+"sub": "Urbanas y de trabajo",
+"brand": "HJM",
+"name": "HM150 Street JB 2027",
+"image": "hjm-hm150",
+"condition": "Nuevo",
+"highlight": "Street de 150 cc",
+"description": "Moto urbana de 150 cc, modelo 2027, con rines de aleación y portaequipaje.",
+"specs": {
+"Cilindrada": "150 cc",
+"Año": "2027",
+"Tipo": "Street"
+}
+},
+{
+"id": 116,
+"slug": "hjm-hj-electric-udine",
+"category": "Motos",
+"sub": "Scooters eléctricos",
+"brand": "HJM",
+"name": "HJ Electric Udine",
+"image": "hjm-udine",
+"condition": "Nuevo",
+"highlight": "Scooter eléctrico clásico",
+"description": "Scooter eléctrico de estilo clásico italiano, silencioso y sin gasolina.",
+"specs": {
+"Motor": "Eléctrico",
+"Estilo": "Clásico"
+}
+},
+{
+"id": 117,
+"slug": "hjm-hj-electric-roma",
+"category": "Motos",
+"sub": "Scooters eléctricos",
+"brand": "HJM",
+"name": "HJ Electric Roma",
+"image": "hjm-roma",
+"condition": "Nuevo",
+"highlight": "Scooter eléctrico urbano",
+"description": "Scooter eléctrico negro para moverte por la ciudad sin gasolina.",
+"specs": {
+"Motor": "Eléctrico"
+}
+},
+{
+"id": 118,
+"slug": "hjm-hj-electric-gran-sabana",
+"category": "Motos",
+"sub": "Scooters eléctricos",
+"brand": "HJM",
+"name": "HJ Electric Gran Sabana",
+"image": "hjm-gransabana",
+"condition": "Nuevo",
+"highlight": "Scooter eléctrico con baúl",
+"description": "Scooter eléctrico con baúl trasero incluido, ideal para delivery.",
+"specs": {
+"Motor": "Eléctrico",
+"Incluye": "Baúl trasero"
+}
+},
+{
+"id": 119,
+"slug": "hjm-hj250-ambulancia-con-aire-acondicionado",
+"category": "Motos",
+"sub": "Utilitarios",
+"brand": "HJM",
+"name": "HJ250 Ambulancia con aire acondicionado",
+"image": "hjm-amb1",
+"condition": "Nuevo",
+"highlight": "Equipada con aire, silla de ruedas y oxígeno",
+"description": "Motocarro ambulancia HJ250 equipado con aire acondicionado, silla de ruedas y bombona de oxígeno.",
+"specs": {
+"Base": "HJ250",
+"Equipo": "Aire acondicionado, silla de ruedas, bombona de oxígeno"
+}
+},
+{
+"id": 120,
+"slug": "hjm-hj250-ambulancia-con-ventilador",
+"category": "Motos",
+"sub": "Utilitarios",
+"brand": "HJM",
+"name": "HJ250 Ambulancia con ventilador",
+"image": "hjm-amb2",
+"condition": "Nuevo",
+"highlight": "Equipada con ventilador, silla de ruedas y oxígeno",
+"description": "Motocarro ambulancia HJ250 equipado con ventilador, silla de ruedas y bombona de oxígeno.",
+"specs": {
+"Base": "HJ250",
+"Equipo": "Ventilador, silla de ruedas, bombona de oxígeno"
+}
+},
+{
+"id": 121,
+"slug": "loncin-250nk-2026",
+"category": "Motos",
+"sub": "Naked y deportivas",
+"brand": "Loncin",
+"name": "250NK 2026",
+"image": "loncin-250nk",
+"condition": "Nuevo",
+"highlight": "Naked de 250 cc, modelo 2026",
+"description": "Naked agresiva de Loncin con gráficos rojos y faro LED.",
+"specs": {
+"Cilindrada": "250 cc",
+"Año": "2026"
+},
+"featured": true
+},
+{
+"id": 122,
+"slug": "loncin-150hm-2027",
+"category": "Motos",
+"sub": "Urbanas y de trabajo",
+"brand": "Loncin",
+"name": "150HM 2027",
+"image": "loncin-150hm",
+"condition": "Nuevo",
+"highlight": "Urbana de 150 cc, modelo 2027",
+"description": "Moto urbana roja de 150 cc con portaequipaje, modelo 2027.",
+"specs": {
+"Cilindrada": "150 cc",
+"Año": "2027"
+}
+},
+{
+"id": 123,
+"slug": "loncin-xwolf-300",
+"category": "Cuatrimotos y UTV",
+"sub": "Cuatrimotos",
+"brand": "Loncin",
+"name": "XWOLF 300",
+"image": "loncin-xwolf300",
+"condition": "Nuevo",
+"highlight": "Cuatrimoto de 300 cc",
+"description": "Cuatrimoto XWOLF para trabajo y paseo, en verde militar.",
+"specs": {
+"Modelo": "XWOLF 300"
+}
+},
+{
+"id": 124,
+"slug": "loncin-xwolf-700l",
+"category": "Cuatrimotos y UTV",
+"sub": "Cuatrimotos",
+"brand": "Loncin",
+"name": "XWOLF 700L",
+"image": "loncin-xwolf700",
+"condition": "Nuevo",
+"highlight": "Cuatrimoto de 700 cc, dos puestos",
+"description": "Cuatrimoto larga de dos puestos con respaldo para pasajero.",
+"specs": {
+"Modelo": "XWOLF 700L",
+"Puestos": "2"
+},
+"featured": true
+},
+{
+"id": 125,
+"slug": "loncin-xwolf-1000",
+"category": "Cuatrimotos y UTV",
+"sub": "Cuatrimotos",
+"brand": "Loncin",
+"name": "XWOLF 1000",
+"image": "loncin-xwolf1000",
+"condition": "Nuevo",
+"highlight": "La más potente de Loncin",
+"description": "Cuatrimoto tope de gama de Loncin, dos puestos, para terreno exigente.",
+"specs": {
+"Modelo": "XWOLF 1000",
+"Puestos": "2"
+},
+"featured": true
+},
+{
+"id": 126,
+"slug": "lifan-kpv-300-2025",
+"category": "Motos",
+"sub": "Scooters",
+"brand": "Lifan",
+"name": "KPV 300 2025",
+"image": "hisun-kpv300",
+"condition": "Nuevo",
+"highlight": "Maxi scooter de 300 cc",
+"description": "Maxi scooter de aventura de 300 cc, modelo 2025.",
+"specs": {
+"Cilindrada": "300 cc",
+"Año": "2025"
+}
+},
+{
+"id": 127,
+"slug": "hisun-uxv700",
+"category": "Cuatrimotos y UTV",
+"sub": "UTV",
+"brand": "Hisun",
+"name": "UXV700",
+"image": "hisun-uxv700",
+"condition": "Nuevo",
+"highlight": "UTV de 700 cc con techo",
+"description": "Vehículo utilitario todo terreno con techo y jaula de protección.",
+"specs": {
+"Modelo": "UXV700"
+}
+},
+{
+"id": 128,
+"slug": "hisun-utv-hs1000-crew",
+"category": "Cuatrimotos y UTV",
+"sub": "UTV",
+"brand": "Hisun",
+"name": "UTV HS1000 Crew",
+"image": "hisun-utv1000",
+"condition": "Nuevo",
+"highlight": "UTV de 1000 cc, cabina doble",
+"description": "UTV de cabina doble para cinco personas, ideal para fincas y trabajo pesado.",
+"specs": {
+"Modelo": "HS1000 Crew",
+"Cabina": "Doble"
+},
+"featured": true
+},
+{
+"id": 129,
+"slug": "zx-auto-terralord",
+"category": "Vehículos",
+"sub": "Pickups",
+"brand": "ZX Auto",
+"name": "Terralord",
+"image": "terralord",
+"condition": "Nuevo",
+"highlight": "Pickup 4x2 y 4x4, gasolina o diésel",
+"description": "Pickup doble cabina disponible en versiones sincrónicas y automáticas, gasolina y diésel, 4x2 y 4x4.",
+"specs": {
+"Versiones": "AT gasolina 4x2, gasolina 4x4, gasolina 4x2, diésel 4x2, sincrónica 4x2 y 4x4",
+"Cabina": "Doble",
+"Garantía": "3 años o 100.000 km"
+},
+"featured": true
+},
+{
+"id": 130,
+"slug": "zx-auto-grandlion",
+"category": "Vehículos",
+"sub": "Pickups",
+"brand": "ZX Auto",
+"name": "Grandlion",
+"image": "grandlion",
+"condition": "Nuevo",
+"highlight": "Pickup automática 4x2 y 4x4",
+"description": "La pickup más equipada de ZX Auto, con luces auxiliares y caja automática.",
+"specs": {
+"Versiones": "Automática 4x2 y 4x4",
+"Cabina": "Doble",
+"Garantía": "3 años o 100.000 km"
+},
+"featured": true
+},
+{
+"id": 131,
+"slug": "toyota-corolla-cross",
+"category": "Vehículos",
+"sub": "SUV",
+"brand": "Toyota",
+"name": "Corolla Cross",
+"image": "corolla-par",
+"condition": "Nuevo",
+"highlight": "SUV compacta, disponible en gris y blanco",
+"description": "Toyota Corolla Cross disponible en gris y en blanco perla, lista para entrega.",
+"specs": {
+"Colores": "Gris y blanco perla"
+},
+"featured": true
+},
+{
+"id": 132,
+"slug": "nissan-sentra",
+"category": "Vehículos",
+"sub": "Sedanes",
+"brand": "Nissan",
+"name": "Sentra",
+"image": "sentra-blanco",
+"condition": "Nuevo",
+"highlight": "Sedán automático, blanco y gris",
+"description": "Nissan Sentra con caja automática, disponible en blanco y en gris, en exhibición.",
+"specs": {
+"Transmisión": "Automática",
+"Colores": "Blanco y gris"
+}
+},
+{
+"id": 133,
+"slug": "gac-gs3-emzoom",
+"category": "Vehículos",
+"sub": "SUV",
+"brand": "GAC",
+"name": "GS3 Emzoom",
+"image": "gac",
+"condition": "Nuevo",
+"highlight": "SUV turbo, color azul celeste",
+"description": "SUV compacta de diseño moderno con parrilla de líneas verticales.",
+"specs": {
+"Color": "Azul celeste"
+}
+},
+{
+"id": 134,
+"slug": "hyundai-gd-power-generador-25-kva-monofasico",
+"category": "Plantas eléctricas",
+"sub": "Industriales y comerciales",
+"brand": "Hyundai GD Power",
+"name": "Generador 25 kVA monofásico",
+"image": "gd-25m",
+"condition": "Nuevo",
+"highlight": "25 kVA / 25 kW, monofásico",
+"description": "Planta eléctrica GD Power Solutions con motor diésel y cabina insonorizada. Monofásico.",
+"specs": {
+"Potencia": "25 kVA / 25 kW",
+"Fase": "Monofásico",
+"Tensión": "220/120 V",
+"Régimen": "1.800 RPM",
+"Frecuencia": "60 Hz",
+"Cabina": "Insonorizada estándar",
+"Combustible": "Diésel"
+}
+},
+{
+"id": 135,
+"slug": "hyundai-gd-power-generador-30-kva-monofasico",
+"category": "Plantas eléctricas",
+"sub": "Industriales y comerciales",
+"brand": "Hyundai GD Power",
+"name": "Generador 30 kVA monofásico",
+"image": "gd-30m",
+"condition": "Nuevo",
+"highlight": "30 kVA / 30 kW, monofásico",
+"description": "Planta eléctrica GD Power Solutions con motor diésel y cabina insonorizada. Monofásico.",
+"specs": {
+"Potencia": "30 kVA / 30 kW",
+"Fase": "Monofásico",
+"Tensión": "220/120 V",
+"Régimen": "1.800 RPM",
+"Frecuencia": "60 Hz",
+"Cabina": "Insonorizada estándar",
+"Combustible": "Diésel"
+}
+},
+{
+"id": 136,
+"slug": "hyundai-gd-power-generador-30-kva-trifasico",
+"category": "Plantas eléctricas",
+"sub": "Industriales y comerciales",
+"brand": "Hyundai GD Power",
+"name": "Generador 30 kVA trifásico",
+"image": "gd-30t",
+"condition": "Nuevo",
+"highlight": "30 kVA / 30 kW, trifásico",
+"description": "Planta eléctrica GD Power Solutions con motor diésel y cabina insonorizada. Trifásico.",
+"specs": {
+"Potencia": "30 kVA / 30 kW",
+"Fase": "Trifásico",
+"Tensión": "220/120 V",
+"Régimen": "1.800 RPM",
+"Frecuencia": "60 Hz",
+"Cabina": "Insonorizada estándar",
+"Combustible": "Diésel"
+}
+},
+{
+"id": 137,
+"slug": "hyundai-gd-power-generador-33-kva-trifasico",
+"category": "Plantas eléctricas",
+"sub": "Industriales y comerciales",
+"brand": "Hyundai GD Power",
+"name": "Generador 33 kVA trifásico",
+"image": "gd-33t",
+"condition": "Nuevo",
+"highlight": "33 kVA / 33 kW, trifásico",
+"description": "Planta eléctrica GD Power Solutions con motor diésel y cabina insonorizada. Trifásico.",
+"specs": {
+"Potencia": "33 kVA / 33 kW",
+"Fase": "Trifásico",
+"Tensión": "220/120 V",
+"Régimen": "1.800 RPM",
+"Frecuencia": "60 Hz",
+"Cabina": "Insonorizada estándar",
+"Combustible": "Diésel"
+}
+},
+{
+"id": 138,
+"slug": "hyundai-gd-power-generador-50-kva",
+"category": "Plantas eléctricas",
+"sub": "Industriales y comerciales",
+"brand": "Hyundai GD Power",
+"name": "Generador 50 kVA",
+"image": "gd-50",
+"condition": "Nuevo",
+"highlight": "50 kVA / 50 kW, trifásico y monofásico",
+"description": "Planta eléctrica GD Power Solutions con motor diésel y cabina insonorizada. Trifásico y monofásico.",
+"specs": {
+"Potencia": "50 kVA / 50 kW",
+"Fase": "Trifásico y monofásico",
+"Tensión": "220/120 V",
+"Régimen": "1.800 RPM",
+"Frecuencia": "60 Hz",
+"Cabina": "Insonorizada estándar",
+"Combustible": "Diésel"
+},
+"featured": true
+},
+{
+"id": 139,
+"slug": "hyundai-gd-power-generador-75-kva",
+"category": "Plantas eléctricas",
+"sub": "Industriales y comerciales",
+"brand": "Hyundai GD Power",
+"name": "Generador 75 kVA",
+"image": "gd-75",
+"condition": "Nuevo",
+"highlight": "75 kVA, trifásico y monofásico",
+"description": "Planta eléctrica GD Power Solutions con motor diésel y cabina insonorizada. Trifásico y monofásico.",
+"specs": {
+"Potencia": "75 kVA",
+"Fase": "Trifásico y monofásico",
+"Tensión": "220/120 V",
+"Régimen": "1.800 RPM",
+"Frecuencia": "60 Hz",
+"Cabina": "Insonorizada estándar",
+"Combustible": "Diésel"
+}
+},
+{
+"id": 140,
+"slug": "hyundai-gd-power-generador-100-kva",
+"category": "Plantas eléctricas",
+"sub": "Industriales y comerciales",
+"brand": "Hyundai GD Power",
+"name": "Generador 100 kVA",
+"image": "gd-100",
+"condition": "Nuevo",
+"highlight": "100 kVA, trifásico y monofásico",
+"description": "Planta eléctrica GD Power Solutions con motor diésel y cabina insonorizada. Trifásico y monofásico.",
+"specs": {
+"Potencia": "100 kVA",
+"Fase": "Trifásico y monofásico",
+"Tensión": "220/120 V",
+"Régimen": "1.800 RPM",
+"Frecuencia": "60 Hz",
+"Cabina": "Insonorizada estándar",
+"Combustible": "Diésel"
+},
+"featured": true
+},
+{
+"id": 141,
+"slug": "hyundai-gd-power-generador-1000-kva",
+"category": "Plantas eléctricas",
+"sub": "Industriales y comerciales",
+"brand": "Hyundai GD Power",
+"name": "Generador 1000 kVA",
+"image": "gd-1000",
+"condition": "Nuevo",
+"highlight": "1000 kVA, trifásico",
+"description": "Planta eléctrica GD Power Solutions con motor diésel y cabina insonorizada. Trifásico.",
+"specs": {
+"Potencia": "1000 kVA",
+"Fase": "Trifásico",
+"Tensión": "220/480 V",
+"Régimen": "1.800 RPM",
+"Frecuencia": "60 Hz",
+"Cabina": "Insonorizada estándar",
+"Combustible": "Diésel"
+}
+},
+{
+"id": 142,
+"slug": "cummins-generador-residencial-con-transferencia-automatica",
+"category": "Plantas eléctricas",
+"sub": "Residenciales",
+"brand": "Cummins",
+"name": "Generador residencial con transferencia automática",
+"image": "cummins",
+"condition": "Nuevo",
+"highlight": "Arranque automático en cada corte",
+"description": "Planta residencial Cummins a gas, silenciosa, con tablero de transferencia automática incluido.",
+"specs": {
+"Uso": "Residencial",
+"Transferencia": "Automática, incluida",
+"Instalación": "Exterior"
+},
+"featured": true
+},
+{
+"id": 143,
+"slug": "greenenergy-inversor-de-almacenamiento-vs",
+"category": "Energía solar",
+"brand": "Greenenergy",
+"name": "Inversor de almacenamiento VS",
+"image": "green-inv",
+"condition": "Nuevo",
+"highlight": "De 3.000 a 12.500 VA",
+"description": "Inversor híbrido para casa, comercio, campo y telecomunicaciones. Funciona con baterías de plomo ácido o de litio.",
+"specs": {
+"Potencia": "3.000 a 12.500 VA",
+"Medidas": "465 × 310 mm",
+"Salida": "Onda sinusoidal pura",
+"Eficiencia MPPT": "Hasta 98 %",
+"Baterías": "Plomo ácido o litio con BMS"
+},
+"features": [
+"Salida de onda sinusoidal pura",
+"Admite WiFi y GPRS",
+"Controlador MPPT/PWM 30 a 60 A opcional",
+"Arranque CC y autodiagnóstico",
+"Envía señal para encender el generador",
+"Salida de 110 o 120 V"
+],
+"featured": true
+},
+{
+"id": 144,
+"slug": "greenenergy-panel-solar-m10-hi-eff-twin-mono-550-w",
+"category": "Energía solar",
+"brand": "Greenenergy",
+"name": "Panel solar M10 Hi-Eff Twin Mono 550 W",
+"image": "panel550",
+"condition": "Nuevo",
+"highlight": "550 W, 25 años de garantía de energía",
+"description": "Panel monocristalino de 550 W con marco plateado, para instalaciones residenciales y comerciales.",
+"specs": {
+"Potencia": "550 W",
+"Eficiencia": "Hasta 21,86 %",
+"Garantía de calidad": "12 años",
+"Garantía de energía": "25 años (84,8 % de salida)",
+"Carga de nieve y viento": "5.400 Pa y 2.400 Pa",
+"Tolerancia": "0 a +5 W"
+},
+"features": [
+"Marco plateado, negro o negro completo",
+"Versión bifacial disponible",
+"Excelente rendimiento con poca luz"
+]
+},
+{
+"id": 145,
+"slug": "construy-cunete-caucho-clase-a-nacional",
+"category": "Ferretería",
+"sub": "Pintura",
+"brand": "ConstruY",
+"name": "Cuñete Caucho Clase A nacional",
+"price": 112.07,
+"image": "construy-cunete-nacional",
+"condition": "Nuevo",
+"highlight": "Rinde 150 a 160 m² por cuñete",
+"description": "Producto estrella. Pintura de caucho lavable hecha en Venezuela, para interiores y exteriores. Precio al detal US$ 130.00 con IVA.",
+"specs": {
+"Rendimiento": "150 a 160 m² por cuñete",
+"Colores": "3 colores",
+"Clase": "A"
+},
+"featured": true
+},
+{
+"id": 146,
+"slug": "construy-cunete-caucho-clase-a-importado",
+"category": "Ferretería",
+"sub": "Pintura",
+"brand": "ConstruY",
+"name": "Cuñete Caucho Clase A importado",
+"price": 60.0,
+"image": "construy-cunete-importado",
+"condition": "Nuevo",
+"highlight": "Rinde 160 a 210 m² por cuñete",
+"description": "Pintura de caucho lavable importada para interiores y exteriores, en siete colores listos para usar. Precio al detal US$ 69.60 con IVA.",
+"specs": {
+"Rendimiento": "160 a 210 m² por cuñete",
+"Colores": "7 colores",
+"Clase": "A"
+},
+"featured": true
+},
+{
+"id": 147,
+"slug": "construy-galon-caucho-clase-a",
+"category": "Ferretería",
+"sub": "Pintura",
+"brand": "ConstruY",
+"name": "Galón Caucho Clase A",
+"price": 31.25,
+"image": "construy-galon-caucho",
+"condition": "Nuevo",
+"highlight": "Rinde 30 a 36 m² por galón",
+"description": "Pintura de caucho lavable en galón, la gama más amplia de colores de la línea. Precio al detal US$ 36.25 con IVA.",
+"specs": {
+"Rendimiento": "30 a 36 m² por galón",
+"Colores": "15 colores",
+"Clase": "A"
+},
+"featured": true
+},
+{
+"id": 148,
+"slug": "construy-galon-esmalte-clase-a",
+"category": "Ferretería",
+"sub": "Pintura",
+"brand": "ConstruY",
+"name": "Galón Esmalte Clase A",
+"price": 35.0,
+"image": "construy-galon-esmalte",
+"condition": "Nuevo",
+"highlight": "Rinde 30 a 36 m² por galón",
+"description": "Esmalte semi-industrial de acabado brillante para metal y madera. Precio al detal US$ 40.60 con IVA.",
+"specs": {
+"Rendimiento": "30 a 36 m² por galón",
+"Colores": "8 colores",
+"Clase": "A"
+},
+"featured": true
+},
+{
+"id": 149,
+"slug": "tolsen-pinza-punta-curva",
+"category": "Ferretería",
+"sub": "Herramientas de sujeción",
+"brand": "Tolsen",
+"name": "Pinza Punta Curva",
+"price": 5.45,
+"image": "tolsen-pinza-punta-curva-10008",
+"condition": "Nuevo",
+"highlight": "Código 10008",
+"description": "Acero forjado, acabado niquelado, Mango de plástico bicomponente.",
+"specs": {
+"Sección": "Herramientas de sujeción"
+},
+"features": [
+"Acero forjado, acabado niquelado",
+"Mango de plástico bicomponente",
+"Embalaje: blister de cartón"
+],
+"variants": [
+{
+"code": "10008",
+"size": "",
+"price": 5.45
+}
+]
+},
+{
+"id": 150,
+"slug": "tolsen-alicate-combinado",
+"category": "Ferretería",
+"sub": "Herramientas de sujeción",
+"brand": "Tolsen",
+"name": "Alicate Combinado",
+"image": "tolsen-alicate-combinado-10000",
+"condition": "Nuevo",
+"highlight": "3 medidas, código 10000",
+"description": "Acero forjado, acabado niquelado, Mango de plástico bicomponente.",
+"specs": {
+"Sección": "Herramientas de sujeción"
+},
+"features": [
+"Acero forjado, acabado niquelado",
+"Mango de plástico bicomponente",
+"Embalaje: blister de cartón"
+],
+"variants": [
+{
+"code": "10000",
+"size": "160 mm, 6\"",
+"price": 5.53
+},
+{
+"code": "10001",
+"size": "180 mm, 7\"",
+"price": 6.35
+},
+{
+"code": "10002",
+"size": "200 mm, 8\"",
+"price": 6.96
+}
+]
+},
+{
+"id": 151,
+"slug": "tolsen-pinza-punta-larga",
+"category": "Ferretería",
+"sub": "Herramientas de sujeción",
+"brand": "Tolsen",
+"name": "Pinza Punta Larga",
+"image": "tolsen-pinza-punta-larga-10006",
+"condition": "Nuevo",
+"highlight": "2 medidas, código 10006",
+"description": "Acero forjado, acabado niquelado, Mango de plástico bicolor.",
+"specs": {
+"Sección": "Herramientas de sujeción"
+},
+"features": [
+"Acero forjado, acabado niquelado",
+"Mango de plástico bicolor",
+"Embalado con tarjeta PP"
+],
+"variants": [
+{
+"code": "10006",
+"size": "",
+"price": 5.28
+},
+{
+"code": "10007",
+"size": "",
+"price": 6.31
+}
+]
+},
+{
+"id": 152,
+"slug": "tolsen-alicate-de-corte-diagonal",
+"category": "Ferretería",
+"sub": "Herramientas de sujeción",
+"brand": "Tolsen",
+"name": "Alicate De Corte Diagonal",
+"image": "tolsen-alicate-de-corte-diagonal-10003",
+"condition": "Nuevo",
+"highlight": "2 medidas, código 10003",
+"description": "Acero forjado, acabado niquelado, Mango de plástico bicomponente.",
+"specs": {
+"Sección": "Herramientas de sujeción"
+},
+"features": [
+"Acero forjado, acabado niquelado",
+"Mango de plástico bicomponente",
+"Embalaje: blister de cartón"
+],
+"variants": [
+{
+"code": "10003",
+"size": "160 mm, 6″",
+"price": 5.72
+},
+{
+"code": "10004",
+"size": "",
+"price": 6.38
+}
+]
+},
+{
+"id": 153,
+"slug": "tolsen-alicate-pelacables",
+"category": "Ferretería",
+"sub": "Herramientas de sujeción",
+"brand": "Tolsen",
+"name": "Alicate Pelacables",
+"price": 6.18,
+"image": "tolsen-alicate-pelacables-10013",
+"condition": "Nuevo",
+"highlight": "Código 10013",
+"description": "Acero forjado, acabado niquelado, Mango de plástico bicomponente.",
+"specs": {
+"Sección": "Herramientas de sujeción"
+},
+"features": [
+"Acero forjado, acabado niquelado",
+"Mango de plástico bicomponente",
+"Embalaje: blister de cartón"
+],
+"variants": [
+{
+"code": "10013",
+"size": "",
+"price": 6.18
+}
+]
+},
+{
+"id": 154,
+"slug": "tolsen-alicate-de-corte-diagonal-industrial",
+"category": "Ferretería",
+"sub": "Herramientas de sujeción",
+"brand": "Tolsen",
+"name": "Alicate De Corte Diagonal (Industrial)",
+"image": "tolsen-alicate-de-corte-diagonal-industrial-10018",
+"condition": "Nuevo",
+"highlight": "2 medidas, código 10018",
+"description": "CrV, acabado negro, Mango de plástico de dos componentes.",
+"specs": {
+"Sección": "Herramientas de sujeción"
+},
+"features": [
+"CrV, acabado negro",
+"Mango de plástico de dos componentes",
+"Embalaje: tarjeta PP"
+],
+"variants": [
+{
+"code": "10018",
+"size": "",
+"price": 7.49
+},
+{
+"code": "10019",
+"size": "",
+"price": null
+}
+]
+},
+{
+"id": 155,
+"slug": "tolsen-llave-ajustable",
+"category": "Ferretería",
+"sub": "Herramientas mecánicas",
+"brand": "Tolsen",
+"name": "Llave Ajustable",
+"image": "tolsen-llave-ajustable-15001",
+"condition": "Nuevo",
+"highlight": "6 medidas, código 15001",
+"description": "Acero forjado, Acabado cromado.",
+"specs": {
+"Sección": "Herramientas mecánicas"
+},
+"features": [
+"Acero forjado",
+"Acabado cromado",
+"Embalaje: bolsa de polietileno+etiqueta colgante"
+],
+"variants": [
+{
+"code": "15001",
+"size": "150 mm, 6\" 19 mm, 3/4\"",
+"price": 5.41
+},
+{
+"code": "15002",
+"size": "200 mm, 8\" 24 mm, 15/16\"",
+"price": 7.26
+},
+{
+"code": "15003",
+"size": "250 mm, 10\" 30 mm, 1-3/16\"",
+"price": 10.5
+},
+{
+"code": "15004",
+"size": "300 mm, 12\" 35 mm, 1-3/8\"",
+"price": 14.82
+},
+{
+"code": "15005",
+"size": "375 mm, 15\" 43 mm, 1-11/16\"",
+"price": 24.94
+},
+{
+"code": "15006",
+"size": "450 mm, 18\" 52 mm, 2-1/16\"",
+"price": 41.29
+}
+]
+},
+{
+"id": 156,
+"slug": "tolsen-llave-combinada",
+"category": "Ferretería",
+"sub": "Herramientas mecánicas",
+"brand": "Tolsen",
+"name": "Llave Combinada",
+"image": "tolsen-llave-combinada-15016",
+"condition": "Nuevo",
+"highlight": "3 medidas, código 15016",
+"description": "CrV, Cromado, acabado satinado.",
+"specs": {
+"Sección": "Herramientas mecánicas"
+},
+"features": [
+"CrV",
+"Cromado, acabado satinado",
+"Embalaje: etiqueta de bandera"
+],
+"variants": [
+{
+"code": "15016",
+"size": "8 mm",
+"price": null
+},
+{
+"code": "15023",
+"size": "15 mm",
+"price": 2.74
+},
+{
+"code": "15037",
+"size": "29 mm",
+"price": 9.41
+}
+]
+},
+{
+"id": 157,
+"slug": "tolsen-llave-ajustable-de-aluminio",
+"category": "Ferretería",
+"sub": "Herramientas mecánicas",
+"brand": "Tolsen",
+"name": "Llave Ajustable De Aluminio",
+"price": 19.64,
+"image": "tolsen-llave-ajustable-de-aluminio-15303",
+"condition": "Nuevo",
+"highlight": "Código 15303",
+"description": "Cuerpo de fundición de aluminio para no dañar, Mordazas extremadamente anchas.",
+"specs": {
+"Sección": "Herramientas mecánicas"
+},
+"features": [
+"Cuerpo de fundición de aluminio para no dañar",
+"Mordazas extremadamente anchas",
+"Máx. par: 100 Nm",
+"Ideal para productos sanitarios",
+"Embalaje: blister"
+],
+"variants": [
+{
+"code": "15303",
+"size": "205 mm, 8” 10-68mm",
+"price": 19.64
+}
+]
+},
+{
+"id": 158,
+"slug": "tolsen-llave-ajustable-mango-plastico",
+"category": "Ferretería",
+"sub": "Herramientas mecánicas",
+"brand": "Tolsen",
+"name": "Llave Ajustable Mango Plástico",
+"image": "tolsen-llave-ajustable-mango-plastico-15308",
+"condition": "Nuevo",
+"highlight": "4 medidas, código 15308",
+"description": "Acero para herramientas de alta calidad forjado, Acabado negro y pulido.",
+"specs": {
+"Sección": "Herramientas mecánicas"
+},
+"features": [
+"Acero para herramientas de alta calidad forjado",
+"Acabado negro y pulido",
+"Mango de plástico de dos componentes",
+"Embalaje: blíster doble"
+],
+"variants": [
+{
+"code": "15308",
+"size": "",
+"price": 7.07
+},
+{
+"code": "15309",
+"size": "",
+"price": 9.73
+},
+{
+"code": "15310",
+"size": "",
+"price": 13.18
+},
+{
+"code": "15311",
+"size": "",
+"price": 18.44
+}
+]
+},
+{
+"id": 159,
+"slug": "tolsen-llave-combinada-industrial",
+"category": "Ferretería",
+"sub": "Herramientas mecánicas",
+"brand": "Tolsen",
+"name": "Llave Combinada ( Industrial )",
+"image": "tolsen-llave-combinada-industrial-15814",
+"condition": "Nuevo",
+"highlight": "10 medidas, código 15814",
+"description": "Fabricado según DIN3113, Cromado, acabado mate.",
+"specs": {
+"Sección": "Herramientas mecánicas"
+},
+"features": [
+"Fabricado según DIN3113",
+"Cromado, acabado mate",
+"Embalaje: etiqueta colgante"
+],
+"variants": [
+{
+"code": "15814",
+"size": "6 mm",
+"price": 1.67
+},
+{
+"code": "15815",
+"size": "7 mm",
+"price": 1.72
+},
+{
+"code": "15816",
+"size": "8 mm",
+"price": 1.75
+},
+{
+"code": "15817",
+"size": "9 mm",
+"price": 1.97
+},
+{
+"code": "15818",
+"size": "10 mm",
+"price": 2.1
+},
+{
+"code": "15819",
+"size": "11 mm",
+"price": 2.18
+},
+{
+"code": "15820",
+"size": "12 mm",
+"price": 2.35
+},
+{
+"code": "15821",
+"size": "13 mm",
+"price": 2.47
+},
+{
+"code": "15822",
+"size": "14 mm",
+"price": 2.52
+},
+{
+"code": "15823",
+"size": "15 mm",
+"price": 2.82
+}
+]
+},
+{
+"id": 160,
+"slug": "tolsen-llave-curva-doble-aro",
+"category": "Ferretería",
+"sub": "Herramientas mecánicas",
+"brand": "Tolsen",
+"name": "Llave Curva Doble Aro",
+"price": 1.76,
+"image": "tolsen-llave-curva-doble-aro-15063",
+"condition": "Nuevo",
+"highlight": "Código 15063",
+"description": "CrV, Cromado, acabado satinado.",
+"specs": {
+"Sección": "Herramientas mecánicas"
+},
+"features": [
+"CrV",
+"Cromado, acabado satinado",
+"Embalaje: etiqueta de bandera"
+],
+"variants": [
+{
+"code": "15063",
+"size": "6X7mm",
+"price": 1.76
+}
+]
+},
+{
+"id": 161,
+"slug": "tolsen-destornillador-de-pala",
+"category": "Ferretería",
+"sub": "Herramientas fijación",
+"brand": "Tolsen",
+"name": "Destornillador De Pala",
+"image": "tolsen-destornillador-de-pala-20001",
+"condition": "Nuevo",
+"highlight": "6 medidas, código 20001",
+"description": "CrV, Agarre cómodo de dos componentes.",
+"specs": {
+"Sección": "Herramientas fijación"
+},
+"features": [
+"CrV",
+"Agarre cómodo de dos componentes",
+"Punta magnética con acabado negro"
+],
+"variants": [
+{
+"code": "20001",
+"size": "3,0 x 75 mm",
+"price": 1.16
+},
+{
+"code": "20002",
+"size": "4,0 x 100 mm",
+"price": 1.6
+},
+{
+"code": "20144",
+"size": "6,5 x 100 mm",
+"price": 1.98
+},
+{
+"code": "20003",
+"size": "5,5 x 100 mm",
+"price": 1.68
+},
+{
+"code": "20004",
+"size": "6,5 x 150 mm",
+"price": 2.2
+},
+{
+"code": "20005",
+"size": "8, 0 x 150 mm",
+"price": 2.7
+}
+]
+},
+{
+"id": 162,
+"slug": "tolsen-destornillador-de-estria",
+"category": "Ferretería",
+"sub": "Herramientas fijación",
+"brand": "Tolsen",
+"name": "Destornillador De Estría",
+"image": "tolsen-destornillador-de-estria-20006",
+"condition": "Nuevo",
+"highlight": "4 medidas, código 20006",
+"description": "CrV, Agarre cómodo de dos componentes.",
+"specs": {
+"Sección": "Herramientas fijación"
+},
+"features": [
+"CrV",
+"Agarre cómodo de dos componentes",
+"Punta magnética con acabado negro"
+],
+"variants": [
+{
+"code": "20006",
+"size": "PH0 x 75 mm",
+"price": 1.1
+},
+{
+"code": "20007",
+"size": "PH1 x 100 mm",
+"price": 1.67
+},
+{
+"code": "20154",
+"size": "PH2 x 100mm",
+"price": null
+},
+{
+"code": "20009",
+"size": "PH3 x 150mm",
+"price": 2.7
+}
+]
+},
+{
+"id": 163,
+"slug": "tolsen-juego-de-destornilladores-pala-y-estria-6-pzas",
+"category": "Ferretería",
+"sub": "Herramientas fijación",
+"brand": "Tolsen",
+"name": "Juego De Destornilladores Pala Y Estría 6 Pzas",
+"price": 12.35,
+"image": "tolsen-juego-de-destornilladores-pala-y-estria-6-pzas-20014",
+"condition": "Nuevo",
+"highlight": "Código 20014",
+"description": "CrV, Agarre cómodo bicomponente.",
+"specs": {
+"Sección": "Herramientas fijación"
+},
+"features": [
+"CrV",
+"Agarre cómodo bicomponente",
+"Punta magnética con acabado negro",
+"Envase: doble blister"
+],
+"variants": [
+{
+"code": "20014",
+"size": "PH1x100, PH2x150;",
+"price": 12.35
+}
+]
+},
+{
+"id": 164,
+"slug": "tolsen-destornillador-estria-pz",
+"category": "Ferretería",
+"sub": "Herramientas fijación",
+"brand": "Tolsen",
+"name": "Destornillador Estria Pz",
+"image": "tolsen-destornillador-estria-pz-20010",
+"condition": "Nuevo",
+"highlight": "5 medidas, código 20010",
+"description": "CrV, Agarre cómodo de dos componentes.",
+"specs": {
+"Sección": "Herramientas fijación"
+},
+"features": [
+"CrV",
+"Agarre cómodo de dos componentes",
+"Punta magnética con acabado negro"
+],
+"variants": [
+{
+"code": "20010",
+"size": "PZ0 x 75mm",
+"price": 1.1
+},
+{
+"code": "20011",
+"size": "PZ1 x 100mm",
+"price": 1.67
+},
+{
+"code": "20164",
+"size": "PZ2x 100mm",
+"price": 1.98
+},
+{
+"code": "20012",
+"size": "PZ2 x 150mm",
+"price": 2.17
+},
+{
+"code": "20013",
+"size": "PZ3 x 150mm",
+"price": 2.64
+}
+]
+},
+{
+"id": 165,
+"slug": "tolsen-juego-de-destornilladores-de-precision-de-6-piezas",
+"category": "Ferretería",
+"sub": "Herramientas fijación",
+"brand": "Tolsen",
+"name": "Juego De Destornilladores De Precisión De 6 Piezas",
+"price": 2.6,
+"image": "tolsen-juego-de-destornilladores-de-precision-de-6-piezas-20031",
+"condition": "Nuevo",
+"highlight": "Código 20031",
+"description": "Embalaje: caja de plástico+caja de color.",
+"specs": {
+"Sección": "Herramientas fijación"
+},
+"features": [
+"Embalaje: caja de plástico+caja de color"
+],
+"variants": [
+{
+"code": "20031",
+"size": "2.4 × 0.6, 3.0 × 0.6;",
+"price": 2.6
+}
+]
+},
+{
+"id": 166,
+"slug": "tolsen-destornillador-de-trinquete-7-en-1",
+"category": "Ferretería",
+"sub": "Herramientas fijación",
+"brand": "Tolsen",
+"name": "Destornillador De Trinquete 7 En 1",
+"price": 5.78,
+"image": "tolsen-destornillador-de-trinquete-7-en-1-20033",
+"condition": "Nuevo",
+"highlight": "Código 20033",
+"description": "1 mango de trinquete, 7 puntas de 25 mm.",
+"specs": {
+"Sección": "Herramientas fijación"
+},
+"features": [
+"1 mango de trinquete",
+"7 puntas de 25 mm",
+"CrV",
+"Embalaje: doble blister"
+],
+"variants": [
+{
+"code": "20033",
+"size": "PH0, PH1,",
+"price": 5.78
+}
+]
+},
+{
+"id": 167,
+"slug": "tolsen-martillo-maquinista-de-mango-de-fibra",
+"category": "Ferretería",
+"sub": "Herramientas de golpe",
+"brand": "Tolsen",
+"name": "Martillo Maquinista De Mango De Fibra",
+"image": "tolsen-martillo-maquinista-de-mango-de-fibra-25001",
+"condition": "Nuevo",
+"highlight": "7 medidas, código 25001",
+"description": "Cabezal de martillo de acero al carbono forjado en estampa, Pintado en negro, tratado térmicamente.",
+"specs": {
+"Sección": "Herramientas de golpe"
+},
+"features": [
+"Cabezal de martillo de acero al carbono forjado en estampa",
+"Pintado en negro, tratado térmicamente",
+"Mango de ﬁbra de vidrio  • Embalaje: etiqueta de color"
+],
+"variants": [
+{
+"code": "25001",
+"size": "200 gr",
+"price": 4.86
+},
+{
+"code": "25002",
+"size": "300 gr",
+"price": 6.13
+},
+{
+"code": "25003",
+"size": "500 gr",
+"price": null
+},
+{
+"code": "25005",
+"size": "800 gr",
+"price": 10.04
+},
+{
+"code": "Haz",
+"size": "Click! 25006 1000 gr",
+"price": 12.5
+},
+{
+"code": "25007",
+"size": "1500 gr",
+"price": 16.04
+},
+{
+"code": "25008",
+"size": "2000 gr",
+"price": 19.03
+}
+]
+},
+{
+"id": 168,
+"slug": "tolsen-martillo-maquinista-mango-de-madera",
+"category": "Ferretería",
+"sub": "Herramientas de golpe",
+"brand": "Tolsen",
+"name": "Martillo Maquinista Mango De Madera",
+"image": "tolsen-martillo-maquinista-mango-de-madera-25121",
+"condition": "Nuevo",
+"highlight": "6 medidas, código 25121",
+"description": "Cabeza de martillo de acero al carbono forjado, Pintado en negro, tratamiento térmico.",
+"specs": {
+"Sección": "Herramientas de golpe"
+},
+"features": [
+"Cabeza de martillo de acero al carbono forjado",
+"Pintado en negro, tratamiento térmico",
+"Mango de madera",
+"Embalaje: etiqueta de color"
+],
+"variants": [
+{
+"code": "25121",
+"size": "200 gr",
+"price": 4.45
+},
+{
+"code": "25122",
+"size": "300 gr",
+"price": 6.0
+},
+{
+"code": "25123",
+"size": "500 gr",
+"price": 7.09
+},
+{
+"code": "25124",
+"size": "1000 gr",
+"price": 11.51
+},
+{
+"code": "25125",
+"size": "1500 gr",
+"price": 15.36
+},
+{
+"code": "25126",
+"size": "2000 gr",
+"price": 18.89
+}
+]
+},
+{
+"id": 169,
+"slug": "tolsen-martillo-carpintero-mango-fibra-de-vidrio",
+"category": "Ferretería",
+"sub": "Herramientas de golpe",
+"brand": "Tolsen",
+"name": "Martillo Carpintero Mango Fibra De Vidrio",
+"image": "tolsen-martillo-carpintero-mango-fibra-de-vidrio-25028",
+"condition": "Nuevo",
+"highlight": "3 medidas, código 25028",
+"description": "Cabezal de martillo de acero al carbono forjado en estampa, Tratamiento térmico, rectiﬁcado pulido.",
+"specs": {
+"Sección": "Herramientas de golpe"
+},
+"features": [
+"Cabezal de martillo de acero al carbono forjado en estampa",
+"Tratamiento térmico, rectiﬁcado pulido",
+"Mango de ﬁbra de vidrio",
+"Embalaje: etiqueta de color"
+],
+"variants": [
+{
+"code": "25028",
+"size": "8 Oz 23 mm",
+"price": 6.37
+},
+{
+"code": "25030",
+"size": "16 Oz 29 mm",
+"price": 9.24
+},
+{
+"code": "25031",
+"size": "20 Oz 31 mm",
+"price": 10.04
+}
+]
+},
+{
+"id": 170,
+"slug": "tolsen-martillo-rip-mango-de-fibra-de-vidrio",
+"category": "Ferretería",
+"sub": "Herramientas de golpe",
+"brand": "Tolsen",
+"name": "Martillo Rip Mango De Fibra De Vidrio",
+"price": 8.7,
+"image": "tolsen-martillo-rip-mango-de-fibra-de-vidrio-25156",
+"condition": "Nuevo",
+"highlight": "Código 25156",
+"description": "Cabeza de martillo de acero especial para herramientas, Tratamiento térmico, pulido y rectiﬁcado.",
+"specs": {
+"Sección": "Herramientas de golpe"
+},
+"features": [
+"Cabeza de martillo de acero especial para herramientas",
+"Tratamiento térmico, pulido y rectiﬁcado",
+"Mango de ﬁbra de vidrio de 16 oz",
+"Embalaje: etiqueta de color"
+],
+"variants": [
+{
+"code": "25156",
+"size": "16 Oz",
+"price": 8.7
+}
+]
+},
+{
+"id": 171,
+"slug": "tolsen-martillo-de-bolas",
+"category": "Ferretería",
+"sub": "Herramientas de golpe",
+"brand": "Tolsen",
+"name": "Martillo De Bolas",
+"image": "tolsen-martillo-de-bolas-25022",
+"condition": "Nuevo",
+"highlight": "2 medidas, código 25022",
+"description": "Cabezal de martillo de acero al carbono forjado en estampa, Tratamiento térmico, rectiﬁcado pulido.",
+"specs": {
+"Sección": "Herramientas de golpe"
+},
+"features": [
+"Cabezal de martillo de acero al carbono forjado en estampa",
+"Tratamiento térmico, rectiﬁcado pulido",
+"Mango de ﬁbra de vidrio",
+"Embalaje: etiqueta de color"
+],
+"variants": [
+{
+"code": "25022",
+"size": "",
+"price": 8.69
+},
+{
+"code": "25025",
+"size": "",
+"price": 13.37
+}
+]
+},
+{
+"id": 172,
+"slug": "tolsen-martillo-de-bola-mango-de-madera",
+"category": "Ferretería",
+"sub": "Herramientas de golpe",
+"brand": "Tolsen",
+"name": "Martillo De Bola Mango De Madera",
+"image": "tolsen-martillo-de-bola-mango-de-madera-25142",
+"condition": "Nuevo",
+"highlight": "2 medidas, código 25142",
+"description": "Cabezal de martillo de acero al carbono forjado en estampa, Tratamiento térmico, rectiﬁcado pulido.",
+"specs": {
+"Sección": "Herramientas de golpe"
+},
+"features": [
+"Cabezal de martillo de acero al carbono forjado en estampa",
+"Tratamiento térmico, rectiﬁcado pulido",
+"Mango de madera",
+"Embalaje: etiqueta de color"
+],
+"variants": [
+{
+"code": "25142",
+"size": "16 Oz",
+"price": 7.68
+},
+{
+"code": "25145",
+"size": "",
+"price": 10.93
+}
+]
+},
+{
+"id": 173,
+"slug": "tolsen-exacto-desmontable",
+"category": "Ferretería",
+"sub": "Herramientas de corte",
+"brand": "Tolsen",
+"name": "Exacto Desmontable",
+"price": 1.44,
+"image": "tolsen-exacto-desmontable-30001",
+"condition": "Nuevo",
+"highlight": "Código 30001",
+"description": "Caja de ABS, Con pulsador plano.",
+"specs": {
+"Sección": "Herramientas de corte"
+},
+"features": [
+"Caja de ABS",
+"Con pulsador plano",
+"Embalaje: etiqueta+caja expositora"
+],
+"variants": [
+{
+"code": "30001",
+"size": "18 x 100mm",
+"price": 1.44
+}
+]
+},
+{
+"id": 174,
+"slug": "tolsen-exacto-desmontable-de-aluminio",
+"category": "Ferretería",
+"sub": "Herramientas de corte",
+"brand": "Tolsen",
+"name": "Exacto Desmontable De Aluminio",
+"price": 2.84,
+"image": "tolsen-exacto-desmontable-de-aluminio-30002",
+"condition": "Nuevo",
+"highlight": "Código 30002",
+"description": "Caja de aluminio, Con pulsador plano.",
+"specs": {
+"Sección": "Herramientas de corte"
+},
+"features": [
+"Caja de aluminio",
+"Con pulsador plano",
+"Embalaje: blister"
+],
+"variants": [
+{
+"code": "30002",
+"size": "18 x 100mm",
+"price": 2.84
+}
+]
+},
+{
+"id": 175,
+"slug": "tolsen-exacto-incluye-3-repuestos",
+"category": "Ferretería",
+"sub": "Herramientas de corte",
+"brand": "Tolsen",
+"name": "Exacto Incluye 3 Repuestos",
+"price": 2.59,
+"image": "tolsen-exacto-incluye-3-repuestos-30003",
+"condition": "Nuevo",
+"highlight": "Código 30003",
+"description": "Caja ABS+ TPR, Con 3 cuchillas.",
+"specs": {
+"Sección": "Herramientas de corte"
+},
+"features": [
+"Caja ABS+ TPR",
+"Con 3 cuchillas",
+"Con pulsador plano",
+"Embalaje: blister"
+],
+"variants": [
+{
+"code": "30003",
+"size": "18 x 100mm",
+"price": 2.59
+}
+]
+},
+{
+"id": 176,
+"slug": "tolsen-exacto-delgado-9x80mm",
+"category": "Ferretería",
+"sub": "Herramientas de corte",
+"brand": "Tolsen",
+"name": "Exacto Delgado 9X80Mm",
+"price": 0.83,
+"image": "tolsen-exacto-delgado-9x80mm-30005",
+"condition": "Nuevo",
+"highlight": "Código 30005",
+"description": "Caja de acero inoxidable, Con pulsador plano.",
+"specs": {
+"Sección": "Herramientas de corte"
+},
+"features": [
+"Caja de acero inoxidable",
+"Con pulsador plano",
+"Embalaje: caja expositora"
+],
+"variants": [
+{
+"code": "30005",
+"size": "",
+"price": 0.83
+}
+]
+},
+{
+"id": 177,
+"slug": "tolsen-exacto-tipo-navaja",
+"category": "Ferretería",
+"sub": "Herramientas de corte",
+"brand": "Tolsen",
+"name": "Exacto Tipo Navaja",
+"price": 6.79,
+"image": "tolsen-exacto-tipo-navaja-30007",
+"condition": "Nuevo",
+"highlight": "Código 30007",
+"description": "Mango de aluminio, Con 5 hojas SK5.",
+"specs": {
+"Sección": "Herramientas de corte"
+},
+"features": [
+"Mango de aluminio",
+"Con 5 hojas SK5",
+"Embalaje: doble blister"
+],
+"variants": [
+{
+"code": "30007",
+"size": "61X19mm",
+"price": 6.79
+}
+]
+},
+{
+"id": 178,
+"slug": "tolsen-exacto-de-precision-aluminio",
+"category": "Ferretería",
+"sub": "Herramientas de corte",
+"brand": "Tolsen",
+"name": "Exacto De Precisión Aluminio",
+"price": 4.08,
+"image": "tolsen-exacto-de-precision-aluminio-30008",
+"condition": "Nuevo",
+"highlight": "Código 30008",
+"description": "Cuerpo de aleación de aluminio, Material de la hoja: SK5.",
+"specs": {
+"Sección": "Herramientas de corte"
+},
+"features": [
+"Cuerpo de aleación de aluminio",
+"Material de la hoja: SK5",
+"Embalaje: doble blister"
+],
+"variants": [
+{
+"code": "30008",
+"size": "61X19mm",
+"price": 4.08
+}
+]
+},
+{
+"id": 179,
+"slug": "tolsen-boquilla-de-manguera-8-salidas",
+"category": "Ferretería",
+"sub": "Herramientas de jardín",
+"brand": "Tolsen",
+"name": "Boquilla De Manguera 8 Salidas",
+"price": 5.53,
+"image": "tolsen-boquilla-de-manguera-8-salidas-57100",
+"condition": "Nuevo",
+"highlight": "Código 57100",
+"description": "8 patrones seleccionables: completo, ángulo, ducha,, Cuerpo ABS duradero con agarre cómodo TPR.",
+"specs": {
+"Sección": "Herramientas de jardín"
+},
+"features": [
+"8 patrones seleccionables: completo, ángulo, ducha,",
+"Cuerpo ABS duradero con agarre cómodo TPR",
+"Embalaje: tarjeta de piel"
+],
+"variants": [
+{
+"code": "57100",
+"size": "",
+"price": 5.53
+}
+]
+},
+{
+"id": 180,
+"slug": "tolsen-boquilla-de-manguera",
+"category": "Ferretería",
+"sub": "Herramientas de jardín",
+"brand": "Tolsen",
+"name": "Boquilla De Manguera",
+"price": 4.86,
+"image": "tolsen-boquilla-de-manguera-57352",
+"condition": "Nuevo",
+"highlight": "Código 57352",
+"description": "Tamaño de rosca: 3/4″NH, 8 patrones seleccionables: completo, ángulo,.",
+"specs": {
+"Sección": "Herramientas de jardín"
+},
+"features": [
+"Tamaño de rosca: 3/4″NH",
+"8 patrones seleccionables: completo, ángulo,",
+"Cuerpo ABS duradero con agarre cómodo de TPR",
+"Embalaje: amarre en tarjeta"
+],
+"variants": [
+{
+"code": "57352",
+"size": "80x152mm",
+"price": 4.86
+}
+]
+},
+{
+"id": 181,
+"slug": "tolsen-boquilla-de-manguera-pulverizadora",
+"category": "Ferretería",
+"sub": "Herramientas de jardín",
+"brand": "Tolsen",
+"name": "Boquilla De Manguera Pulverizadora",
+"price": 4.36,
+"image": "tolsen-boquilla-de-manguera-pulverizadora-57351",
+"condition": "Nuevo",
+"highlight": "Código 57351",
+"description": "Tamaño de rosca: 3/4″ NH, Ajustable desde niebla ﬁna hasta chorro potente.",
+"specs": {
+"Sección": "Herramientas de jardín"
+},
+"features": [
+"Tamaño de rosca: 3/4″ NH",
+"Ajustable desde niebla ﬁna hasta chorro potente",
+"Cuerpo ABS duradero con agarre cómodo de TPR",
+"Embalaje: atado en tarjeta"
+],
+"variants": [
+{
+"code": "57351",
+"size": "",
+"price": 4.36
+}
+]
+},
+{
+"id": 182,
+"slug": "tolsen-boquilla-de-manguera-ajustable",
+"category": "Ferretería",
+"sub": "Herramientas de jardín",
+"brand": "Tolsen",
+"name": "Boquilla De Manguera Ajustable",
+"price": 4.96,
+"image": "tolsen-boquilla-de-manguera-ajustable-57101",
+"condition": "Nuevo",
+"highlight": "Código 57101",
+"description": "Ajustable desde una ﬁna niebla hasta una potente, Cuerpo duradero de ABS con empuñadura cómoda de TPR.",
+"specs": {
+"Sección": "Herramientas de jardín"
+},
+"features": [
+"Ajustable desde una ﬁna niebla hasta una potente",
+"Cuerpo duradero de ABS con empuñadura cómoda de TPR",
+"Embalaje: tarjeta de piel"
+],
+"variants": [
+{
+"code": "57101",
+"size": "",
+"price": 4.96
+}
+]
+},
+{
+"id": 183,
+"slug": "tolsen-boquilla-de-manguera-tipo-pico-ajustable",
+"category": "Ferretería",
+"sub": "Herramientas de jardín",
+"brand": "Tolsen",
+"name": "Boquilla De Manguera Tipo Pico Ajustable",
+"price": 1.26,
+"image": "tolsen-boquilla-de-manguera-tipo-pico-ajustable-57102",
+"condition": "Nuevo",
+"highlight": "Código 57102",
+"description": "Ajustable desde niebla ﬁna hasta chorro de agua potente, Cuerpo de ABS duradero con material de PP.",
+"specs": {
+"Sección": "Herramientas de jardín"
+},
+"features": [
+"Ajustable desde niebla ﬁna hasta chorro de agua potente",
+"Cuerpo de ABS duradero con material de PP",
+"Adaptador de conexión rápida global",
+"Embalaje: tarjeta de piel"
+],
+"variants": [
+{
+"code": "57102",
+"size": "",
+"price": 1.26
+}
+]
+},
+{
+"id": 184,
+"slug": "tolsen-boquilla-de-manguera-tipo-pico-3-4",
+"category": "Ferretería",
+"sub": "Herramientas de jardín",
+"brand": "Tolsen",
+"name": "Boquilla De Manguera Tipo Pico 3/4",
+"price": 1.68,
+"image": "tolsen-boquilla-de-manguera-tipo-pico-3-4-57353",
+"condition": "Nuevo",
+"highlight": "Código 57353",
+"description": "Tamaño de rosca: 3/4″ NH, Ajustable desde niebla ﬁna hasta chorro potente.",
+"specs": {
+"Sección": "Herramientas de jardín"
+},
+"features": [
+"Tamaño de rosca: 3/4″ NH",
+"Ajustable desde niebla ﬁna hasta chorro potente",
+"Cuerpo ABS duradero con material PP",
+"Adaptador de conexión rápida global",
+"Embalaje: atado en tarjeta"
+],
+"variants": [
+{
+"code": "57353",
+"size": "",
+"price": 1.68
+}
+]
+},
+{
+"id": 185,
+"slug": "tolsen-lima-de-metal-plana-de-8",
+"category": "Ferretería",
+"sub": "Herramientas de acabado",
+"brand": "Tolsen",
+"name": "Lima De Metal Plana De 8″",
+"price": 5.04,
+"image": "tolsen-lima-de-metal-plana-de-8-32001",
+"condition": "Nuevo",
+"highlight": "Código 32001",
+"description": "Plana, Acero al carbono T12.",
+"specs": {
+"Sección": "Herramientas de acabado"
+},
+"features": [
+"Plana",
+"Acero al carbono T12",
+"Mango de plástico bicomponente",
+"Embalaje: blister de cartón"
+],
+"variants": [
+{
+"code": "32001",
+"size": "",
+"price": 5.04
+}
+]
+},
+{
+"id": 186,
+"slug": "tolsen-lima-de-metal-circular",
+"category": "Ferretería",
+"sub": "Herramientas de acabado",
+"brand": "Tolsen",
+"name": "Lima De Metal Circular",
+"price": 4.15,
+"image": "tolsen-lima-de-metal-circular-32009",
+"condition": "Nuevo",
+"highlight": "Código 32009",
+"description": "Redondo, Acero al carbono T12.",
+"specs": {
+"Sección": "Herramientas de acabado"
+},
+"features": [
+"Redondo",
+"Acero al carbono T12",
+"Mango de plástico bicomponente",
+"Embalaje: blister de cartón"
+],
+"variants": [
+{
+"code": "32009",
+"size": "200 mm, 8″",
+"price": 4.15
+}
+]
+},
+{
+"id": 187,
+"slug": "tolsen-lima-de-metal-semicircular",
+"category": "Ferretería",
+"sub": "Herramientas de acabado",
+"brand": "Tolsen",
+"name": "Lima De Metal Semicircular",
+"price": 6.04,
+"image": "tolsen-lima-de-metal-semicircular-32005",
+"condition": "Nuevo",
+"highlight": "Código 32005",
+"description": "Media caña, Acero al carbono T12.",
+"specs": {
+"Sección": "Herramientas de acabado"
+},
+"features": [
+"Media caña",
+"Acero al carbono T12",
+"Mango de plástico bicomponente",
+"Embalaje: blister de cartón"
+],
+"variants": [
+{
+"code": "32005",
+"size": "",
+"price": 6.04
+}
+]
+},
+{
+"id": 188,
+"slug": "tolsen-lima-de-metal-triangular",
+"category": "Ferretería",
+"sub": "Herramientas de acabado",
+"brand": "Tolsen",
+"name": "Lima De Metal Triangular",
+"price": 4.69,
+"image": "tolsen-lima-de-metal-triangular-32013",
+"condition": "Nuevo",
+"highlight": "Código 32013",
+"description": "Triangular, Acero al carbono T12.",
+"specs": {
+"Sección": "Herramientas de acabado"
+},
+"features": [
+"Triangular",
+"Acero al carbono T12",
+"Mango de plástico bicomponente",
+"Embalaje: blister de cartón"
+],
+"variants": [
+{
+"code": "32013",
+"size": "200 mm, 8″",
+"price": 4.69
+}
+]
+},
+{
+"id": 189,
+"slug": "tolsen-lima-de-metal-cuadrada",
+"category": "Ferretería",
+"sub": "Herramientas de acabado",
+"brand": "Tolsen",
+"name": "Lima De Metal Cuadrada",
+"price": 4.44,
+"image": "tolsen-lima-de-metal-cuadrada-32017",
+"condition": "Nuevo",
+"highlight": "Código 32017",
+"description": "Cuadrado, Acero al carbono T12.",
+"specs": {
+"Sección": "Herramientas de acabado"
+},
+"features": [
+"Cuadrado",
+"Acero al carbono T12",
+"Mango de plástico bicomponente",
+"Embalaje: blister de cartón"
+],
+"variants": [
+{
+"code": "32017",
+"size": "",
+"price": 4.44
+}
+]
+},
+{
+"id": 190,
+"slug": "tolsen-lima-para-madera-plana",
+"category": "Ferretería",
+"sub": "Herramientas de acabado",
+"brand": "Tolsen",
+"name": "Lima Para Madera Plana",
+"price": 4.72,
+"image": "tolsen-lima-para-madera-plana-32021",
+"condition": "Nuevo",
+"highlight": "Código 32021",
+"description": "Plana, Acero al carbono #45.",
+"specs": {
+"Sección": "Herramientas de acabado"
+},
+"features": [
+"Plana",
+"Acero al carbono #45",
+"Mango de plástico bicomponente",
+"Empaque: blister de cartón"
+],
+"variants": [
+{
+"code": "32021",
+"size": "",
+"price": 4.72
+}
+]
+},
+{
+"id": 191,
+"slug": "tolsen-cortador-de-tubo-de-pvc",
+"category": "Ferretería",
+"sub": "Herramientas de plomería",
+"brand": "Tolsen",
+"name": "Cortador De Tubo De Pvc",
+"price": 14.38,
+"image": "tolsen-cortador-de-tubo-de-pvc-33001",
+"condition": "Nuevo",
+"highlight": "Código 33001",
+"description": "Función de apertura automática, Con función de cambio rápido de hoja.",
+"specs": {
+"Sección": "Herramientas de plomería"
+},
+"features": [
+"Función de apertura automática",
+"Con función de cambio rápido de hoja",
+"Material del cuerpo: Aluminio fundido a presión,",
+"Hoja de acero inoxidable 3Cr13, tratamiento térmico",
+"Aplicar para cortar tuberías de"
+],
+"variants": [
+{
+"code": "33001",
+"size": "42 mm",
+"price": 14.38
+}
+]
+},
+{
+"id": 192,
+"slug": "tolsen-cortador-de-tubos-3-32mm",
+"category": "Ferretería",
+"sub": "Herramientas de plomería",
+"brand": "Tolsen",
+"name": "Cortador De Tubos 3-32Mm",
+"price": 12.59,
+"image": "tolsen-cortador-de-tubos-3-32mm-33005",
+"condition": "Nuevo",
+"highlight": "Código 33005",
+"description": "Cuerpo de aleación de zinc, Embalaje: blister de cartón.",
+"specs": {
+"Sección": "Herramientas de plomería"
+},
+"features": [
+"Cuerpo de aleación de zinc",
+"Embalaje: blister de cartón"
+],
+"variants": [
+{
+"code": "33005",
+"size": "3-32mm",
+"price": 12.59
+}
+]
+},
+{
+"id": 193,
+"slug": "tolsen-cortador-de-tubos-3-22mm",
+"category": "Ferretería",
+"sub": "Herramientas de plomería",
+"brand": "Tolsen",
+"name": "Cortador De Tubos 3-22Mm",
+"price": 5.03,
+"image": "tolsen-cortador-de-tubos-3-22mm-33003",
+"condition": "Nuevo",
+"highlight": "Código 33003",
+"description": "Cuerpo de aleación de aluminio, Embalaje: tarjeta blister.",
+"specs": {
+"Sección": "Herramientas de plomería"
+},
+"features": [
+"Cuerpo de aleación de aluminio",
+"Embalaje: tarjeta blister"
+],
+"variants": [
+{
+"code": "33003",
+"size": "3-22 mm",
+"price": 5.03
+}
+]
+},
+{
+"id": 194,
+"slug": "tolsen-cortador-de-tubos-3-28-mm",
+"category": "Ferretería",
+"sub": "Herramientas de plomería",
+"brand": "Tolsen",
+"name": "Cortador De Tubos (3-28 Mm)",
+"price": 6.13,
+"image": "tolsen-cortador-de-tubos-3-28-mm-33004",
+"condition": "Nuevo",
+"highlight": "Código 33004",
+"description": "Cuerpo de aleación de aluminio, Embalaje: blíster.",
+"specs": {
+"Sección": "Herramientas de plomería"
+},
+"features": [
+"Cuerpo de aleación de aluminio",
+"Embalaje: blíster"
+],
+"variants": [
+{
+"code": "33004",
+"size": "3-28mm",
+"price": 6.13
+}
+]
+},
+{
+"id": 195,
+"slug": "tolsen-cortador-de-tubos-6-64mm",
+"category": "Ferretería",
+"sub": "Herramientas de plomería",
+"brand": "Tolsen",
+"name": "Cortador De Tubos 6-64Mm",
+"image": "tolsen-cortador-de-tubos-6-64mm-33006",
+"condition": "Nuevo",
+"highlight": "Código 33006",
+"description": "Cuerpo de aleación de aluminio, Embalaje: tarjeta blister.",
+"specs": {
+"Sección": "Herramientas de plomería"
+},
+"features": [
+"Cuerpo de aleación de aluminio",
+"Embalaje: tarjeta blister"
+],
+"variants": [
+{
+"code": "33006",
+"size": "",
+"price": null
+}
+]
+},
+{
+"id": 196,
+"slug": "tolsen-tarraja-manual-para-tubo-pvc",
+"category": "Ferretería",
+"sub": "Herramientas de plomería",
+"brand": "Tolsen",
+"name": "Tarraja Manual Para Tubo Pvc",
+"price": 10.03,
+"image": "tolsen-tarraja-manual-para-tubo-pvc-33008",
+"condition": "Nuevo",
+"highlight": "Código 33008",
+"description": "Apto para tuberías de PVC, Mango de ABS.",
+"specs": {
+"Sección": "Herramientas de plomería"
+},
+"features": [
+"Apto para tuberías de PVC",
+"Mango de ABS",
+"Embalaje: Tarjeta blister"
+],
+"variants": [
+{
+"code": "33008",
+"size": "1/2” - 3/4” - 1”",
+"price": 10.03
+}
+]
+},
+{
+"id": 197,
+"slug": "tolsen-cinta-metrica-de-fibra-de-vidrio-metrico-y-pulgadas",
+"category": "Ferretería",
+"sub": "Herramientas de medición",
+"brand": "Tolsen",
+"name": "Cinta Métrica De Fibra De Vidrio (Métrico Y Pulgadas)",
+"image": "tolsen-cinta-metrica-de-fibra-de-vidrio-metrico-y-pulgadas-35020",
+"condition": "Nuevo",
+"highlight": "3 medidas, código 35020",
+"description": "Caja de ABS con manivela de cuerda niquelada, Con hoja métrica y en pulgadas.",
+"specs": {
+"Sección": "Herramientas de medición"
+},
+"features": [
+"Caja de ABS con manivela de cuerda niquelada",
+"Con hoja métrica y en pulgadas",
+"Embalaje: caja de color"
+],
+"variants": [
+{
+"code": "35020",
+"size": "20 m / 66 pies x 12,5 mm",
+"price": 6.92
+},
+{
+"code": "35022",
+"size": "30 m / 100 pies x 12,5 mm",
+"price": 9.06
+},
+{
+"code": "35023",
+"size": "50 m / 150 pies x 12,5 mm",
+"price": 11.98
+}
+]
+},
+{
+"id": 198,
+"slug": "tolsen-bisel-ajustable-con-nivel",
+"category": "Ferretería",
+"sub": "Herramientas de medición",
+"brand": "Tolsen",
+"name": "Bisel Ajustable Con Nivel",
+"image": "tolsen-bisel-ajustable-con-nivel-35035",
+"condition": "Nuevo",
+"highlight": "Código 35035",
+"description": "Acero inoxidable (2Cr13), Mango de ABS.",
+"specs": {
+"Sección": "Herramientas de medición"
+},
+"features": [
+"Acero inoxidable (2Cr13)",
+"Mango de ABS",
+"Con nivel de burbuja",
+"Embalaje: etiqueta de color"
+],
+"variants": [
+{
+"code": "35035",
+"size": "",
+"price": null
+}
+]
+},
+{
+"id": 199,
+"slug": "tolsen-regla-de-acero-inoxidable-metrico-y-pulgadas",
+"category": "Ferretería",
+"sub": "Herramientas de medición",
+"brand": "Tolsen",
+"name": "Regla De Acero Inoxidable (Métrico Y Pulgadas)",
+"image": "tolsen-regla-de-acero-inoxidable-metrico-y-pulgadas-35026",
+"condition": "Nuevo",
+"highlight": "3 medidas, código 35026",
+"description": "Acero inoxidable (2Cr13), Embalado en bolsa de PVC con etiqueta de color.",
+"specs": {
+"Sección": "Herramientas de medición"
+},
+"features": [
+"Acero inoxidable (2Cr13)",
+"Embalado en bolsa de PVC con etiqueta de color"
+],
+"variants": [
+{
+"code": "35026",
+"size": "25 mm 1,0 mm",
+"price": 1.9
+},
+{
+"code": "35028",
+"size": "600 mm, 24” 30 mm 1,2 mm",
+"price": 5.03
+},
+{
+"code": "35030",
+"size": "1000 mm, 40” 32 mm 1,5 mm",
+"price": 11.92
+}
+]
+},
+{
+"id": 200,
+"slug": "tolsen-escuadra-combinada-con-nivel",
+"category": "Ferretería",
+"sub": "Herramientas de medición",
+"brand": "Tolsen",
+"name": "Escuadra Combinada Con Nivel",
+"price": 12.01,
+"image": "tolsen-escuadra-combinada-con-nivel-35037",
+"condition": "Nuevo",
+"highlight": "Código 35037",
+"description": "Cuerpo de zinc fundido, Hoja de acero inoxidable.",
+"specs": {
+"Sección": "Herramientas de medición"
+},
+"features": [
+"Cuerpo de zinc fundido",
+"Hoja de acero inoxidable",
+"Tamaño métrico y en pulgadas",
+"Tornillo de ajuste de latón",
+"Con nivel de burbuja y trazador"
+],
+"variants": [
+{
+"code": "35037",
+"size": "",
+"price": 12.01
+}
+]
+},
+{
+"id": 201,
+"slug": "tolsen-regla-plegable-metrica-y-pulgadas",
+"category": "Ferretería",
+"sub": "Herramientas de medición",
+"brand": "Tolsen",
+"name": "Regla Plegable (Métrica Y Pulgadas)",
+"price": 4.13,
+"image": "tolsen-regla-plegable-metrica-y-pulgadas-35047",
+"condition": "Nuevo",
+"highlight": "Código 35047",
+"description": "Cuerpo de ABS con resorte, Embalaje: funda de color.",
+"specs": {
+"Sección": "Herramientas de medición"
+},
+"features": [
+"Cuerpo de ABS con resorte",
+"Embalaje: funda de color"
+],
+"variants": [
+{
+"code": "35047",
+"size": "",
+"price": 4.13
+}
+]
+},
+{
+"id": 202,
+"slug": "tolsen-micrometro-metrico",
+"category": "Ferretería",
+"sub": "Herramientas de medición",
+"brand": "Tolsen",
+"name": "Micrómetro (Métrico)",
+"price": 24.52,
+"image": "tolsen-micrometro-metrico-35055",
+"condition": "Nuevo",
+"highlight": "Código 35055",
+"description": "Precisión: 0,01 mm, Cara de medición de carburo.",
+"specs": {
+"Sección": "Herramientas de medición"
+},
+"features": [
+"Precisión: 0,01 mm",
+"Cara de medición de carburo",
+"Marco cromado",
+"Tope de trinquete",
+"Embalaje: caja de plástico con funda de color"
+],
+"variants": [
+{
+"code": "35055",
+"size": "0-25 mm",
+"price": 24.52
+}
+]
+},
+{
+"id": 203,
+"slug": "tolsen-cortacables",
+"category": "Ferretería",
+"sub": "Herramientas para electricistas",
+"brand": "Tolsen",
+"name": "Cortacables",
+"price": 10.25,
+"image": "tolsen-cortacables-38022",
+"condition": "Nuevo",
+"highlight": "Código 38022",
+"description": "Trabajo pesado, Acero al carbono forjado en estampa.",
+"specs": {
+"Sección": "Herramientas para electricistas"
+},
+"features": [
+"Trabajo pesado",
+"Acero al carbono forjado en estampa",
+"Asa sumergida",
+"Embalaje: blister de cartón"
+],
+"variants": [
+{
+"code": "38022",
+"size": "250 mm, 10\"",
+"price": 10.25
+}
+]
+},
+{
+"id": 204,
+"slug": "tolsen-teipe-electrico-pvc",
+"category": "Ferretería",
+"sub": "Herramientas para electricistas",
+"brand": "Tolsen",
+"name": "Teipe Eléctrico Pvc",
+"image": "tolsen-teipe-electrico-pvc-38023",
+"condition": "Nuevo",
+"highlight": "3 medidas, código 38023",
+"description": "PVC puro, Certiﬁcado CE.",
+"specs": {
+"Sección": "Herramientas para electricistas"
+},
+"features": [
+"PVC puro",
+"Certiﬁcado CE",
+"Embalaje: papel de color"
+],
+"variants": [
+{
+"code": "38023",
+"size": "19 mm (negro) 0,13 mm",
+"price": 0.72
+},
+{
+"code": "38024",
+"size": "19 mm (blanco) 0,13 mm",
+"price": 0.72
+},
+{
+"code": "38025",
+"size": "19 mm (rojo) 0,13 mm",
+"price": 0.72
+}
+]
+},
+{
+"id": 205,
+"slug": "tolsen-navaja-electricista-recta",
+"category": "Ferretería",
+"sub": "Herramientas para electricistas",
+"brand": "Tolsen",
+"name": "Navaja Electricista Recta",
+"price": 10.0,
+"image": "tolsen-navaja-electricista-recta-38040",
+"condition": "Nuevo",
+"highlight": "Código 38040",
+"description": "Con cabeza recta, Acero especial inoxidable.",
+"specs": {
+"Sección": "Herramientas para electricistas"
+},
+"features": [
+"Con cabeza recta",
+"Acero especial inoxidable",
+"Espesor: 3mm",
+"Mango de madera pulido ﬁno",
+"Embalaje: blister"
+],
+"variants": [
+{
+"code": "38040",
+"size": "205 mm",
+"price": 10.0
+}
+]
+},
+{
+"id": 206,
+"slug": "tolsen-alicate-pelacable",
+"category": "Ferretería",
+"sub": "Herramientas para electricistas",
+"brand": "Tolsen",
+"name": "Alicate Pelacable",
+"image": "tolsen-alicate-pelacable-38052",
+"condition": "Nuevo",
+"highlight": "Código 38052",
+"description": "Con borde aﬁlado para cortar alambre, Con función de empujar hacia abajo.",
+"specs": {
+"Sección": "Herramientas para electricistas"
+},
+"features": [
+"Con borde aﬁlado para cortar alambre",
+"Con función de empujar hacia abajo",
+"Con función de pelado de alambre",
+"Puede pelar seis tipos de tamaños de alambre",
+"Puede cortar cinco tipos de tamaños de tornillos de cobre"
+],
+"variants": [
+{
+"code": "38052",
+"size": "215 mm, 8,5\"",
+"price": null
+}
+]
+},
+{
+"id": 207,
+"slug": "tolsen-navaja-electricista-curva",
+"category": "Ferretería",
+"sub": "Herramientas para electricistas",
+"brand": "Tolsen",
+"name": "Navaja Electricista Curva",
+"price": 10.46,
+"image": "tolsen-navaja-electricista-curva-38041",
+"condition": "Nuevo",
+"highlight": "Código 38041",
+"description": "Con cabeza acodada, Acero inoxidable especial.",
+"specs": {
+"Sección": "Herramientas para electricistas"
+},
+"features": [
+"Con cabeza acodada",
+"Acero inoxidable especial",
+"Espesor: 3mm",
+"Mango de madera pulido ﬁno",
+"Embalaje: blister de cartón"
+],
+"variants": [
+{
+"code": "38041",
+"size": "195 mm",
+"price": 10.46
+}
+]
+},
+{
+"id": 208,
+"slug": "tolsen-alicate-de-trinquete-modular",
+"category": "Ferretería",
+"sub": "Herramientas para electricistas",
+"brand": "Tolsen",
+"name": "Alicate De Trinquete Modular",
+"price": 18.24,
+"image": "tolsen-alicate-de-trinquete-modular-38054",
+"condition": "Nuevo",
+"highlight": "Código 38054",
+"description": "Acero al carbono con estructura endurecida y templada, Superﬁcie con acabado químicamente negro.",
+"specs": {
+"Sección": "Herramientas para electricistas"
+},
+"features": [
+"Acero al carbono con estructura endurecida y templada",
+"Superﬁcie con acabado químicamente negro",
+"Empuñaduras de dos componentes de PP/TPR",
+"Guía W/KEY compacta y duradera en soporte modular 8P",
+"Corte y pele cables en una sola operación, fácil y eﬁciente"
+],
+"variants": [
+{
+"code": "38054",
+"size": "7,3“/185 mm 8P/6P",
+"price": 18.24
+}
+]
+},
+{
+"id": 209,
+"slug": "tolsen-juego-de-espatulas-4-pzas",
+"category": "Ferretería",
+"sub": "Herramientas de pintura y albañilería",
+"brand": "Tolsen",
+"name": "Juego De Espatulas 4 Pzas",
+"price": 1.98,
+"image": "tolsen-juego-de-espatulas-4-pzas-40008",
+"condition": "Nuevo",
+"highlight": "Código 40008",
+"description": "Acero al carbón #50, Pulido ﬁno.",
+"specs": {
+"Sección": "Herramientas de pintura y albañilería"
+},
+"features": [
+"Acero al carbón #50",
+"Pulido ﬁno",
+"Mango de plástico",
+"Empaque: bolsa de polietileno con colgador de papel"
+],
+"variants": [
+{
+"code": "40008",
+"size": "50,80,100,120mm",
+"price": 1.98
+}
+]
+},
+{
+"id": 210,
+"slug": "tolsen-espatula-mango-de-goma",
+"category": "Ferretería",
+"sub": "Herramientas de pintura y albañilería",
+"brand": "Tolsen",
+"name": "Espatula Mango De Goma",
+"image": "tolsen-espatula-mango-de-goma-40012",
+"condition": "Nuevo",
+"highlight": "9 medidas, código 40012",
+"description": "Acero para herramientas de alta calidad, tratado térmi-, Pulido espejo • Mango de TPR de dos componentes.",
+"specs": {
+"Sección": "Herramientas de pintura y albañilería"
+},
+"features": [
+"Acero para herramientas de alta calidad, tratado térmi-",
+"Pulido espejo • Mango de TPR de dos componentes",
+"Embalaje: bolsa de polietileno con etiqueta de color"
+],
+"variants": [
+{
+"code": "40012",
+"size": "40 mm, 1,5”",
+"price": null
+},
+{
+"code": "40013",
+"size": "50 mm, 2”",
+"price": 2.27
+},
+{
+"code": "40014",
+"size": "60 mm, 2,5”",
+"price": 2.39
+},
+{
+"code": "40015",
+"size": "80 mm, 3”",
+"price": 2.48
+},
+{
+"code": "40016",
+"size": "100 mm, 4”",
+"price": 2.74
+},
+{
+"code": "40017",
+"size": "125 mm, 5”",
+"price": 3.28
+},
+{
+"code": "40018",
+"size": "",
+"price": 3.65
+},
+{
+"code": "40020",
+"size": "",
+"price": 4.87
+},
+{
+"code": "40021",
+"size": "",
+"price": 6.25
+}
+]
+},
+{
+"id": 211,
+"slug": "tolsen-espatula-lisa-para-yeso",
+"category": "Ferretería",
+"sub": "Herramientas de pintura y albañilería",
+"brand": "Tolsen",
+"name": "Espatula Lisa Para Yeso",
+"image": "tolsen-espatula-lisa-para-yeso-40023",
+"condition": "Nuevo",
+"highlight": "3 medidas, código 40023",
+"description": "Hoja de 65Mn, tratada térmicamente, Acabado superﬁcial azul.",
+"specs": {
+"Sección": "Herramientas de pintura y albañilería"
+},
+"features": [
+"Hoja de 65Mn, tratada térmicamente",
+"Acabado superﬁcial azul",
+"Mango de dos componentes",
+"Embalaje: etiqueta de color"
+],
+"variants": [
+{
+"code": "40023",
+"size": "200 mm, 8″",
+"price": 5.71
+},
+{
+"code": "40024",
+"size": "",
+"price": 6.37
+},
+{
+"code": "40025",
+"size": "",
+"price": 7.06
+}
+]
+},
+{
+"id": 212,
+"slug": "tolsen-espatula-mango-de-madera",
+"category": "Ferretería",
+"sub": "Herramientas de pintura y albañilería",
+"brand": "Tolsen",
+"name": "Espatula Mango De Madera",
+"image": "tolsen-espatula-mango-de-madera-40201",
+"condition": "Nuevo",
+"highlight": "4 medidas, código 40201",
+"description": "Acero para herramientas de alta calidad, tratado, Pulido ﬁno.",
+"specs": {
+"Sección": "Herramientas de pintura y albañilería"
+},
+"features": [
+"Acero para herramientas de alta calidad, tratado",
+"Pulido ﬁno",
+"Mango de madera",
+"Embalaje: etiqueta de color"
+],
+"variants": [
+{
+"code": "40201",
+"size": "35 mm",
+"price": 1.44
+},
+{
+"code": "40202",
+"size": "50 mm",
+"price": 1.51
+},
+{
+"code": "40204",
+"size": "75 mm",
+"price": 1.73
+},
+{
+"code": "40205",
+"size": "100 mm",
+"price": 1.88
+}
+]
+},
+{
+"id": 213,
+"slug": "tolsen-brocha-de-techo",
+"category": "Ferretería",
+"sub": "Herramientas de pintura y albañilería",
+"brand": "Tolsen",
+"name": "Brocha De Techo",
+"image": "tolsen-brocha-de-techo-40038",
+"condition": "Nuevo",
+"highlight": "2 medidas, código 40038",
+"description": "Cerda blanca y PET en virola cromada, Mango de plástico.",
+"specs": {
+"Sección": "Herramientas de pintura y albañilería"
+},
+"features": [
+"Cerda blanca y PET en virola cromada",
+"Mango de plástico",
+"Empaque: bolsa de PVC con etiqueta de color"
+],
+"variants": [
+{
+"code": "40038",
+"size": "30 x 100 x 44 mm",
+"price": 2.68
+},
+{
+"code": "40040",
+"size": "40 x 140 x 51 mm",
+"price": 4.86
+}
+]
+},
+{
+"id": 214,
+"slug": "tolsen-brocha-cabeza-curva",
+"category": "Ferretería",
+"sub": "Herramientas de pintura y albañilería",
+"brand": "Tolsen",
+"name": "Brocha Cabeza Curva",
+"image": "tolsen-brocha-cabeza-curva-40048",
+"condition": "Nuevo",
+"highlight": "4 medidas, código 40048",
+"description": "Pincel plano, cabeza curva, Cerdas blancas y PET.",
+"specs": {
+"Sección": "Herramientas de pintura y albañilería"
+},
+"features": [
+"Pincel plano, cabeza curva",
+"Cerdas blancas y PET",
+"Virola de acero inoxidable",
+"Mango de madera ﬁnamente pulida con oriﬁcio para"
+],
+"variants": [
+{
+"code": "40048",
+"size": "",
+"price": 1.6
+},
+{
+"code": "40049",
+"size": "",
+"price": 2.17
+},
+{
+"code": "40050",
+"size": "",
+"price": 3.18
+},
+{
+"code": "40051",
+"size": "2,5\"",
+"price": 3.68
+}
+]
+},
+{
+"id": 215,
+"slug": "tolsen-pinza-porta-electrodo-300a",
+"category": "Ferretería",
+"sub": "Herramientas de soldadura",
+"brand": "Tolsen",
+"name": "Pinza Porta Electrodo 300A",
+"price": 11.68,
+"image": "tolsen-pinza-porta-electrodo-300a-44928",
+"condition": "Nuevo",
+"highlight": "Código 44928",
+"description": "Aprobación CE, Material: parte superior de hierro, parte inferior de latón.",
+"specs": {
+"Sección": "Herramientas de soldadura"
+},
+"features": [
+"Aprobación CE",
+"Material: parte superior de hierro, parte inferior de latón",
+"Empuñadura de nailon",
+"Incluye 2 llaves hexagonales",
+"Electrodos de paso: 5/64″-1/4″ (2,0 mm-6,35 mm)"
+],
+"variants": [
+{
+"code": "44928",
+"size": "230 mm 300 A",
+"price": 11.68
+}
+]
+},
+{
+"id": 216,
+"slug": "tolsen-soporte-de-soldadura-magnetico",
+"category": "Ferretería",
+"sub": "Herramientas de soldadura",
+"brand": "Tolsen",
+"name": "Soporte De Soldadura Magnético",
+"image": "tolsen-soporte-de-soldadura-magnetico-44910",
+"condition": "Nuevo",
+"highlight": "3 medidas, código 44910",
+"description": "Para sujetar piezas de trabajo al soldar o soldar, Ángulos de trabajo: 45°C, 75°C, 135°C.",
+"specs": {
+"Sección": "Herramientas de soldadura"
+},
+"features": [
+"Para sujetar piezas de trabajo al soldar o soldar",
+"Ángulos de trabajo: 45°C, 75°C, 135°C",
+"Fabricado en acero prensado de alta calidad con",
+"Embalaje: blister doble"
+],
+"variants": [
+{
+"code": "44910",
+"size": "25 Libras",
+"price": 4.08
+},
+{
+"code": "44911",
+"size": "50 Libras",
+"price": 6.46
+},
+{
+"code": "44912",
+"size": "75 Libras",
+"price": 10.85
+}
+]
+},
+{
+"id": 217,
+"slug": "tolsen-pinza-porta-electrodo-500a",
+"category": "Ferretería",
+"sub": "Herramientas de soldadura",
+"brand": "Tolsen",
+"name": "Pinza Porta Electrodo 500A",
+"price": 13.93,
+"image": "tolsen-pinza-porta-electrodo-500a-44929",
+"condition": "Nuevo",
+"highlight": "Código 44929",
+"description": "Aprobación CE, Material: parte superior de hierro, parte inferior de latón.",
+"specs": {
+"Sección": "Herramientas de soldadura"
+},
+"features": [
+"Aprobación CE",
+"Material: parte superior de hierro, parte inferior de latón",
+"Empuñadura de nailon",
+"Incluye 2 llaves hexagonales",
+"Electrodos hasta: 3/32″-5/16″ (2,5 mm-8 mm)"
+],
+"variants": [
+{
+"code": "44929",
+"size": "270 mm 500 A",
+"price": 13.93
+}
+]
+},
+{
+"id": 218,
+"slug": "tolsen-pinza-porta-electrodo-800a",
+"category": "Ferretería",
+"sub": "Herramientas de soldadura",
+"brand": "Tolsen",
+"name": "Pinza Porta Electrodo 800A",
+"price": 15.44,
+"image": "tolsen-pinza-porta-electrodo-800a-44936",
+"condition": "Nuevo",
+"highlight": "Código 44936",
+"description": "Aprobación CE, Material: parte superior de hierro, parte inferior de latón.",
+"specs": {
+"Sección": "Herramientas de soldadura"
+},
+"features": [
+"Aprobación CE",
+"Material: parte superior de hierro, parte inferior de latón",
+"Empuñadura de nailon",
+"Incluye 2 llaves hexagonales",
+"Electrodos hasta: 3/32″-5/16″ (2,5 mm-8 mm)"
+],
+"variants": [
+{
+"code": "44936",
+"size": "270 mm 800 A",
+"price": 15.44
+}
+]
+},
+{
+"id": 219,
+"slug": "tolsen-martillo-picador-de-soldadura",
+"category": "Ferretería",
+"sub": "Herramientas de soldadura",
+"brand": "Tolsen",
+"name": "Martillo Picador De Soldadura",
+"price": 5.09,
+"image": "tolsen-martillo-picador-de-soldadura-44945",
+"condition": "Nuevo",
+"highlight": "Código 44945",
+"description": "Acero al carbono forjado en estampa, El diseño doble presenta un cincel en un lado y una.",
+"specs": {
+"Sección": "Herramientas de soldadura"
+},
+"features": [
+"Acero al carbono forjado en estampa",
+"El diseño doble presenta un cincel en un lado y una",
+"Mango de resorte para resistir los golpes"
+],
+"variants": [
+{
+"code": "44945",
+"size": "300g",
+"price": 5.09
+}
+]
+},
+{
+"id": 220,
+"slug": "tolsen-pinza-abrazadera-a-tierra",
+"category": "Ferretería",
+"sub": "Herramientas de soldadura",
+"brand": "Tolsen",
+"name": "Pinza Abrazadera A Tierra",
+"image": "tolsen-pinza-abrazadera-a-tierra-44940",
+"condition": "Nuevo",
+"highlight": "2 medidas, código 44940",
+"description": "Material del mango: Hierro cromado, Material de la pinza: Latón.",
+"specs": {
+"Sección": "Herramientas de soldadura"
+},
+"features": [
+"Material del mango: Hierro cromado",
+"Material de la pinza: Latón",
+"Embalaje: caja de color"
+],
+"variants": [
+{
+"code": "44940",
+"size": "170 mm 0,7 mm 300A",
+"price": 4.08
+},
+{
+"code": "44941",
+"size": "210mm 0.8 mm 500A",
+"price": null
+}
+]
+},
+{
+"id": 221,
+"slug": "tolsen-guantes-de-trabajo",
+"category": "Ferretería",
+"sub": "Equipos de protección individual",
+"brand": "Tolsen",
+"name": "Guantes De Trabajo",
+"price": 9.91,
+"image": "tolsen-guantes-de-trabajo-45002",
+"condition": "Nuevo",
+"highlight": "Código 45002",
+"description": "Peso: 580 g/docena, Material: poliéster  • Puño de punto.",
+"specs": {
+"Sección": "Equipos de protección individual"
+},
+"features": [
+"Peso: 580 g/docena",
+"Material: poliéster  • Puño de punto",
+"Empaque: una docena en una bolsa de plástico con",
+"Precio por docena (12 pares)"
+],
+"variants": [
+{
+"code": "45002",
+"size": "10 (XL)",
+"price": 9.91
+}
+]
+},
+{
+"id": 222,
+"slug": "tolsen-guantes-multiuso-de-puntos",
+"category": "Ferretería",
+"sub": "Equipos de protección individual",
+"brand": "Tolsen",
+"name": "Guantes Multiuso De Puntos",
+"price": 10.88,
+"image": "tolsen-guantes-multiuso-de-puntos-45006",
+"condition": "Nuevo",
+"highlight": "Código 45006",
+"description": "Peso: 700g/docena, Material: poliéster y algodón, clase A  • Muñeca tejida.",
+"specs": {
+"Sección": "Equipos de protección individual"
+},
+"features": [
+"Peso: 700g/docena",
+"Material: poliéster y algodón, clase A  • Muñeca tejida",
+"Empaque: una docena en una bolsa de plástico con",
+"Precio por docena (12 pares)"
+],
+"variants": [
+{
+"code": "45006",
+"size": "10 (XL)",
+"price": 10.88
+}
+]
+},
+{
+"id": 223,
+"slug": "tolsen-guantes-de-proteccion-resistentes-al-corte-nivel-5",
+"category": "Ferretería",
+"sub": "Equipos de protección individual",
+"brand": "Tolsen",
+"name": "Guantes De Protección Resistentes Al Corte (Nivel 5)",
+"image": "tolsen-guantes-de-proteccion-resistentes-al-corte-nivel-5-45040",
+"condition": "Nuevo",
+"highlight": "2 medidas, código 45040",
+"description": "Aprobado por la CE, Forro de nivel 5 de resistencia a cortes 13G con recubrimiento.",
+"specs": {
+"Sección": "Equipos de protección individual"
+},
+"features": [
+"Aprobado por la CE",
+"Forro de nivel 5 de resistencia a cortes 13G con recubrimiento",
+"El forro de HPPE sin costuras",
+"El calibre 13 es súper delgado y más cómodo",
+"Recubrimiento de poliuretano."
+],
+"variants": [
+{
+"code": "45040",
+"size": "9”",
+"price": 5.88
+},
+{
+"code": "45041",
+"size": "10”",
+"price": 5.88
+}
+]
+},
+{
+"id": 224,
+"slug": "tolsen-guantes-industriales-con-nitrilo",
+"category": "Ferretería",
+"sub": "Equipos de protección individual",
+"brand": "Tolsen",
+"name": "Guantes Industriales Con Nitrilo",
+"price": 19.33,
+"image": "tolsen-guantes-industriales-con-nitrilo-45010",
+"condition": "Nuevo",
+"highlight": "Código 45010",
+"description": "Material: poliéster  • Nitrilo amarillo  • Muñeca de punto, Excelente comodidad y ajuste  • Destreza sobresaliente.",
+"specs": {
+"Sección": "Equipos de protección individual"
+},
+"features": [
+"Material: poliéster  • Nitrilo amarillo  • Muñeca de punto",
+"Excelente comodidad y ajuste  • Destreza sobresaliente",
+"Excelente resistencia a perforaciones en la palma,",
+"Empaque: una docena en una bolsa de plástico con",
+"Precio por docena (12 pares)"
+],
+"variants": [
+{
+"code": "45010",
+"size": "10 (XL)",
+"price": 19.33
+}
+]
+},
+{
+"id": 225,
+"slug": "tolsen-guantes-de-soldadura-industriales",
+"category": "Ferretería",
+"sub": "Equipos de protección individual",
+"brand": "Tolsen",
+"name": "Guantes De Soldadura (Industriales)",
+"price": 12.65,
+"image": "tolsen-guantes-de-soldadura-industriales-45026",
+"condition": "Nuevo",
+"highlight": "Código 45026",
+"description": "Aprobación CE, Material:Piel serraje vacuno.",
+"specs": {
+"Sección": "Equipos de protección individual"
+},
+"features": [
+"Aprobación CE",
+"Material:Piel serraje vacuno",
+"Alargado para una mejor protección",
+"Con medio forro",
+"Embalado en percha de papel"
+],
+"variants": [
+{
+"code": "45026",
+"size": "14",
+"price": 12.65
+}
+]
+},
+{
+"id": 226,
+"slug": "tolsen-guantes-de-cuero",
+"category": "Ferretería",
+"sub": "Equipos de protección individual",
+"brand": "Tolsen",
+"name": "Guantes De Cuero",
+"price": 6.3,
+"image": "tolsen-guantes-de-cuero-45024",
+"condition": "Nuevo",
+"highlight": "Código 45024",
+"description": "Aprobado CE, Material: piel serraje vacuno.",
+"specs": {
+"Sección": "Equipos de protección individual"
+},
+"features": [
+"Aprobado CE",
+"Material: piel serraje vacuno",
+"Reposamanos en serraje vacuno negro",
+"Embalaje: colgador de papel"
+],
+"variants": [
+{
+"code": "45024",
+"size": "10 (XL)",
+"price": 6.3
+}
+]
+},
+{
+"id": 227,
+"slug": "tolsen-lupa",
+"category": "Ferretería",
+"sub": "Otras herramientas",
+"brand": "Tolsen",
+"name": "Lupa",
+"price": 4.69,
+"image": "tolsen-lupa-50010",
+"condition": "Nuevo",
+"highlight": "Código 50010",
+"description": "Aumento: 2x, 10x, Diámetro de la lente: 90 mm, 15 mm.",
+"specs": {
+"Sección": "Otras herramientas"
+},
+"features": [
+"Aumento: 2x, 10x",
+"Diámetro de la lente: 90 mm, 15 mm",
+"Tamaño de la lupa: 220 x 97 mm",
+"Mango de fácil agarre"
+],
+"variants": [
+{
+"code": "50010",
+"size": "2X/10X",
+"price": 4.69
+}
+]
+},
+{
+"id": 228,
+"slug": "tolsen-dispensador-de-cinta",
+"category": "Ferretería",
+"sub": "Otras herramientas",
+"brand": "Tolsen",
+"name": "Dispensador De Cinta",
+"price": 8.36,
+"image": "tolsen-dispensador-de-cinta-50000",
+"condition": "Nuevo",
+"highlight": "Código 50000",
+"description": "Material PP, Adecuado para cinta adhesiva ancho de cinta: ≤ 50 mm (2\").",
+"specs": {
+"Sección": "Otras herramientas"
+},
+"features": [
+"Material PP",
+"Adecuado para cinta adhesiva ancho de cinta: ≤ 50 mm (2\")",
+"Diámetro del núcleo de la cinta: 76 mm (3\"),",
+"Diámetro exterior de la cinta: 115 mm (4,5\")",
+"Incluye un rollo de cinta adhesiva"
+],
+"variants": [
+{
+"code": "50000",
+"size": "",
+"price": 8.36
+}
+]
+},
+{
+"id": 229,
+"slug": "tolsen-cepillo-de-techo",
+"category": "Ferretería",
+"sub": "Otras herramientas",
+"brand": "Tolsen",
+"name": "Cepillo De Techo",
+"price": 3.32,
+"image": "tolsen-cepillo-de-techo-50004",
+"condition": "Nuevo",
+"highlight": "Código 50004",
+"description": "PET, Mango de plástico (PP).",
+"specs": {
+"Sección": "Otras herramientas"
+},
+"features": [
+"PET",
+"Mango de plástico (PP)",
+"Embalaje: etiqueta de color con retractilado"
+],
+"variants": [
+{
+"code": "50004",
+"size": "170 X 70 mm",
+"price": 3.32
+}
+]
+},
+{
+"id": 230,
+"slug": "tolsen-lupa-profesional",
+"category": "Ferretería",
+"sub": "Otras herramientas",
+"brand": "Tolsen",
+"name": "Lupa Profesional",
+"price": 5.71,
+"image": "tolsen-lupa-profesional-50011",
+"condition": "Nuevo",
+"highlight": "Código 50011",
+"description": "Aumento: 4x, Diámetro de la lente: 75 mm.",
+"specs": {
+"Sección": "Otras herramientas"
+},
+"features": [
+"Aumento: 4x",
+"Diámetro de la lente: 75 mm",
+"Tamaño de la lupa: 190 x 85 mm",
+"Mango de fácil agarre"
+],
+"variants": [
+{
+"code": "50011",
+"size": "4X",
+"price": 5.71
+}
+]
+},
+{
+"id": 231,
+"slug": "tolsen-brazo-de-agarre-y-recogida",
+"category": "Ferretería",
+"sub": "Otras herramientas",
+"brand": "Tolsen",
+"name": "Brazo De Agarre Y Recogida",
+"image": "tolsen-brazo-de-agarre-y-recogida-50093",
+"condition": "Nuevo",
+"highlight": "Código 50093",
+"description": "Poliéster, Cinta reﬂectante de 5 cm de ancho.",
+"specs": {
+"Sección": "Otras herramientas"
+},
+"features": [
+"Poliéster",
+"Cinta reﬂectante de 5 cm de ancho",
+"Embalaje: bolsa de polietileno"
+],
+"variants": [
+{
+"code": "50093",
+"size": "870 mm",
+"price": null
+}
+]
+},
+{
+"id": 232,
+"slug": "tolsen-guaya-limpia-canerias",
+"category": "Ferretería",
+"sub": "Otras herramientas",
+"brand": "Tolsen",
+"name": "Guaya Limpia Cañerias",
+"image": "tolsen-guaya-limpia-canerias-50100",
+"condition": "Nuevo",
+"highlight": "3 medidas, código 50100",
+"description": "Resorte completamente ﬂexible de acero enchapado, Con mango de plástico.",
+"specs": {
+"Sección": "Otras herramientas"
+},
+"features": [
+"Resorte completamente ﬂexible de acero enchapado",
+"Con mango de plástico",
+"Con gancho en “S”, enchapado en zinc",
+"Embalaje: etiqueta de color con retractilado"
+],
+"variants": [
+{
+"code": "50100",
+"size": "Ø6mmx3M",
+"price": 4.84
+},
+{
+"code": "50101",
+"size": "Ø9mmx5M",
+"price": 12.18
+},
+{
+"code": "50102",
+"size": "Ø9mmx10M",
+"price": 21.49
+}
+]
+},
+{
+"id": 233,
+"slug": "tolsen-senorita-industrial-de-cadena-1-ton",
+"category": "Ferretería",
+"sub": "Herramientas automotrices",
+"brand": "Tolsen",
+"name": "Señorita Industrial De Cadena 1 Ton",
+"price": 166.24,
+"image": "tolsen-senorita-industrial-de-cadena-1-ton-62401",
+"condition": "Nuevo",
+"highlight": "Código 62401",
+"description": "Aprobación CE/GS, Carga de trabajo segura: 1 tonelada.",
+"specs": {
+"Sección": "Herramientas automotrices"
+},
+"features": [
+"Aprobación CE/GS",
+"Carga de trabajo segura: 1 tonelada",
+"Elevación estándar: 3m",
+"Caída de la cadena de carga: 1",
+"Carga dinámica: 15KN"
+],
+"variants": [
+{
+"code": "62401",
+"size": "1 Tonelada",
+"price": 166.24
+}
+]
+},
+{
+"id": 234,
+"slug": "tolsen-senorita-industrial-de-cadena-2-ton",
+"category": "Ferretería",
+"sub": "Herramientas automotrices",
+"brand": "Tolsen",
+"name": "Señorita Industrial De Cadena 2 Ton",
+"price": 231.25,
+"image": "tolsen-senorita-industrial-de-cadena-2-ton-62402",
+"condition": "Nuevo",
+"highlight": "Código 62402",
+"description": "Aprobación CE/GS, Carga de trabajo segura: 2 toneladas.",
+"specs": {
+"Sección": "Herramientas automotrices"
+},
+"features": [
+"Aprobación CE/GS",
+"Carga de trabajo segura: 2 toneladas",
+"Elevación estándar: 3 m",
+"Caída de la cadena de carga: 1",
+"Carga dinámica: 30 KN"
+],
+"variants": [
+{
+"code": "62402",
+"size": "2 Tonelada",
+"price": 231.25
+}
+]
+},
+{
+"id": 235,
+"slug": "tolsen-senorita-industrial-de-cadena-3-ton",
+"category": "Ferretería",
+"sub": "Herramientas automotrices",
+"brand": "Tolsen",
+"name": "Señorita Industrial De Cadena 3 Ton",
+"price": 297.11,
+"image": "tolsen-senorita-industrial-de-cadena-3-ton-62403",
+"condition": "Nuevo",
+"highlight": "Código 62403",
+"description": "Aprobación CE/GS, Carga de trabajo segura: 3 toneladas.",
+"specs": {
+"Sección": "Herramientas automotrices"
+},
+"features": [
+"Aprobación CE/GS",
+"Carga de trabajo segura: 3 toneladas",
+"Elevación estándar: 3 m",
+"Caída de la cadena de carga: 2",
+"Carga dinámica: 45 KN"
+],
+"variants": [
+{
+"code": "62403",
+"size": "3 Tonelada",
+"price": 297.11
+}
+]
+},
+{
+"id": 236,
+"slug": "tolsen-senorita-industrial-de-cadena-5-ton",
+"category": "Ferretería",
+"sub": "Herramientas automotrices",
+"brand": "Tolsen",
+"name": "Señorita Industrial De Cadena 5 Ton",
+"price": 408.17,
+"image": "tolsen-senorita-industrial-de-cadena-5-ton-62404",
+"condition": "Nuevo",
+"highlight": "Código 62404",
+"description": "Aprobación CE/GS, Carga de trabajo segura: 5 toneladas.",
+"specs": {
+"Sección": "Herramientas automotrices"
+},
+"features": [
+"Aprobación CE/GS",
+"Carga de trabajo segura: 5 toneladas",
+"Elevación estándar: 3 m",
+"Caída de la cadena de carga: 2",
+"Carga dinámica: 75 KN"
+],
+"variants": [
+{
+"code": "62404",
+"size": "5 Tonelada",
+"price": 408.17
+}
+]
+},
+{
+"id": 237,
+"slug": "tolsen-senorita-de-cadena",
+"category": "Ferretería",
+"sub": "Herramientas automotrices",
+"brand": "Tolsen",
+"name": "Señorita De Cadena",
+"image": "tolsen-senorita-de-cadena-62411",
+"condition": "Nuevo",
+"highlight": "4 medidas, código 62411",
+"description": "Aprobación CE, Elevación estándar: 3 m.",
+"specs": {
+"Sección": "Herramientas automotrices"
+},
+"features": [
+"Aprobación CE",
+"Elevación estándar: 3 m",
+"Cojinete de rodillos sellado",
+"Embalaje: caja de color"
+],
+"variants": [
+{
+"code": "62411",
+"size": "1 1 309N 6 mm",
+"price": 110.53
+},
+{
+"code": "62412",
+"size": "2 2 314N 6 mm",
+"price": 132.64
+},
+{
+"code": "62413",
+"size": "3 2 343N 8 mm",
+"price": 209.24
+},
+{
+"code": "62414",
+"size": "5 2 383N 10 mm",
+"price": 286.19
+}
+]
+},
+{
+"id": 238,
+"slug": "tolsen-extractor-de-engranajes-de-2-mordazas-industrial",
+"category": "Ferretería",
+"sub": "Herramientas automotrices",
+"brand": "Tolsen",
+"name": "Extractor De Engranajes De 2 Mordazas Industrial",
+"image": "tolsen-extractor-de-engranajes-de-2-mordazas-industrial-65040",
+"condition": "Nuevo",
+"highlight": "4 medidas, código 65040",
+"description": "Acero especial para herramientas forjado en general, Tratamiento superﬁcial galvanizado.",
+"specs": {
+"Sección": "Herramientas automotrices"
+},
+"features": [
+"Acero especial para herramientas forjado en general",
+"Tratamiento superﬁcial galvanizado",
+"Tema: Acabado negro",
+"Embalaje: caja de color"
+],
+"variants": [
+{
+"code": "65040",
+"size": "90x100mm",
+"price": 20.41
+},
+{
+"code": "65041",
+"size": "130x100mm",
+"price": 26.29
+},
+{
+"code": "65042",
+"size": "160x150mm",
+"price": 42.12
+},
+{
+"code": "65043",
+"size": "200x150mm",
+"price": 51.28
+}
+]
+},
+{
+"id": 239,
+"slug": "tolsen-pistola-para-pintar-por-gravedad",
+"category": "Ferretería",
+"sub": "Herramientas neumáticas",
+"brand": "Tolsen",
+"name": "Pistola Para Pintar Por Gravedad",
+"price": 36.05,
+"image": "tolsen-pistola-para-pintar-por-gravedad-72155",
+"condition": "Nuevo",
+"highlight": "Código 72155",
+"description": "Tipo de alimentación: Gravedad, Tamaño de entrada de aire: 1/4″ NPT.",
+"specs": {
+"Sección": "Herramientas neumáticas"
+},
+"features": [
+"Tipo de alimentación: Gravedad",
+"Tamaño de entrada de aire: 1/4″ NPT",
+"Boquilla estándar: 1,4 mm",
+"Ancho del patrón: 18 - 25 cm",
+"Empaque: por caja de color"
+],
+"variants": [
+{
+"code": "72155",
+"size": "600ml",
+"price": 36.05
+}
+]
+},
+{
+"id": 240,
+"slug": "tolsen-pistola-de-aire-para-lavado",
+"category": "Ferretería",
+"sub": "Herramientas neumáticas",
+"brand": "Tolsen",
+"name": "Pistola De Aire Para Lavado",
+"price": 16.76,
+"image": "tolsen-pistola-de-aire-para-lavado-72175",
+"condition": "Nuevo",
+"highlight": "Código 72175",
+"description": "Tamaño de entrada de aire: 1/4″ NPT, Tamaño de boquilla: 215 mm.",
+"specs": {
+"Sección": "Herramientas neumáticas"
+},
+"features": [
+"Tamaño de entrada de aire: 1/4″ NPT",
+"Tamaño de boquilla: 215 mm",
+"Capacidad de lavado: 1000 ml",
+"Presión de operación: 4 bar",
+"Embalaje: caja de color"
+],
+"variants": [
+{
+"code": "72175",
+"size": "1000 ml",
+"price": 16.76
+}
+]
+},
+{
+"id": 241,
+"slug": "tolsen-pistola-para-pintar",
+"category": "Ferretería",
+"sub": "Herramientas neumáticas",
+"brand": "Tolsen",
+"name": "Pistola Para Pintar",
+"price": 40.81,
+"image": "tolsen-pistola-para-pintar-72156",
+"condition": "Nuevo",
+"highlight": "Código 72156",
+"description": "Tipo de alimentación: Succión, Tamaño de entrada de aire: 1/4″ NPT.",
+"specs": {
+"Sección": "Herramientas neumáticas"
+},
+"features": [
+"Tipo de alimentación: Succión",
+"Tamaño de entrada de aire: 1/4″ NPT",
+"Boquilla estándar: 1,7 mm",
+"Ancho del patrón: 18 - 25 cm",
+"Empaque: por caja de color"
+],
+"variants": [
+{
+"code": "72156",
+"size": "1000ml",
+"price": 40.81
+}
+]
+},
+{
+"id": 242,
+"slug": "tolsen-pistola-de-inflado-de-neumaticos",
+"category": "Ferretería",
+"sub": "Herramientas neumáticas",
+"brand": "Tolsen",
+"name": "Pistola De Inflado De Neumaticos",
+"price": 16.79,
+"image": "tolsen-pistola-de-inflado-de-neumaticos-72180",
+"condition": "Nuevo",
+"highlight": "Código 72180",
+"description": "Tamaño de entrada de aire: 1/4″ NPT, Empuñadura de pistola con dial.",
+"specs": {
+"Sección": "Herramientas neumáticas"
+},
+"features": [
+"Tamaño de entrada de aire: 1/4″ NPT",
+"Empuñadura de pistola con dial",
+"El dial lee 0-12 bar y 0-170 psi",
+"Apto para usar con vehículos motorizados,",
+"Conector con clip"
+],
+"variants": [
+{
+"code": "72180",
+"size": "40cm",
+"price": 16.79
+}
+]
+},
+{
+"id": 243,
+"slug": "tolsen-kit-de-pistolas-de-aire-5-pzas",
+"category": "Ferretería",
+"sub": "Herramientas neumáticas",
+"brand": "Tolsen",
+"name": "Kit De Pistolas De Aire 5 Pzas",
+"price": 54.6,
+"image": "tolsen-kit-de-pistolas-de-aire-5-pzas-72190",
+"condition": "Nuevo",
+"highlight": "Código 72190",
+"description": "Tamaño de entrada de aire: 1/4″ NPT, Contiene:.",
+"specs": {
+"Sección": "Herramientas neumáticas"
+},
+"features": [
+"Tamaño de entrada de aire: 1/4″ NPT",
+"Contiene:",
+"Embalaje: caja de color DE PARTE"
+],
+"variants": [
+{
+"code": "72190",
+"size": "",
+"price": 54.6
+}
+]
+},
+{
+"id": 244,
+"slug": "tolsen-llave-de-impacto-neumatica-de-punta-larga-industrial",
+"category": "Ferretería",
+"sub": "Herramientas neumáticas",
+"brand": "Tolsen",
+"name": "Llave De Impacto Neumática De Punta Larga (Industrial)",
+"price": 399.84,
+"image": "tolsen-llave-de-impacto-neumatica-de-punta-larga-industrial-72320",
+"condition": "Nuevo",
+"highlight": "Código 72320",
+"description": "Accionamiento cuadrado: 1″, Presión de aire de funcionamiento: 6,2 BAR (90 PSI).",
+"specs": {
+"Sección": "Herramientas neumáticas"
+},
+"features": [
+"Accionamiento cuadrado: 1″",
+"Presión de aire de funcionamiento: 6,2 BAR (90 PSI)",
+"Consumo de aire promedio: 380 L/min",
+"Entrada de aire: 1/2″ NPT • Manguera de aire: 1/2″",
+"Par máximo: 3200 NM (2360 FT-LB)"
+],
+"variants": [
+{
+"code": "72320",
+"size": "1″",
+"price": 399.84
+}
+]
+},
+{
+"id": 245,
+"slug": "tolsen-mandril-de-taladro-con-llave",
+"category": "Ferretería",
+"sub": "Herramientas eléctricas 120 V",
+"brand": "Tolsen",
+"name": "Mandril De Taladro Con Llave",
+"image": "tolsen-mandril-de-taladro-con-llave-79160",
+"condition": "Nuevo",
+"highlight": "2 medidas, código 79160",
+"description": "Embalaje: caja de color.",
+"specs": {
+"Sección": "Herramientas eléctricas 120 V"
+},
+"features": [
+"Embalaje: caja de color"
+],
+"variants": [
+{
+"code": "79160",
+"size": "1,5 - 10 mm 3/8” - 24 UNF",
+"price": 5.88
+},
+{
+"code": "79161",
+"size": "1,5 - 13 mm 1/2” -20 UNF",
+"price": 7.14
+}
+]
+},
+{
+"id": 246,
+"slug": "tolsen-mandril-de-taladro-sin-llave",
+"category": "Ferretería",
+"sub": "Herramientas eléctricas 120 V",
+"brand": "Tolsen",
+"name": "Mandril De Taladro Sin Llave",
+"image": "tolsen-mandril-de-taladro-sin-llave-79170",
+"condition": "Nuevo",
+"highlight": "2 medidas, código 79170",
+"description": "Embalaje: caja de color.",
+"specs": {
+"Sección": "Herramientas eléctricas 120 V"
+},
+"features": [
+"Embalaje: caja de color"
+],
+"variants": [
+{
+"code": "79170",
+"size": "0,8 - 10 mm 3/8” - 24 UNF",
+"price": 5.38
+},
+{
+"code": "79171",
+"size": "2 - 13 mm 1/2” -20 UNF",
+"price": 7.51
+}
+]
+},
+{
+"id": 247,
+"slug": "tolsen-esmeril-4-1-2-1200w",
+"category": "Ferretería",
+"sub": "Herramientas eléctricas 120 V",
+"brand": "Tolsen",
+"name": "Esmeril 4-1/2 1200W",
+"price": 94.0,
+"image": "tolsen-esmeril-4-1-2-1200w-79723",
+"condition": "Nuevo",
+"highlight": "Código 79723",
+"description": "Potencia de entrada: 1200W • Enchufe y cable: aprobado, Corriente nominal: 10A por CE de 2 m.",
+"specs": {
+"Sección": "Herramientas eléctricas 120 V"
+},
+"features": [
+"Potencia de entrada: 1200W • Enchufe y cable: aprobado",
+"Corriente nominal: 10A por CE de 2 m",
+"Voltaje: 110-120V • Los accesorios contienen:",
+"Frecuencia: 60Hz 1 par de escobillas de carbón",
+"Velocidad sin carga: 1 mango auxiliar"
+],
+"variants": [
+{
+"code": "79723",
+"size": "10 amperios",
+"price": 94.0
+}
+]
+},
+{
+"id": 248,
+"slug": "tolsen-esmeril-angular-industrial",
+"category": "Ferretería",
+"sub": "Herramientas eléctricas 120 V",
+"brand": "Tolsen",
+"name": "Esmeril Angular (Industrial)",
+"price": 184.75,
+"image": "tolsen-esmeril-angular-industrial-79725",
+"condition": "Nuevo",
+"highlight": "Código 79725",
+"description": "Corriente nominal: 18 A, Voltaje: 120 V •  Arranque suave.",
+"specs": {
+"Sección": "Herramientas eléctricas 120 V"
+},
+"features": [
+"Corriente nominal: 18 A",
+"Voltaje: 120 V •  Arranque suave",
+"Frecuencia: 60 Hz • Los accesorios contienen:",
+"Velocidad sin carga:",
+"Diámetro del disco: 9″"
+],
+"variants": [
+{
+"code": "79725",
+"size": "18A, 9″",
+"price": 184.75
+}
+]
+},
+{
+"id": 249,
+"slug": "tolsen-cepilladora-electrica",
+"category": "Ferretería",
+"sub": "Herramientas eléctricas 120 V",
+"brand": "Tolsen",
+"name": "Cepilladora Eléctrica",
+"price": 113.99,
+"image": "tolsen-cepilladora-electrica-79738",
+"condition": "Nuevo",
+"highlight": "Código 79738",
+"description": "Corriente nominal: 7,5 A 0-1/8″, Potencia de entrada: 900W • Base de aluminio resistente.",
+"specs": {
+"Sección": "Herramientas eléctricas 120 V"
+},
+"features": [
+"Corriente nominal: 7,5 A 0-1/8″",
+"Potencia de entrada: 900W • Base de aluminio resistente",
+"Voltaje nominal: 110-120 V • Cubierta lateral de aluminio",
+"Frecuencia: 60 Hz • Con 2 cuchillas de cepillado",
+"Velocidad sin carga: de 65 Mn • 1 correa"
+],
+"variants": [
+{
+"code": "79738",
+"size": "",
+"price": 113.99
+}
+]
+},
+{
+"id": 250,
+"slug": "tolsen-lijadora-de-banda-810w",
+"category": "Ferretería",
+"sub": "Herramientas eléctricas 120 V",
+"brand": "Tolsen",
+"name": "Lijadora De Banda 810W",
+"price": 130.94,
+"image": "tolsen-lijadora-de-banda-810w-79759",
+"condition": "Nuevo",
+"highlight": "Código 79759",
+"description": "Corriente nominal: 6.8A • Velocidad sin carga:, Potencia de entrada: 656-1246ft/min.",
+"specs": {
+"Sección": "Herramientas eléctricas 120 V"
+},
+"features": [
+"Corriente nominal: 6.8A • Velocidad sin carga:",
+"Potencia de entrada: 656-1246ft/min",
+"Voltaje nominal: 110-120V • Con 1 pieza cinturón",
+"Frecuencia: 60HZ de plástico",
+"Tamaño de la correa: • Con 1 bolsa para el polvo"
+],
+"variants": [
+{
+"code": "79759",
+"size": "",
+"price": 130.94
+}
+]
+},
+{
+"id": 251,
+"slug": "tolsen-bateria-de-litio-3ah-x20",
+"category": "Ferretería",
+"sub": "Inalámbricas X20",
+"brand": "Tolsen",
+"name": "Batería De Litio 3Ah (X20)",
+"price": 48.0,
+"image": "tolsen-bateria-de-litio-3ah-x20-97403",
+"condition": "Nuevo",
+"highlight": "Código 97403",
+"description": "Homologación CE, Indicador LED de nivel de batería.",
+"specs": {
+"Sección": "Inalámbricas X20"
+},
+"features": [
+"Homologación CE",
+"Indicador LED de nivel de batería",
+"Compatible con todas las herramientas inalámbricas",
+"Cargadores compatibles: 97422 / 97423 / 97424 / 97425",
+"Embalaje: caja de color"
+],
+"variants": [
+{
+"code": "97403",
+"size": "20 V - 3.0 Ah",
+"price": 48.0
+}
+]
+},
+{
+"id": 252,
+"slug": "tolsen-bateria-de-litio-4ah-x20",
+"category": "Ferretería",
+"sub": "Inalámbricas X20",
+"brand": "Tolsen",
+"name": "Batería De Litio 4Ah (X20)",
+"price": 63.0,
+"image": "tolsen-bateria-de-litio-4ah-x20-97404",
+"condition": "Nuevo",
+"highlight": "Código 97404",
+"description": "Homologación CE, Indicador LED de nivel de batería.",
+"specs": {
+"Sección": "Inalámbricas X20"
+},
+"features": [
+"Homologación CE",
+"Indicador LED de nivel de batería",
+"Compatible con todas las herramientas inalámbricas",
+"Cargadores compatibles: 97422 / 97423 / 97424 / 97425",
+"Embalaje: caja de color"
+],
+"variants": [
+{
+"code": "97404",
+"size": "20 V - 4.0 Ah",
+"price": 63.0
+}
+]
+},
+{
+"id": 253,
+"slug": "tolsen-cargador-de-baterias-2ah-x20",
+"category": "Ferretería",
+"sub": "Inalámbricas X20",
+"brand": "Tolsen",
+"name": "Cargador De Baterías 2Ah (X20)",
+"price": 16.8,
+"image": "tolsen-cargador-de-baterias-2ah-x20-97432",
+"condition": "Nuevo",
+"highlight": "Código 97432",
+"description": "Voltaje de salida: 21 V CC   • Frecuencia: 60 Hz, Voltaje de entrada: 110-120 V CA.",
+"specs": {
+"Sección": "Inalámbricas X20"
+},
+"features": [
+"Voltaje de salida: 21 V CC   • Frecuencia: 60 Hz",
+"Voltaje de entrada: 110-120 V CA",
+"Para cargar baterías TOLSEN X20",
+"Carga la batería TOLSEN de 20 V y 2,0 Ah en 60 minutos",
+"Indicador LED de nivel de batería"
+],
+"variants": [
+{
+"code": "97432",
+"size": "43 W - 2.0 Ah",
+"price": 16.8
+}
+]
+},
+{
+"id": 254,
+"slug": "tolsen-cargador-de-baterias-4ah-x20-doble-puerto",
+"category": "Ferretería",
+"sub": "Inalámbricas X20",
+"brand": "Tolsen",
+"name": "Cargador De Baterías 4Ah (X20) Doble Puerto",
+"price": 56.2,
+"image": "tolsen-cargador-de-baterias-4ah-x20-doble-puerto-97435",
+"condition": "Nuevo",
+"highlight": "Código 97435",
+"description": "Voltaje de salida: 21,5 V CC   • Frecuencia: 60 Hz, Voltaje de entrada: 110-120 V CA.",
+"specs": {
+"Sección": "Inalámbricas X20"
+},
+"features": [
+"Voltaje de salida: 21,5 V CC   • Frecuencia: 60 Hz",
+"Voltaje de entrada: 110-120 V CA",
+"Para cargar baterías TOLSEN X20",
+"Carga 2 baterías TOLSEN de 20 V y 4,0 Ah en 60 minutos",
+"Indicador LED de nivel de batería"
+],
+"variants": [
+{
+"code": "97435",
+"size": "88W+88W - 4.0 Ah+4.0 Ah",
+"price": 56.2
+}
+]
+},
+{
+"id": 255,
+"slug": "tolsen-taladro-atornillador-de-impacto-industrial",
+"category": "Ferretería",
+"sub": "Inalámbricas MP20V",
+"brand": "Tolsen",
+"name": "Taladro Atornillador De Impacto (Industrial)",
+"price": 118.09,
+"image": "tolsen-taladro-atornillador-de-impacto-industrial-87257",
+"condition": "Nuevo",
+"highlight": "Código 87257",
+"description": "Motor sin escobillas, Aprobación CE.",
+"specs": {
+"Sección": "Inalámbricas MP20V"
+},
+"features": [
+"Motor sin escobillas",
+"Aprobación CE",
+"Batería Li-Ion",
+"Portaherramientas",
+"Ajuste electrónico de velocidad"
+],
+"variants": [
+{
+"code": "87257",
+"size": "",
+"price": 118.09
+}
+]
+},
+{
+"id": 256,
+"slug": "tolsen-llave-de-impacto-inalambrica",
+"category": "Ferretería",
+"sub": "Inalámbricas MP20V",
+"brand": "Tolsen",
+"name": "Llave De Impacto Inalámbrica",
+"price": 127.43,
+"image": "tolsen-llave-de-impacto-inalambrica-87259",
+"condition": "Nuevo",
+"highlight": "Código 87259",
+"description": "Motor sin escobillas, Aprobación CE.",
+"specs": {
+"Sección": "Inalámbricas MP20V"
+},
+"features": [
+"Motor sin escobillas",
+"Aprobación CE",
+"Batería Li-Ion",
+"Ajuste electrónico",
+"Función inversa"
+],
+"variants": [
+{
+"code": "87259",
+"size": "",
+"price": 127.43
+}
+]
+},
+{
+"id": 257,
+"slug": "tolsen-bateria-de-litio-2-0ah",
+"category": "Ferretería",
+"sub": "Inalámbricas MP20V",
+"brand": "Tolsen",
+"name": "Batería De Litio 2.0Ah",
+"price": 43.51,
+"image": "tolsen-bateria-de-litio-2-0ah-87472",
+"condition": "Nuevo",
+"highlight": "Código 87472",
+"description": "Indicador LED de carga de batería, Compatible con todas las herramientas inalámbricas.",
+"specs": {
+"Sección": "Inalámbricas MP20V"
+},
+"features": [
+"Indicador LED de carga de batería",
+"Compatible con todas las herramientas inalámbricas",
+"Cargadores compatibles: 87485/87486/87487",
+"Embalaje: caja de color"
+],
+"variants": [
+{
+"code": "87472",
+"size": "20V/2.0Ah",
+"price": 43.51
+}
+]
+},
+{
+"id": 258,
+"slug": "tolsen-bateria-de-litio-4-0ah",
+"category": "Ferretería",
+"sub": "Inalámbricas MP20V",
+"brand": "Tolsen",
+"name": "Batería De Litio 4.0Ah",
+"price": 73.75,
+"image": "tolsen-bateria-de-litio-4-0ah-87474",
+"condition": "Nuevo",
+"highlight": "Código 87474",
+"description": "Indicador LED de carga de batería, Compatible con todas las herramientas inalámbricas.",
+"specs": {
+"Sección": "Inalámbricas MP20V"
+},
+"features": [
+"Indicador LED de carga de batería",
+"Compatible con todas las herramientas inalámbricas",
+"Cargadores compatibles: 87484/87485/87486/87487",
+"Embalaje: caja de color"
+],
+"variants": [
+{
+"code": "87474",
+"size": "20V/4.0Ah",
+"price": 73.75
+}
+]
+},
+{
+"id": 259,
+"slug": "tolsen-bolso-para-herramientas-17",
+"category": "Ferretería",
+"sub": "Herramientas de almacenamiento",
+"brand": "Tolsen",
+"name": "Bolso Para Herramientas 17\"",
+"price": 31.75,
+"image": "tolsen-bolso-para-herramientas-17-80101",
+"condition": "Nuevo",
+"highlight": "Código 80101",
+"description": "Armazón rígido para fácil apertura y acceso, Separación especial de los bolsillos internos y externos,.",
+"specs": {
+"Sección": "Herramientas de almacenamiento"
+},
+"features": [
+"Armazón rígido para fácil apertura y acceso",
+"Separación especial de los bolsillos internos y externos,",
+"Correa de hombro ajustable incluida",
+"Caja de tela liviana",
+"Embalaje: bolsa de polietileno con tarjeta de papel"
+],
+"variants": [
+{
+"code": "80101",
+"size": "17\"",
+"price": 31.75
+}
+]
+},
+{
+"id": 260,
+"slug": "tolsen-bolso-para-herramientas-tipo-maletin-17",
+"category": "Ferretería",
+"sub": "Herramientas de almacenamiento",
+"brand": "Tolsen",
+"name": "Bolso Para Herramientas Tipo Maletin 17\"",
+"price": 64.67,
+"image": "tolsen-bolso-para-herramientas-tipo-maletin-17-80102",
+"condition": "Nuevo",
+"highlight": "Código 80102",
+"description": "Separación especial de los bolsillos internos y externos, fácil, Asa de acero inoxidable.",
+"specs": {
+"Sección": "Herramientas de almacenamiento"
+},
+"features": [
+"Separación especial de los bolsillos internos y externos, fácil",
+"Asa de acero inoxidable",
+"Correa de hombro ajustable incluida",
+"Diseño especial de doble fondo",
+"Solapa de cierre"
+],
+"variants": [
+{
+"code": "80102",
+"size": "17\"",
+"price": 64.67
+}
+]
+},
+{
+"id": 261,
+"slug": "tolsen-bolso-de-herramientas-sin-tapa-17",
+"category": "Ferretería",
+"sub": "Herramientas de almacenamiento",
+"brand": "Tolsen",
+"name": "Bolso De Herramientas Sin Tapa 17\"",
+"price": 33.43,
+"image": "tolsen-bolso-de-herramientas-sin-tapa-17-80112",
+"condition": "Nuevo",
+"highlight": "Código 80112",
+"description": "Construcción plegable, Con 8 soportes interiores.",
+"specs": {
+"Sección": "Herramientas de almacenamiento"
+},
+"features": [
+"Construcción plegable",
+"Con 8 soportes interiores",
+"Con 15 bolsillos",
+"Tubo de acero inoxidable, asa de gomaespuma",
+"Correa de hombro ajustable"
+],
+"variants": [
+{
+"code": "80112",
+"size": "17″ (42x21x29cm)",
+"price": 33.43
+}
+]
+},
+{
+"id": 262,
+"slug": "tolsen-bolso-de-herramientas-16",
+"category": "Ferretería",
+"sub": "Herramientas de almacenamiento",
+"brand": "Tolsen",
+"name": "Bolso De Herramientas 16\"",
+"price": 54.13,
+"image": "tolsen-bolso-de-herramientas-16-80103",
+"condition": "Nuevo",
+"highlight": "Código 80103",
+"description": "Marco rígido para fácil apertura y acceso, Base de plástico reforzado para mayor durabilidad.",
+"specs": {
+"Sección": "Herramientas de almacenamiento"
+},
+"features": [
+"Marco rígido para fácil apertura y acceso",
+"Base de plástico reforzado para mayor durabilidad",
+"División especial de los bolsillos internos y externos,",
+"Correa de hombro ajustable incluida",
+"Embalaje: bolsa de polietileno con tarjeta de papel"
+],
+"variants": [
+{
+"code": "80103",
+"size": "16″",
+"price": 54.13
+}
+]
+},
+{
+"id": 263,
+"slug": "tolsen-bolso-para-herramientas-de-electricista-industrial",
+"category": "Ferretería",
+"sub": "Herramientas de almacenamiento",
+"brand": "Tolsen",
+"name": "Bolso Para Herramientas De Electricista (Industrial)",
+"price": 23.23,
+"image": "tolsen-bolso-para-herramientas-de-electricista-industrial-80122",
+"condition": "Nuevo",
+"highlight": "Código 80122",
+"description": "Con 15 bolsillos y presillas, Tamaño total: 19 x 13 x 25 cm • Peso neto: 425 g.",
+"specs": {
+"Sección": "Herramientas de almacenamiento"
+},
+"features": [
+"Con 15 bolsillos y presillas",
+"Tamaño total: 19 x 13 x 25 cm • Peso neto: 425 g",
+"Material revestido de PVC de doble capa 1680D, resistente al",
+"El tamaño del oriﬁcio en la parte inferior de la bolsa es ajustable",
+"Bolsillos laterales ajustables"
+],
+"variants": [
+{
+"code": "80122",
+"size": "",
+"price": 23.23
+}
+]
+},
+{
+"id": 264,
+"slug": "tolsen-bolso-para-herramientas-industrial",
+"category": "Ferretería",
+"sub": "Herramientas de almacenamiento",
+"brand": "Tolsen",
+"name": "Bolso Para Herramientas (Industrial)",
+"price": 20.46,
+"image": "tolsen-bolso-para-herramientas-industrial-80125",
+"condition": "Nuevo",
+"highlight": "Código 80125",
+"description": "Con 13 bolsillos y presillas, Material revestido de PVC de doble capa 1680D, resistente.",
+"specs": {
+"Sección": "Herramientas de almacenamiento"
+},
+"features": [
+"Con 13 bolsillos y presillas",
+"Material revestido de PVC de doble capa 1680D, resistente",
+"Equipado con una hebilla de bloqueo para evitar que el",
+"Kit de cinturón universal: incluye clip de cinturón de",
+"Embalaje: percha de papel"
+],
+"variants": [
+{
+"code": "80125",
+"size": "",
+"price": 20.46
+}
+]
+},
+{
+"id": 265,
+"slug": "tolsen-mechas-milimetricas-helicadas-m35-hss-industrial",
+"category": "Ferretería",
+"sub": "Accesorios para herramientas eléctricas",
+"brand": "Tolsen",
+"name": "Mechas Milimetricas Helicadas M35 Hss Industrial",
+"image": "tolsen-mechas-milimetricas-helicadas-m35-hss-industrial-75142",
+"condition": "Nuevo",
+"highlight": "10 medidas, código 75142",
+"description": "HSS/M35 (Co5%), DIN338, Totalmente rectiﬁcado.",
+"specs": {
+"Sección": "Accesorios para herramientas eléctricas"
+},
+"features": [
+"HSS/M35 (Co5%), DIN338",
+"Totalmente rectiﬁcado",
+"Punta dividida a 135°",
+"Embalaje: blíster"
+],
+"variants": [
+{
+"code": "75142",
+"size": "2,0x49mm 5/64”",
+"price": 1.16
+},
+{
+"code": "75143",
+"size": "2,5x57mm 3/32”",
+"price": 1.33
+},
+{
+"code": "75144",
+"size": "3,0x61mm 1/8”",
+"price": 1.51
+},
+{
+"code": "75172",
+"size": "3,2x65mm 1/8”",
+"price": 1.09
+},
+{
+"code": "75145",
+"size": "3,5x70mm 9/64”",
+"price": 1.16
+},
+{
+"code": "75146",
+"size": "4,0x75mm 5/32”",
+"price": 1.33
+},
+{
+"code": "75173",
+"size": "4,2x75mm 5/32”",
+"price": null
+},
+{
+"code": "75147",
+"size": "4,5x80mm 11/64’’",
+"price": 1.58
+},
+{
+"code": "75174",
+"size": "4,8x86mm 3/16”",
+"price": 1.85
+},
+{
+"code": "75148",
+"size": "5,0x86mm 3/16”",
+"price": null
+}
+]
+},
+{
+"id": 266,
+"slug": "tolsen-cincel-punta-sds-plus",
+"category": "Ferretería",
+"sub": "Accesorios para herramientas eléctricas",
+"brand": "Tolsen",
+"name": "Cincel Punta Sds-Plus",
+"price": 2.7,
+"image": "tolsen-cincel-punta-sds-plus-75440",
+"condition": "Nuevo",
+"highlight": "Código 75440",
+"description": "Cuerpo de aleación de acero al cromo, Acabado arenado.",
+"specs": {
+"Sección": "Accesorios para herramientas eléctricas"
+},
+"features": [
+"Cuerpo de aleación de acero al cromo",
+"Acabado arenado",
+"Embalaje: colgador de plástico con etiqueta de color"
+],
+"variants": [
+{
+"code": "75440",
+"size": "14×250",
+"price": 2.7
+}
+]
+},
+{
+"id": 267,
+"slug": "tolsen-cincel-de-punta-sds-max",
+"category": "Ferretería",
+"sub": "Accesorios para herramientas eléctricas",
+"brand": "Tolsen",
+"name": "Cincel De Punta Sds-Max",
+"price": 6.67,
+"image": "tolsen-cincel-de-punta-sds-max-75456",
+"condition": "Nuevo",
+"highlight": "Código 75456",
+"description": "Cuerpo de aleación cromada, Acabado arenado.",
+"specs": {
+"Sección": "Accesorios para herramientas eléctricas"
+},
+"features": [
+"Cuerpo de aleación cromada",
+"Acabado arenado",
+"Embalaje: colgador de plástico con etiqueta de color"
+],
+"variants": [
+{
+"code": "75456",
+"size": "18x400mm",
+"price": 6.67
+}
+]
+},
+{
+"id": 268,
+"slug": "tolsen-cincel-plano-sds-plus-14x250x20",
+"category": "Ferretería",
+"sub": "Accesorios para herramientas eléctricas",
+"brand": "Tolsen",
+"name": "Cincel Plano Sds-Plus 14X250X20",
+"price": 2.7,
+"image": "tolsen-cincel-plano-sds-plus-14x250x20-75441",
+"condition": "Nuevo",
+"highlight": "Código 75441",
+"description": "Cuerpo de aleación de acero al cromo, Acabado arenado.",
+"specs": {
+"Sección": "Accesorios para herramientas eléctricas"
+},
+"features": [
+"Cuerpo de aleación de acero al cromo",
+"Acabado arenado",
+"Embalaje: colgador de plástico con etiqueta de color"
+],
+"variants": [
+{
+"code": "75441",
+"size": "14x250x20",
+"price": 2.7
+}
+]
+},
+{
+"id": 269,
+"slug": "tolsen-cincel-plano-sds-max",
+"category": "Ferretería",
+"sub": "Accesorios para herramientas eléctricas",
+"brand": "Tolsen",
+"name": "Cincel Plano Sds-Max",
+"price": 6.67,
+"image": "tolsen-cincel-plano-sds-max-75457",
+"condition": "Nuevo",
+"highlight": "Código 75457",
+"description": "Cuerpo de aleación cromada, Acabado arenado.",
+"specs": {
+"Sección": "Accesorios para herramientas eléctricas"
+},
+"features": [
+"Cuerpo de aleación cromada",
+"Acabado arenado",
+"Embalaje: colgador de plástico con etiqueta de color"
+],
+"variants": [
+{
+"code": "75457",
+"size": "18x400x25mm",
+"price": 6.67
+}
+]
+},
+{
+"id": 270,
+"slug": "tolsen-cincel-plano-sds-plus-14x250x40",
+"category": "Ferretería",
+"sub": "Accesorios para herramientas eléctricas",
+"brand": "Tolsen",
+"name": "Cincel Plano Sds-Plus 14X250X40",
+"price": 3.9,
+"image": "tolsen-cincel-plano-sds-plus-14x250x40-75442",
+"condition": "Nuevo",
+"highlight": "Código 75442",
+"description": "Cuerpo de aleación cromada, Acabado arenado.",
+"specs": {
+"Sección": "Accesorios para herramientas eléctricas"
+},
+"features": [
+"Cuerpo de aleación cromada",
+"Acabado arenado",
+"Embalaje: colgador de plástico con etiqueta de color"
+],
+"variants": [
+{
+"code": "75442",
+"size": "14x250x40mm",
+"price": 3.9
+}
+]
+},
+{
+"id": 271,
+"slug": "tolsen-alicate-combinado-aislado",
+"category": "Ferretería",
+"sub": "Herramientas aisladas",
+"brand": "Tolsen",
+"name": "Alicate Combinado Aislado",
+"price": 20.95,
+"image": "tolsen-alicate-combinado-aislado-v16008",
+"condition": "Nuevo",
+"highlight": "Código V16008",
+"description": "Certiﬁcado VDE/GS, Fabricado según EN60900.",
+"specs": {
+"Sección": "Herramientas aisladas"
+},
+"features": [
+"Certiﬁcado VDE/GS",
+"Fabricado según EN60900",
+"Parte metálica fabricada en acero CrV",
+"Superﬁcie acabada y pulida en negro",
+"Cuerpo mecanizado de precisión con"
+],
+"variants": [
+{
+"code": "V16008",
+"size": "",
+"price": 20.95
+}
+]
+},
+{
+"id": 272,
+"slug": "tolsen-alicate-de-corte-diagonal-aislado",
+"category": "Ferretería",
+"sub": "Herramientas aisladas",
+"brand": "Tolsen",
+"name": "Alicate De Corte Diagonal Aislado",
+"price": 17.86,
+"image": "tolsen-alicate-de-corte-diagonal-aislado-v16037",
+"condition": "Nuevo",
+"highlight": "Código V16037",
+"description": "Certiﬁcado VDE/GS, Fabricado según EN60900.",
+"specs": {
+"Sección": "Herramientas aisladas"
+},
+"features": [
+"Certiﬁcado VDE/GS",
+"Fabricado según EN60900",
+"Parte metálica fabricada en acero CrV",
+"Superﬁcie pulida y acabada en negro",
+"Cuerpo mecanizado de precisión con"
+],
+"variants": [
+{
+"code": "V16037",
+"size": "",
+"price": 17.86
+}
+]
+},
+{
+"id": 273,
+"slug": "tolsen-alicate-aislado-de-punta-larga",
+"category": "Ferretería",
+"sub": "Herramientas aisladas",
+"brand": "Tolsen",
+"name": "Alicate Aislado De Punta Larga",
+"price": 17.39,
+"image": "tolsen-alicate-aislado-de-punta-larga-v16098",
+"condition": "Nuevo",
+"highlight": "Código V16098",
+"description": "Certiﬁcación VDE/GS, Fabricado según EN60900.",
+"specs": {
+"Sección": "Herramientas aisladas"
+},
+"features": [
+"Certiﬁcación VDE/GS",
+"Fabricado según EN60900",
+"Parte metálica fabricada en acero CrV",
+"Superﬁcie pulida y acabada en negro",
+"Cuerpo mecanizado de precisión con tratamiento"
+],
+"variants": [
+{
+"code": "V16098",
+"size": "",
+"price": 17.39
+}
+]
+},
+{
+"id": 274,
+"slug": "tolsen-destornillador-de-estria-aislado",
+"category": "Ferretería",
+"sub": "Herramientas aisladas",
+"brand": "Tolsen",
+"name": "Destornillador De Estría Aislado",
+"price": 7.8,
+"image": "tolsen-destornillador-de-estria-aislado-v30403",
+"condition": "Nuevo",
+"highlight": "Código V30403",
+"description": "Certiﬁcación VDE/GS, Hoja de material S2, totalmente templada y revenida.",
+"specs": {
+"Sección": "Herramientas aisladas"
+},
+"features": [
+"Certiﬁcación VDE/GS",
+"Hoja de material S2, totalmente templada y revenida",
+"Superﬁcie ennegrecida químicamente",
+"Mango y manguito fabricados de acuerdo con EN60900",
+"Forma ergonómica para un fácil manejo"
+],
+"variants": [
+{
+"code": "V30403",
+"size": "PH3x150mm",
+"price": 7.8
+}
+]
+},
+{
+"id": 275,
+"slug": "tolsen-destornillador-de-pala-aislado",
+"category": "Ferretería",
+"sub": "Herramientas aisladas",
+"brand": "Tolsen",
+"name": "Destornillador De Pala Aislado",
+"price": 8.39,
+"image": "tolsen-destornillador-de-pala-aislado-v30212",
+"condition": "Nuevo",
+"highlight": "Código V30212",
+"description": "Certiﬁcación VDE/GS, Hoja de material S2, totalmente templada y revenida.",
+"specs": {
+"Sección": "Herramientas aisladas"
+},
+"features": [
+"Certiﬁcación VDE/GS",
+"Hoja de material S2, totalmente templada y revenida",
+"Superﬁcie ennegrecida químicamente",
+"Mango y manguito fabricados de acuerdo con EN60900",
+"Forma ergonómica para un fácil manejo"
+],
+"variants": [
+{
+"code": "V30212",
+"size": "1,2 × 6,5x150 mm",
+"price": 8.39
+}
+]
+},
+{
+"id": 276,
+"slug": "tolsen-juego-de-8-destornilladores-aislados",
+"category": "Ferretería",
+"sub": "Herramientas aisladas",
+"brand": "Tolsen",
+"name": "Juego De 8 Destornilladores Aislados",
+"price": 41.83,
+"image": "tolsen-juego-de-8-destornilladores-aislados-v32408",
+"condition": "Nuevo",
+"highlight": "Código V32408",
+"description": "4 destornilladores de punta plana aislados:, 3 destornilladores Phillips aislados:.",
+"specs": {
+"Sección": "Herramientas aisladas"
+},
+"features": [
+"4 destornilladores de punta plana aislados:",
+"3 destornilladores Phillips aislados:",
+"1 comprobador de tensión de 3,0 × 70 mm",
+"Certiﬁcado VDE/GS • Fabricado según EN60900",
+"Embalaje: caja de color"
+],
+"variants": [
+{
+"code": "V32408",
+"size": "",
+"price": 41.83
+}
+]
+},
+{
+"id": 277,
+"slug": "tolsen-martillo-antichispa",
+"category": "Ferretería",
+"sub": "Herramientas de bronce sin chispa",
+"brand": "Tolsen",
+"name": "Martillo Antichispa",
+"image": "tolsen-martillo-antichispa-70620",
+"condition": "Nuevo",
+"highlight": "2 medidas, código 70620",
+"description": "Con mango de ﬁbra de vidrio, Áreas de cabeza y bordes rectiﬁcadas.",
+"specs": {
+"Sección": "Herramientas de bronce sin chispa"
+},
+"features": [
+"Con mango de ﬁbra de vidrio",
+"Áreas de cabeza y bordes rectiﬁcadas",
+"Bordes redondeados",
+"Antichispas",
+"Resistente a la corrosión"
+],
+"variants": [
+{
+"code": "70620",
+"size": "8 OZ",
+"price": 32.15
+},
+{
+"code": "70621",
+"size": "16 OZ",
+"price": 59.66
+}
+]
+},
+{
+"id": 278,
+"slug": "tolsen-alicates-combinados-antichispas",
+"category": "Ferretería",
+"sub": "Herramientas de bronce sin chispa",
+"brand": "Tolsen",
+"name": "Alicates Combinados Antichispas",
+"price": 139.0,
+"image": "tolsen-alicates-combinados-antichispas-70802",
+"condition": "Nuevo",
+"highlight": "Código 70802",
+"description": "Antichispas, A prueba de explosiones.",
+"specs": {
+"Sección": "Herramientas de bronce sin chispa"
+},
+"features": [
+"Antichispas",
+"A prueba de explosiones",
+"Resistente a la corrosión",
+"Muy resistente a roturas",
+"Cobre-berilio (aleación no ferrosa)"
+],
+"variants": [
+{
+"code": "70802",
+"size": "8\"",
+"price": 139.0
+}
+]
+},
+{
+"id": 279,
+"slug": "nexon-malla-alfajol-galvanizada-bwg-11",
+"category": "Ferretería",
+"sub": "Mallas y alambres",
+"brand": "Nexon",
+"name": "Malla Alfajol Galvanizada Bwg 11",
+"price": 396.0,
+"image": "nexon-malla-alfajol-galvanizada-bwg-11-magbwg11",
+"condition": "Nuevo",
+"highlight": "Código MAGBWG11",
+"description": "Calibre: BWG 11  -  60x60 mm, Peso: 78 KG.",
+"specs": {
+"Sección": "Mallas y alambres"
+},
+"features": [
+"Calibre: BWG 11  -  60x60 mm",
+"Peso: 78 KG",
+"Ancho: 1.80 M • Largo: 25 M"
+],
+"variants": [
+{
+"code": "MAGBWG11",
+"size": "BWG 11 - 60x60mm",
+"price": 396.0
+}
+]
+},
+{
+"id": 280,
+"slug": "nexon-malla-alfajol-galvanizada-recubierta-en-pvc-bwg-11",
+"category": "Ferretería",
+"sub": "Mallas y alambres",
+"brand": "Nexon",
+"name": "Malla Alfajol Galvanizada Recubierta En Pvc Bwg 11",
+"price": 325.0,
+"image": "nexon-malla-alfajol-galvanizada-recubierta-en-pvc-bwg-11-magpvc11",
+"condition": "Nuevo",
+"highlight": "Código MAGPVC11",
+"description": "Calibre: BWG 11  -  60x60 mm, Peso: 51 KG.",
+"specs": {
+"Sección": "Mallas y alambres"
+},
+"features": [
+"Calibre: BWG 11  -  60x60 mm",
+"Peso: 51 KG",
+"Ancho: 1.80 M • Largo: 25 M"
+],
+"variants": [
+{
+"code": "MAGPVC11",
+"size": "BWG 11 - 60x60mm",
+"price": 325.0
+}
+]
+},
+{
+"id": 281,
+"slug": "nexon-manilla-para-puerta-curva",
+"category": "Ferretería",
+"sub": "Cerrajería",
+"brand": "Nexon",
+"name": "Manilla Para Puerta Curva",
+"price": 16.3,
+"image": "nexon-manilla-para-puerta-curva-lh1034pz",
+"condition": "Nuevo",
+"highlight": "Código LH1034PZ",
+"description": "Material: Acero Inoxidable • CC: 85mm, Tamaño manilla: 19 x 0.8mm.",
+"specs": {
+"Sección": "Cerrajería"
+},
+"features": [
+"Material: Acero Inoxidable • CC: 85mm",
+"Tamaño manilla: 19 x 0.8mm",
+"Tamaño placa: 40 x 260mm",
+"Incluye tornillos",
+"Embalaje: caja de color"
+],
+"variants": [
+{
+"code": "LH1034PZ",
+"size": "19 x 0.8mm",
+"price": 16.3
+}
+]
+},
+{
+"id": 282,
+"slug": "nexon-manilla-para-puerta-curva-bocallave-recta",
+"category": "Ferretería",
+"sub": "Cerrajería",
+"brand": "Nexon",
+"name": "Manilla Para Puerta Curva Bocallave Recta",
+"price": 16.3,
+"image": "nexon-manilla-para-puerta-curva-bocallave-recta-lh1034bb",
+"condition": "Nuevo",
+"highlight": "Código LH1034BB",
+"description": "Material: Acero Inoxidable • CC: 85mm, Tamaño manilla: 19 x 0.8mm.",
+"specs": {
+"Sección": "Cerrajería"
+},
+"features": [
+"Material: Acero Inoxidable • CC: 85mm",
+"Tamaño manilla: 19 x 0.8mm",
+"Tamaño placa: 40 x 260mm",
+"Incluye tornillos",
+"Embalaje: caja de color"
+],
+"variants": [
+{
+"code": "LH1034BB",
+"size": "19 x 0.8mm",
+"price": 16.3
+}
+]
+},
+{
+"id": 283,
+"slug": "nexon-manilla-para-puerta-satin",
+"category": "Ferretería",
+"sub": "Cerrajería",
+"brand": "Nexon",
+"name": "Manilla Para Puerta -Satin",
+"price": 15.54,
+"image": "nexon-manilla-para-puerta-satin-lh1070sn",
+"condition": "Nuevo",
+"highlight": "Código LH1070SN",
+"description": "SATIN, Material placa: Hierro.",
+"specs": {
+"Sección": "Cerrajería"
+},
+"features": [
+"SATIN",
+"Material placa: Hierro",
+"Material manilla: Aluminio",
+"Tamaño placa: 250 × 48 mm",
+"Incluye tornillos"
+],
+"variants": [
+{
+"code": "LH1070SN",
+"size": "SATIN",
+"price": 15.54
+}
+]
+},
+{
+"id": 284,
+"slug": "nexon-manilla-curva-movil-movil-black",
+"category": "Ferretería",
+"sub": "Cerrajería",
+"brand": "Nexon",
+"name": "Manilla Curva Movil-Movil Black",
+"price": 13.7,
+"image": "nexon-manilla-curva-movil-movil-black-lh1082b",
+"condition": "Nuevo",
+"highlight": "Código LH1082B",
+"description": "Material placa: Hierro, Material manilla: Aluminio.",
+"specs": {
+"Sección": "Cerrajería"
+},
+"features": [
+"Material placa: Hierro",
+"Material manilla: Aluminio",
+"Tamaño placa: 250 × 48 mm",
+"Incluye tornillos",
+"Embalaje: caja de color"
+],
+"variants": [
+{
+"code": "LH1082B",
+"size": "BLACK",
+"price": 13.7
+}
+]
+},
+{
+"id": 285,
+"slug": "nexon-manilla-curva-movil-movil-satin-polish",
+"category": "Ferretería",
+"sub": "Cerrajería",
+"brand": "Nexon",
+"name": "Manilla Curva Movil-Movil Satin Polish",
+"price": 13.7,
+"image": "nexon-manilla-curva-movil-movil-satin-polish-lh1082msn-cp",
+"condition": "Nuevo",
+"highlight": "Código LH1082MSN/CP",
+"description": "Material placa: Hierro, Material manilla: Aluminio.",
+"specs": {
+"Sección": "Cerrajería"
+},
+"features": [
+"Material placa: Hierro",
+"Material manilla: Aluminio",
+"Tamaño placa: 250 × 48 mm",
+"Incluye tornillos",
+"Embalaje: caja de color"
+],
+"variants": [
+{
+"code": "LH1082MSN/CP",
+"size": "SATIN POLISH",
+"price": 13.7
+}
+]
+},
+{
+"id": 286,
+"slug": "nexon-manilla-curva-movil-movil-satin",
+"category": "Ferretería",
+"sub": "Cerrajería",
+"brand": "Nexon",
+"name": "Manilla Curva Movil-Movil Satin",
+"price": 13.7,
+"image": "nexon-manilla-curva-movil-movil-satin-lh1082sn",
+"condition": "Nuevo",
+"highlight": "Código LH1082SN",
+"description": "Material placa: Hierro, Material manilla: Aluminio.",
+"specs": {
+"Sección": "Cerrajería"
+},
+"features": [
+"Material placa: Hierro",
+"Material manilla: Aluminio",
+"Tamaño placa: 250 × 48 mm",
+"Incluye tornillos",
+"Embalaje: caja de color"
+],
+"variants": [
+{
+"code": "LH1082SN",
+"size": "SATIN",
+"price": 13.7
+}
+]
+},
+{
+"id": 287,
+"slug": "nexon-manilla-curva-movil-movil-antique-brass",
+"category": "Ferretería",
+"sub": "Cerrajería",
+"brand": "Nexon",
+"name": "Manilla Curva Movil-Movil Antique Brass",
+"price": 13.7,
+"image": "nexon-manilla-curva-movil-movil-antique-brass-lh1082mab",
+"condition": "Nuevo",
+"highlight": "Código LH1082MAB",
+"description": "Material placa: Hierro, Material manilla: Aluminio.",
+"specs": {
+"Sección": "Cerrajería"
+},
+"features": [
+"Material placa: Hierro",
+"Material manilla: Aluminio",
+"Tamaño placa: 250 × 48 mm",
+"Incluye tornillos",
+"Embalaje: caja de color"
+],
+"variants": [
+{
+"code": "LH1082MAB",
+"size": "ANTIQUE BRASS",
+"price": 13.7
+}
+]
+},
+{
+"id": 288,
+"slug": "nexon-manilla-p-p-fija-movil-white",
+"category": "Ferretería",
+"sub": "Cerrajería",
+"brand": "Nexon",
+"name": "Manilla P/P Fija/Movil (White)",
+"price": 11.8,
+"image": "nexon-manilla-p-p-fija-movil-white-sdh145w",
+"condition": "Nuevo",
+"highlight": "Código SDH145W",
+"description": "Tamaño: CC85mm, Incluye tornillos.",
+"specs": {
+"Sección": "Cerrajería"
+},
+"features": [
+"Tamaño: CC85mm",
+"Incluye tornillos",
+"Embalaje: caja de color"
+],
+"variants": [
+{
+"code": "SDH145W",
+"size": "CC85mm",
+"price": 11.8
+}
+]
+},
+{
+"id": 289,
+"slug": "nexon-manilla-p-p-fija-movil-black",
+"category": "Ferretería",
+"sub": "Cerrajería",
+"brand": "Nexon",
+"name": "Manilla P/P Fija/Movil (Black)",
+"price": 11.8,
+"image": "nexon-manilla-p-p-fija-movil-black-sdh145b",
+"condition": "Nuevo",
+"highlight": "Código SDH145B",
+"description": "Tamaño: CC85mm, Incluye tornillos.",
+"specs": {
+"Sección": "Cerrajería"
+},
+"features": [
+"Tamaño: CC85mm",
+"Incluye tornillos",
+"Embalaje: caja de color"
+],
+"variants": [
+{
+"code": "SDH145B",
+"size": "",
+"price": 11.8
+}
+]
+},
+{
+"id": 290,
+"slug": "nexon-manilla-p-p-movil-movil-white",
+"category": "Ferretería",
+"sub": "Cerrajería",
+"brand": "Nexon",
+"name": "Manilla P/P Movil/Movil (White)",
+"price": 11.8,
+"image": "nexon-manilla-p-p-movil-movil-white-sdh146w",
+"condition": "Nuevo",
+"highlight": "Código SDH146W",
+"description": "Tamaño: CC85mm, Incluye tornillos.",
+"specs": {
+"Sección": "Cerrajería"
+},
+"features": [
+"Tamaño: CC85mm",
+"Incluye tornillos",
+"Embalaje: caja de color"
+],
+"variants": [
+{
+"code": "SDH146W",
+"size": "CC85mm",
+"price": 11.8
+}
+]
+},
+{
+"id": 291,
+"slug": "nexon-manilla-p-p-movil-movil-black",
+"category": "Ferretería",
+"sub": "Cerrajería",
+"brand": "Nexon",
+"name": "Manilla P/P Movil/Movil (Black)",
+"price": 11.8,
+"image": "nexon-manilla-p-p-movil-movil-black-sdh146b",
+"condition": "Nuevo",
+"highlight": "Código SDH146B",
+"description": "Tamaño: CC85mm, Incluye tornillos.",
+"specs": {
+"Sección": "Cerrajería"
+},
+"features": [
+"Tamaño: CC85mm",
+"Incluye tornillos",
+"Embalaje: caja de color"
+],
+"variants": [
+{
+"code": "SDH146B",
+"size": "CC85mm",
+"price": 11.8
+}
+]
+},
+{
+"id": 292,
+"slug": "nexon-cerradura-de-manilla-cuadrada-c-llave-satinado",
+"category": "Ferretería",
+"sub": "Cerrajería",
+"brand": "Nexon",
+"name": "Cerradura De Manilla Cuadrada C/Llave Satinado",
+"price": 18.0,
+"image": "nexon-cerradura-de-manilla-cuadrada-c-llave-satinado-bdl1002et-s",
+"condition": "Nuevo",
+"highlight": "Código BDL1002ET-S",
+"description": "Material: Aleación de zinc, Incluye:.",
+"specs": {
+"Sección": "Cerrajería"
+},
+"features": [
+"Material: Aleación de zinc",
+"Incluye:",
+"Embalaje: caja de color"
+],
+"variants": [
+{
+"code": "BDL1002ET-S",
+"size": "SATIN",
+"price": 18.0
+}
+]
+},
+{
+"id": 293,
+"slug": "nexon-cerradura-de-manilla-cuadrada-c-llave-negro",
+"category": "Ferretería",
+"sub": "Cerrajería",
+"brand": "Nexon",
+"name": "Cerradura De Manilla Cuadrada C/Llave Negro",
+"image": "nexon-cerradura-de-manilla-cuadrada-c-llave-negro-bdl1002et-b",
+"condition": "Nuevo",
+"highlight": "Código BDL1002ET-B",
+"description": "Material: Aleación de zinc, Incluye:.",
+"specs": {
+"Sección": "Cerrajería"
+},
+"features": [
+"Material: Aleación de zinc",
+"Incluye:",
+"Embalaje: caja de color"
+],
+"variants": [
+{
+"code": "BDL1002ET-B",
+"size": "NEGRO",
+"price": null
+}
+]
+},
+{
+"id": 294,
+"slug": "nexon-cerradura-de-manilla-cuadrada-sin-llave-satinado",
+"category": "Ferretería",
+"sub": "Cerrajería",
+"brand": "Nexon",
+"name": "Cerradura De Manilla Cuadrada Sin Llave Satinado",
+"price": 17.0,
+"image": "nexon-cerradura-de-manilla-cuadrada-sin-llave-satinado-bdl1002bk-s",
+"condition": "Nuevo",
+"highlight": "Código BDL1002BK-S",
+"description": "Material: Aleación de zinc, Incluye:.",
+"specs": {
+"Sección": "Cerrajería"
+},
+"features": [
+"Material: Aleación de zinc",
+"Incluye:",
+"Embalaje: caja de color"
+],
+"variants": [
+{
+"code": "BDL1002BK-S",
+"size": "SATIN",
+"price": 17.0
+}
+]
+},
+{
+"id": 295,
+"slug": "nexon-brazo-hidraulico-para-puerta-black",
+"category": "Ferretería",
+"sub": "Electricidad e iluminación",
+"brand": "Nexon",
+"name": "Brazo Hidraúlico Para Puerta (Black)",
+"image": "nexon-brazo-hidraulico-para-puerta-black-cd1001m-b",
+"condition": "Nuevo",
+"highlight": "Código CD1001M-B",
+"description": "Material: Aluminio, Peso de puerta: 45 - 65 kg.",
+"specs": {
+"Sección": "Electricidad e iluminación"
+},
+"features": [
+"Material: Aluminio",
+"Peso de puerta: 45 - 65 kg",
+"Incluye tornillos",
+"Embalaje: caja de color"
+],
+"variants": [
+{
+"code": "CD1001M-B",
+"size": "NEGRO",
+"price": null
+}
+]
+},
+{
+"id": 296,
+"slug": "nexon-brazo-hidraulico-para-puerta-white",
+"category": "Ferretería",
+"sub": "Electricidad e iluminación",
+"brand": "Nexon",
+"name": "Brazo Hidraúlico Para Puerta (White)",
+"price": 23.5,
+"image": "nexon-brazo-hidraulico-para-puerta-white-cd1001m-w",
+"condition": "Nuevo",
+"highlight": "Código CD1001M-W",
+"description": "Material: Aluminio, Peso de puerta: 45 - 65 kg.",
+"specs": {
+"Sección": "Electricidad e iluminación"
+},
+"features": [
+"Material: Aluminio",
+"Peso de puerta: 45 - 65 kg",
+"Incluye tornillos",
+"Embalaje: caja de color"
+],
+"variants": [
+{
+"code": "CD1001M-W",
+"size": "BLANCO",
+"price": 23.5
+}
+]
+},
+{
+"id": 297,
+"slug": "nexon-electrodo-e7018",
+"category": "Ferretería",
+"sub": "Electricidad e iluminación",
+"brand": "Nexon",
+"name": "Electrodo E7018",
+"price": 5.25,
+"image": "nexon-electrodo-e7018-ele7018-1-8",
+"condition": "Nuevo",
+"highlight": "Código ELE7018-1/8",
+"description": "Precio por KG, Empaques de 20 KG.",
+"specs": {
+"Sección": "Electricidad e iluminación"
+},
+"features": [
+"Precio por KG",
+"Empaques de 20 KG"
+],
+"variants": [
+{
+"code": "ELE7018-1/8",
+"size": "3.2 x 350mm, 1/8”",
+"price": 5.25
+}
+]
+},
+{
+"id": 298,
+"slug": "nexon-electrodo-e6013",
+"category": "Ferretería",
+"sub": "Electricidad e iluminación",
+"brand": "Nexon",
+"name": "Electrodo E6013",
+"image": "nexon-electrodo-e6013-ele6013-1-8",
+"condition": "Nuevo",
+"highlight": "2 medidas, código ELE6013-1/8",
+"description": "Precio por KG, Empaques de 20 KG.",
+"specs": {
+"Sección": "Electricidad e iluminación"
+},
+"features": [
+"Precio por KG",
+"Empaques de 20 KG"
+],
+"variants": [
+{
+"code": "ELE6013-1/8",
+"size": "3.2 x 350mm, 1/8”",
+"price": 3.81
+},
+{
+"code": "ELE6013-3/32",
+"size": "2.5 x 300mm, 3/32”",
+"price": 3.81
+}
+]
+},
+{
+"id": 299,
+"slug": "nexon-electrodo-e6010",
+"category": "Ferretería",
+"sub": "Electricidad e iluminación",
+"brand": "Nexon",
+"name": "Electrodo E6010",
+"price": 5.29,
+"image": "nexon-electrodo-e6010-elec6010-1-8",
+"condition": "Nuevo",
+"highlight": "Código ELEC6010-1/8",
+"description": "Precio por KG, Empaques de 20 KG.",
+"specs": {
+"Sección": "Electricidad e iluminación"
+},
+"features": [
+"Precio por KG",
+"Empaques de 20 KG"
+],
+"variants": [
+{
+"code": "ELEC6010-1/8",
+"size": "3.2 x 350mm, 1/8”",
+"price": 5.29
+}
+]
+},
+{
+"id": 300,
+"slug": "nexon-electrodo-e6011",
+"category": "Ferretería",
+"sub": "Electricidad e iluminación",
+"brand": "Nexon",
+"name": "Electrodo E6011",
+"price": 5.29,
+"image": "nexon-electrodo-e6011-ele6011-1-8",
+"condition": "Nuevo",
+"highlight": "Código ELE6011-1/8",
+"description": "Precio por KG, Empaques de 20 KG.",
+"specs": {
+"Sección": "Electricidad e iluminación"
+},
+"features": [
+"Precio por KG",
+"Empaques de 20 KG"
+],
+"variants": [
+{
+"code": "ELE6011-1/8",
+"size": "3.2 x 350mm, 1/8”",
+"price": 5.29
+}
+]
+}
+]

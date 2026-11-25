@@ -1,9 +1,6 @@
 /* ---------- Catálogo ---------- */
 .cat__bar { display: grid; gap: 16px; padding-block: 20px; position: sticky; top: var(--hdr-h); z-index: 5; background: rgb(255 255 255 / 0.72); -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px); box-shadow: 0 1px 0 var(--line); }
 .cat__tools { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 10px; align-items: center; }
-.cat__search { position: relative; }
-.cat__search svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--ink-2); pointer-events: none; }
-.cat__search .input { padding-left: 42px; }
 .cat__select { width: auto; min-width: 170px; }
 .cat__count { font-size: var(--fs-sm); color: var(--ink-2); padding: 24px 0 18px; }
 .cat__seg { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }

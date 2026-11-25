@@ -19,14 +19,7 @@ export const NAV = [
   { to: '/contacto', label: 'Contacto' },
 ]
 
-export const BRANDS = ['Vento', 'HJM', 'Aichi', 'Loncin', 'Suzuki', 'Kawasaki', 'Cummins', 'Genmaq', 'Toyama', 'Greenenergy', 'HRO', 'Maurer']
-
-export const STATS = [
-  { value: '12', label: 'años vendiendo en el oriente del país' },
-  { value: '3.500', label: 'clientes atendidos' },
-  { value: '12', label: 'marcas que distribuimos' },
-  { value: '24 h', label: 'para responder una cotización' },
-]
+export const BRANDS = ['Vento', 'Forza', 'Aichi', 'HJM', 'Loncin', 'Hisun', 'Lifan', 'ZX Auto', 'Toyota', 'Nissan', 'GAC', 'Hyundai GD Power', 'Cummins', 'Greenenergy', 'Tolsen', 'Nexon', 'ConstruY']
 
 export const STEPS = [
   { title: 'Elige', text: 'Explora el catálogo, compara fichas técnicas y precios.' },
@@ -45,17 +38,12 @@ export const SERVICES = [
   { icon: 'users', title: 'Asesoría', text: 'Un asesor te ayuda a elegir y cotizar sin compromiso.' },
 ] as const
 
-export const TESTIMONIALS = [
-  { quote: 'Compré mi moto con la póliza incluida y todo fue claro, desde la cotización hasta la entrega.', name: 'Carlos Méndez', role: 'Compró una Vento 200' },
-  { quote: 'Como aliados tenemos precio por volumen y un asesor que contesta el mismo día.', name: 'Taller Los Andes', role: 'Aliado desde 2023' },
-  { quote: 'La planta Cummins quedó instalada en dos días. En el siguiente corte ni nos enteramos.', name: 'Marisol Pérez', role: 'Restaurante en Lechería' },
-]
-
 export const FAQ = [
   { q: '¿Las motos incluyen seguro?', a: 'Todas las motos Vento salen con póliza de seguro. En las demás marcas te cotizamos la póliza junto con la moto.' },
+  { q: '¿Por qué algunos productos dicen “precio a consultar”?', a: 'Los precios de motos, vehículos y plantas cambian con frecuencia. Agrégalos a tu cotización y te enviamos el precio del día en menos de 24 horas.' },
   { q: '¿Puedo pedir una cotización sin pagar?', a: 'Sí. Agrega los productos al carrito y elige “Solicitar cotización”. Te llega al correo y la puedes descargar en PDF.' },
   { q: '¿Cómo recibo mi factura?', a: 'Se genera en la página al confirmar el pedido. La descargas en PDF y una copia llega a tu correo.' },
-  { q: '¿Alquilan plantas eléctricas?', a: 'Sí, por día, semana o mes. El precio incluye transporte; la instalación es opcional.' },
+  { q: '¿Los precios de ferretería son en dólares?', a: 'Sí. Son precios de referencia en dólares a la tasa BCV del día, sin IVA. Puedes pagar en bolívares al cambio oficial.' },
   { q: '¿En qué monedas puedo pagar?', a: 'Dólares por Zelle, transferencia o efectivo, y bolívares por pago móvil a la tasa del día.' },
   { q: '¿Dónde están?', a: 'En Lechería, Anzoátegui. Te atendemos con cita para que veas el producto en persona.' },
 ]

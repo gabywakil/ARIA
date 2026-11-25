@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
-import { money, productById } from '../data/products'
-import { useCart, type Invoice } from '../state/cart'
+import { money } from '../data/products'
+import { lineName, unitPrice, useCart, type Invoice } from '../state/cart'
+import { useStore } from '../state/store'
 import { Flow } from '../components/Flow'
 import './pages.css'
 
@@ -31,7 +32,10 @@ export default function Checkout() {
   const [method, setMethod] = useState<string>(METHODS[0].id)
   const [tried, setTried] = useState(false)
   const [touched, setTouched] = useState<ReadonlySet<string>>(() => new Set())
-  const { lines, count, subtotal, tax, total, saveInvoice } = useCart()
+  const { lines, count, subtotal, tax, total, pending, saveInvoice } = useCart()
+  const { byId } = useStore()
+  // Con productos sin precio solo se puede cotizar
+  const effKind: Invoice['kind'] = pending ? 'Cotización' : kind
   const nav = useNavigate()
   const errors = validate(form)
   const show = (k: keyof Form) => (tried || touched.has(k) ? errors[k] : undefined)
@@ -50,18 +54,19 @@ export default function Checkout() {
     setTried(true)
     if (Object.keys(errors).length) return
     const invoice: Invoice = {
-      number: `${kind === 'Factura' ? 'FAC' : 'COT'}-${Date.now().toString().slice(-6)}`,
+      number: `${effKind === 'Factura' ? 'FAC' : 'COT'}-${Date.now().toString().slice(-6)}`,
       date: new Date().toLocaleDateString('es-VE', { day: '2-digit', month: 'short', year: 'numeric' }),
-      kind,
+      kind: effKind,
       customer: { ...form },
       method,
       lines: lines.flatMap((l) => {
-        const p = productById.get(l.id)
-        return p ? [{ name: p.name, qty: l.qty, price: p.price }] : []
+        const p = byId.get(l.id)
+        return p ? [{ name: `${p.brand} ${lineName(p, l.code)}`, qty: l.qty, price: unitPrice(p, l.code) }] : []
       }),
       subtotal,
       tax,
       total,
+      pending,
     }
     saveInvoice(invoice)
     nav(`/recibo/${invoice.number}`)
@@ -95,10 +100,10 @@ export default function Checkout() {
             <legend className="pdp__h">¿Qué quieres generar?</legend>
             <div className="seg">
               {(['Factura', 'Cotización'] as const).map((k) => (
-                <button type="button" key={k} className="seg__opt" aria-pressed={kind === k} onClick={() => setKind(k)}>{k}</button>
+                <button type="button" key={k} className="seg__opt" aria-pressed={effKind === k} disabled={k === 'Factura' && pending > 0} onClick={() => setKind(k)}>{k}</button>
               ))}
             </div>
-            <p className="field__hint">{kind === 'Factura' ? 'Confirmas el pedido y recibes las instrucciones de pago.' : 'Recibes los precios por escrito, válidos por 7 días, sin compromiso.'}</p>
+            <p className="field__hint">{pending ? 'Tu pedido tiene productos con precio a consultar, así que generamos una cotización.' : effKind === 'Factura' ? 'Confirmas el pedido y recibes las instrucciones de pago.' : 'Recibes los precios por escrito, válidos por 7 días, sin compromiso.'}</p>
           </fieldset>
           <div className="form">
             <h2 className="pdp__h">Tus datos</h2>
@@ -109,7 +114,7 @@ export default function Checkout() {
             </div>
             {field('email', 'Correo', { type: 'email', autoComplete: 'email' }, 'Aquí te llega el recibo en PDF.')}
           </div>
-          {kind === 'Factura' ? (
+          {effKind === 'Factura' ? (
             <fieldset className="pay" style={{ border: 0, padding: 0, margin: 0 }}>
               <legend className="pdp__h" style={{ marginBottom: 12 }}>Método de pago</legend>
               {METHODS.map((m) => (
@@ -125,12 +130,14 @@ export default function Checkout() {
           <h2 className="pdp__h">Tu pedido</h2>
           <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'grid', gap: 10, fontSize: 'var(--fs-sm)' }}>
             {lines.map((l) => {
-              const p = productById.get(l.id)
-              return p ? (
-                <li key={l.id} style={{ display: 'flex', justifyContent: 'space-between', gap: 12 }}>
-                  <span>{l.qty} × {p.name}</span><span className="num">{money(p.price * l.qty)}</span>
+              const p = byId.get(l.id)
+              if (!p) return null
+              const u = unitPrice(p, l.code)
+              return (
+                <li key={l.key} style={{ display: 'flex', justifyContent: 'space-between', gap: 12 }}>
+                  <span>{l.qty} × {lineName(p, l.code)}</span><span className="num">{u !== null ? money(u * l.qty) : 'A cotizar'}</span>
                 </li>
-              ) : null
+              )
             })}
           </ul>
           <hr className="rule" />
@@ -140,7 +147,7 @@ export default function Checkout() {
             <div className="totals__grand"><span>Total</span><span>{money(total)}</span></div>
           </div>
           {tried && Object.keys(errors).length ? <p className="field__error" role="alert">Revisa los campos marcados antes de continuar.</p> : null}
-          <button className="btn btn--block" type="submit">{kind === 'Factura' ? 'Confirmar y generar factura' : 'Generar cotización'}</button>
+          <button className="btn btn--block" type="submit">{effKind === 'Factura' ? 'Confirmar y generar factura' : 'Generar cotización'}</button>
           <Link to="/carrito" className="btn btn--line btn--block">Volver al carrito</Link>
         </aside>
       </form>

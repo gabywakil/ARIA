@@ -1,29 +1,34 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useReducer, useRef, useState, type ReactNode } from 'react'
-import { IVA, productById } from '../data/products'
+import { IVA, type Product } from '../data/products'
 import { tap } from '../lib/spring'
+import { useStore } from './store'
 
-export type Line = { id: number; qty: number }
+/** Una línea del carrito: producto + variante opcional (código del catálogo) */
+export type Line = { key: string; id: number; code?: string; qty: number }
 export type Invoice = {
   number: string
   date: string
   kind: 'Factura' | 'Cotización'
   customer: { name: string; doc: string; email: string; phone: string }
   method: string
-  lines: { name: string; qty: number; price: number }[]
+  lines: { name: string; qty: number; price: number | null }[]
   subtotal: number
   tax: number
   total: number
+  /** Productos sin precio publicado que se cotizan aparte */
+  pending: number
 }
+export type Added = { id: number; qty: number; n: number; code?: string }
 
 type State = { lines: Line[]; invoices: Invoice[] }
 type Action =
-  | { type: 'add'; id: number; qty?: number }
-  | { type: 'set'; id: number; qty: number }
-  | { type: 'remove'; id: number }
-  | { type: 'clear' }
+  | { type: 'add'; id: number; code?: string; qty?: number }
+  | { type: 'set'; key: string; qty: number }
+  | { type: 'remove'; key: string }
   | { type: 'invoice'; invoice: Invoice }
 
-const KEY = 'aria:cart:v1'
+const KEY = 'aria:cart:v2'
+const keyOf = (id: number, code?: string) => (code ? `${id}:${code}` : String(id))
 
 function load(): State {
   try {
@@ -33,7 +38,7 @@ function load(): State {
       if (Array.isArray(s.lines) && Array.isArray(s.invoices)) return s
     }
   } catch {
-    /* almacenamiento no disponible */
+    /* sin almacenamiento */
   }
   return { lines: [], invoices: [] }
 }
@@ -41,22 +46,33 @@ function load(): State {
 function reducer(s: State, a: Action): State {
   switch (a.type) {
     case 'add': {
-      const found = s.lines.find((l) => l.id === a.id)
+      const key = keyOf(a.id, a.code)
       const qty = a.qty ?? 1
-      return { ...s, lines: found ? s.lines.map((l) => (l.id === a.id ? { ...l, qty: l.qty + qty } : l)) : [...s.lines, { id: a.id, qty }] }
+      const found = s.lines.find((l) => l.key === key)
+      return { ...s, lines: found ? s.lines.map((l) => (l.key === key ? { ...l, qty: l.qty + qty } : l)) : [...s.lines, { key, id: a.id, code: a.code, qty }] }
     }
     case 'set':
-      return { ...s, lines: a.qty < 1 ? s.lines.filter((l) => l.id !== a.id) : s.lines.map((l) => (l.id === a.id ? { ...l, qty: a.qty } : l)) }
+      return { ...s, lines: a.qty < 1 ? s.lines.filter((l) => l.key !== a.key) : s.lines.map((l) => (l.key === a.key ? { ...l, qty: a.qty } : l)) }
     case 'remove':
-      return { ...s, lines: s.lines.filter((l) => l.id !== a.id) }
-    case 'clear':
-      return { ...s, lines: [] }
+      return { ...s, lines: s.lines.filter((l) => l.key !== a.key) }
     case 'invoice':
-      return { lines: a.invoice.kind === 'Factura' ? [] : s.lines, invoices: [a.invoice, ...s.invoices].slice(0, 20) }
+      return { lines: a.invoice.kind === 'Factura' ? [] : s.lines, invoices: [a.invoice, ...s.invoices].slice(0, 50) }
   }
 }
 
-export type Added = { id: number; qty: number; n: number }
+/** Precio unitario de una línea: el de la variante o el del producto. null = a consultar */
+export function unitPrice(p: Product, code?: string): number | null {
+  if (code) {
+    const v = p.variants?.find((x) => x.code === code)
+    if (v) return v.price && v.price > 0 ? v.price : null
+  }
+  return p.price && p.price > 0 ? p.price : null
+}
+
+export function lineName(p: Product, code?: string) {
+  const v = code ? p.variants?.find((x) => x.code === code) : undefined
+  return v ? `${p.name} (${[v.code, v.size].filter(Boolean).join(', ')})` : p.name
+}
 
 type Ctx = {
   added: Added | null
@@ -67,9 +83,11 @@ type Ctx = {
   subtotal: number
   tax: number
   total: number
-  add: (id: number, qty?: number) => void
-  setQty: (id: number, qty: number) => void
-  remove: (id: number) => void
+  /** Líneas sin precio: obligan a cotizar */
+  pending: number
+  add: (id: number, qty?: number, code?: string) => void
+  setQty: (key: string, qty: number) => void
+  remove: (key: string) => void
   saveInvoice: (i: Invoice) => void
 }
 
@@ -77,40 +95,53 @@ const CartContext = createContext<Ctx | null>(null)
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(reducer, undefined, load)
+  const { byId } = useStore()
 
   useEffect(() => {
     try {
       localStorage.setItem(KEY, JSON.stringify(state))
     } catch {
-      /* sin almacenamiento: el carrito vive solo en memoria */
+      /* sin almacenamiento */
     }
   }, [state])
 
+  // Las facturas también se ven en el panel admin, aunque esté abierto en otra pestaña
+  useEffect(() => {
+    const on = (e: StorageEvent) => {
+      if (e.key === KEY) location.reload()
+    }
+    addEventListener('storage', on)
+    return () => removeEventListener('storage', on)
+  }, [])
+
   const [added, setAdded] = useState<Added | null>(null)
   const n = useRef(0)
-  const add = useCallback((id: number, qty?: number) => {
-    dispatch({ type: 'add', id, qty })
+  const add = useCallback((id: number, qty?: number, code?: string) => {
+    dispatch({ type: 'add', id, code, qty })
     n.current += 1
-    tap() // háptica en el mismo instante en que cambia el carrito
-    setAdded({ id, qty: qty ?? 1, n: n.current })
+    tap()
+    setAdded({ id, qty: qty ?? 1, n: n.current, code })
   }, [])
   const clearAdded = useCallback(() => setAdded(null), [])
-  const setQty = useCallback((id: number, qty: number) => dispatch({ type: 'set', id, qty }), [])
-  const remove = useCallback((id: number) => dispatch({ type: 'remove', id }), [])
+  const setQty = useCallback((key: string, qty: number) => dispatch({ type: 'set', key, qty }), [])
+  const remove = useCallback((key: string) => dispatch({ type: 'remove', key }), [])
   const saveInvoice = useCallback((invoice: Invoice) => dispatch({ type: 'invoice', invoice }), [])
 
   const value = useMemo<Ctx>(() => {
     let count = 0
     let subtotal = 0
-    for (const l of state.lines) {
-      const p = productById.get(l.id)
-      if (!p) continue
+    let pending = 0
+    const lines = state.lines.filter((l) => byId.has(l.id))
+    for (const l of lines) {
+      const p = byId.get(l.id)!
       count += l.qty
-      subtotal += p.price * l.qty
+      const u = unitPrice(p, l.code)
+      if (u === null) pending += 1
+      else subtotal += u * l.qty
     }
     const tax = subtotal * IVA
-    return { added, clearAdded, lines: state.lines, invoices: state.invoices, count, subtotal, tax, total: subtotal + tax, add, setQty, remove, saveInvoice }
-  }, [state, added, clearAdded, add, setQty, remove, saveInvoice])
+    return { added, clearAdded, lines, invoices: state.invoices, count, subtotal, tax, total: subtotal + tax, pending, add, setQty, remove, saveInvoice }
+  }, [state, byId, added, clearAdded, add, setQty, remove, saveInvoice])
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>
 }

@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom'
 import { CATEGORIES } from '../data/products'
-import { SITE } from '../data/site'
+import { useStore } from '../state/store'
 import { Icon } from './Icon'
 import { Logo } from './Logo'
 
 const year = new Date().getFullYear()
 
 export function Footer() {
+  const { site: SITE } = useStore()
   return (
     <footer className="ftr">
       <div className="wrap ftr__grid">

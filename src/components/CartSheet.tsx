@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { money, productById } from '../data/products'
+import { money } from '../data/products'
 import { SpringValue, VelocityTracker, project, rubberband } from '../lib/spring'
-import { useCart, type Added } from '../state/cart'
+import { lineName, unitPrice, useCart, type Added } from '../state/cart'
+import { useStore } from '../state/store'
 import { Icon } from './Icon'
 import { ProductShot } from './ProductCard'
 
@@ -17,7 +18,8 @@ const isSheet = () => matchMedia('(max-width: 860px)').matches
  * No bloquea la página (sin velo), como un panel paralelo.
  */
 export function CartSheet() {
-  const { count, subtotal, added, clearAdded: onClose } = useCart()
+  const { count, subtotal, pending, added, clearAdded: onClose } = useCart()
+  const { byId } = useStore()
   const ref = useRef<HTMLDivElement>(null)
   const [shown, setShown] = useState<Added | null>(null)
   const timer = useRef(0)
@@ -136,8 +138,9 @@ export function CartSheet() {
   }
 
   if (!shown) return null
-  const p = productById.get(shown.id)
+  const p = byId.get(shown.id)
   if (!p) return null
+  const u = unitPrice(p, shown.code)
 
   return (
     <div
@@ -161,13 +164,13 @@ export function CartSheet() {
       <div className="csheet__item">
         <ProductShot product={p} />
         <div>
-          <p className="csheet__name">{p.name}</p>
-          <p className="muted num">{shown.qty} × {money(p.price)}</p>
+          <p className="csheet__name">{lineName(p, shown.code)}</p>
+          <p className="muted num">{shown.qty} × {u !== null ? money(u) : 'precio a consultar'}</p>
         </div>
       </div>
       <div className="csheet__sum num">
         <span>{count === 1 ? '1 producto' : `${count} productos`} en tu carrito</span>
-        <strong>{money(subtotal)}</strong>
+        <strong>{subtotal === 0 && pending > 0 ? "Por cotizar" : money(subtotal)}</strong>
       </div>
       <div className="csheet__actions">
         <button className="btn btn--line" onClick={() => close()}>Seguir comprando</button>

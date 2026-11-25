@@ -385,3 +385,32 @@
   .tools__tabs { width: 100%; flex-wrap: nowrap; }
   .tools__tabs .seg__opt { flex: 1; justify-content: center; padding: 0 10px; font-size: var(--fs-xs); }
 }
+
+/* ---------- Ferretería en el inicio ---------- */
+.hw { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.hw__col { display: grid; gap: 16px; align-content: start; padding: 24px; border: 1px solid var(--line); border-radius: 28px; }
+.hw__head h3 { font-size: var(--fs-2xl); font-weight: 800; letter-spacing: -0.04em; }
+.hw__head p { font-size: var(--fs-sm); margin-top: 4px; }
+.hw__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.hw__list a { display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 14px; align-items: center; padding: 6px; margin: -6px; border-radius: 16px; transition: background var(--t-fast), transform var(--t-fast) var(--ease-out); }
+.hw__list a:hover { background: #f6f7f8; }
+.hw__list a:active { transform: scale(0.985); }
+.hw__list .shot { aspect-ratio: 1; border-radius: 14px; }
+.hw__list .shot img { padding: 10%; }
+.hw__list strong { display: block; font-size: var(--fs-sm); line-height: 1.25; }
+.hw__list small { display: block; margin-top: 2px; }
+
+/* ---------- Muro de marcas ---------- */
+.bw { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 10px; }
+.bw a {
+  display: grid; gap: 2px; padding: 20px 22px; border-radius: 20px; border: 1px solid var(--line);
+  background: radial-gradient(260px circle at var(--x, 50%) var(--y, 50%), rgb(7 128 63 / 0.08), transparent 60%), var(--paper);
+  transition: border-color var(--t-fast), transform var(--t-fast) var(--ease-out);
+}
+.bw a:hover { border-color: var(--green); }
+.bw a:active { transform: scale(0.97); }
+.bw strong { font-size: var(--fs-lg); letter-spacing: -0.02em; }
+.bw span { font-size: var(--fs-xs); }
+
+.visit__photo { width: 100%; aspect-ratio: 4 / 5; max-height: 640px; object-fit: cover; border-radius: 28px; }
+@media (max-width: 1024px) { .hw { grid-template-columns: 1fr; } }

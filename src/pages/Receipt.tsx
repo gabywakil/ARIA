@@ -2,20 +2,21 @@ import { Link, useParams } from 'react-router-dom'
 import { Icon } from '../components/Icon'
 import { Logo } from '../components/Logo'
 import { money } from '../data/products'
-import { SITE } from '../data/site'
+import { useStore } from '../state/store'
 import { useCart } from '../state/cart'
 import { Flow } from '../components/Flow'
 import NotFound from './NotFound'
 import './pages.css'
 
-const PAY_INFO: Record<string, string> = {
+const payInfo = (city: string): Record<string, string> => ({
   Zelle: 'Envía el total a pagos@aria.com (dato de ejemplo) y responde el correo con el comprobante.',
   'Pago móvil': 'Banco de Venezuela, 0414 000 0000, RIF J-00000000-0 (datos de ejemplo). Monto en bolívares a la tasa BCV del día.',
   Transferencia: 'Te enviamos los datos bancarios al correo. Indica el número del documento en la referencia.',
-  'Efectivo en tienda': `Paga al retirar en ${SITE.city}. Agenda tu cita por WhatsApp.`,
-}
+  'Efectivo en tienda': `Paga al retirar en ${city}. Agenda tu cita por WhatsApp.`,
+})
 
 export default function Receipt() {
+  const { site: SITE } = useStore()
   const { number } = useParams()
   const { invoices } = useCart()
   const inv = invoices.find((i) => i.number === number)
@@ -55,7 +56,7 @@ export default function Receipt() {
           <thead><tr><th>Producto</th><th>Cant.</th><th>Precio</th><th>Total</th></tr></thead>
           <tbody>
             {inv.lines.map((l) => (
-              <tr key={l.name}><td>{l.name}</td><td>{l.qty}</td><td>{money(l.price)}</td><td>{money(l.price * l.qty)}</td></tr>
+              <tr key={l.name}><td>{l.name}</td><td>{l.qty}</td><td>{l.price !== null ? money(l.price) : 'Por cotizar'}</td><td>{l.price !== null ? money(l.price * l.qty) : 'Por cotizar'}</td></tr>
             ))}
           </tbody>
         </table>
@@ -68,11 +69,11 @@ export default function Receipt() {
           {inv.kind === 'Factura' ? (
             <>
               <strong>Cómo pagar: {inv.method}</strong>
-              <p>{PAY_INFO[inv.method]}</p>
+              <p>{payInfo(SITE.city)[inv.method]}</p>
               <p className="muted">Tu pedido se reserva por 48 horas mientras confirmamos el pago.</p>
             </>
           ) : (
-            <p className="muted">Precios válidos por 7 días. Para confirmar, responde el correo o escríbenos por WhatsApp.</p>
+            <p className="muted">{inv.pending ? `Te enviaremos el precio de ${inv.pending === 1 ? 'un producto' : `${inv.pending} productos`} marcados “Por cotizar” en menos de 24 horas. ` : ''}Precios válidos por 7 días. Para confirmar, responde el correo o escríbenos por WhatsApp.</p>
           )}
         </footer>
       </article>

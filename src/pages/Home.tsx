@@ -1,30 +1,32 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+import showroom from '../assets/photos/showroom-sentra.jpg'
+import { CountUp, LitText, Magnetic, Tilt, Words, glow, useScrollProgress } from '../components/fx'
 import { Icon } from '../components/Icon'
 import { ProductCard, ProductShot } from '../components/ProductCard'
-import { cut, type CutKey } from '../data/cutouts'
-import { img, type ImgKey } from '../data/images'
-import { PRODUCTS, money, productById, type Product } from '../data/products'
-import { BRANDS, FAQ, SITE, STEPS, TESTIMONIALS } from '../data/site'
-import { CountUp, LitText, Magnetic, Tilt, Words, glow, useScrollProgress } from '../components/fx'
+import { CATEGORIES, imageSrc, money } from '../data/products'
+// Cantidad de referencias del catálogo completo de ferretería (se fija al armar el catálogo)
+import refsInfo from '../data/refs-count.json'
+import { BRANDS, FAQ, STEPS } from '../data/site'
 import { useFluidRail } from '../hooks/useFluidRail'
 import { SpringValue, reducedMotion } from '../lib/spring'
+import { useStore } from '../state/store'
 import './home.css'
 
 /* =====================================================================
-   HERO "ESTUDIO": tres productos reales en profundidad sobre el piso blanco.
-   Se mueven en capas con el cursor (giro 3D) y se separan al hacer scroll.
+   HERO "ESTUDIO": tres productos reales de ARIA en profundidad sobre el piso blanco.
+   Giran con el cursor (resortes) y se separan al hacer scroll.
    ===================================================================== */
 
 const HERO_LAYERS = [
-  { key: 'genmaq' as const, id: 13, cls: 'hl--back', depth: 0.35 },
-  { key: 'tracker' as const, id: 8, cls: 'hl--mid', depth: 0.6 },
-  { key: 'gsx' as const, id: 5, cls: 'hl--front', depth: 1 },
+  { image: 'cummins', slug: 'cummins-generador-residencial-con-transferencia-automatica', cls: 'hl--back', depth: 0.35 },
+  { image: 'terralord', slug: 'zx-auto-terralord', cls: 'hl--mid', depth: 0.6 },
+  { image: 'loncin-250nk', slug: 'loncin-250nk-2026', cls: 'hl--front', depth: 1 },
 ]
 
 function HeroStudio() {
+  const { site } = useStore()
   const scene = useRef<HTMLDivElement>(null)
-  // Resortes para el giro con el cursor: se siente físico y se puede interrumpir
   const [rot] = useState(() => {
     const paint = () => {
       const el = scene.current
@@ -54,6 +56,11 @@ function HeroStudio() {
     }
   }, [rot])
 
+  // La última palabra del título va en la segunda línea, con el degradado
+  const words = site.heroTitle.trim().split(' ')
+  const last = words.pop() ?? ''
+  const first = words.join(' ')
+
   return (
     <section
       className="hs"
@@ -68,12 +75,12 @@ function HeroStudio() {
       }}
     >
       <div className="wrap hs__intro">
-        <span className="tag hs__tag"><span className="hs__dot" /> Nuevos ingresos cada semana en Lechería</span>
+        <span className="tag hs__tag"><span className="hs__dot" /> {site.announcement}</span>
         <h1 className="hs__title display">
-          <Words text="Movilidad y energía," delay={80} />
-          <span className="hs__line2"><Words text="elevadas." delay={380} /></span>
+          <Words text={first} delay={80} />
+          <span className="hs__line2"><Words text={last} delay={380} /></span>
         </h1>
-        <p className="hs__lead">Motos, vehículos y plantas eléctricas de marcas seleccionadas, con garantía real, factura en línea y un asesor que te atiende por tu nombre.</p>
+        <p className="hs__lead">{site.heroLead}</p>
         <div className="hs__cta">
           <Magnetic><Link to="/catalogo" className="btn btn--lg">Explorar catálogo</Link></Magnetic>
           <Magnetic><Link to="/contacto" className="btn btn--line btn--lg">Agendar una visita</Link></Magnetic>
@@ -83,16 +90,13 @@ function HeroStudio() {
       <div className="hs__scene" ref={scene} aria-label="Productos en exhibición">
         <span className="hs__word" aria-hidden="true">ARIA</span>
         <div className="hs__floor" aria-hidden="true" />
-        {HERO_LAYERS.map((l) => {
-          const p = productById.get(l.id)!
-          return (
-            <Link key={l.key} to={`/producto/${p.slug}`} className={`hl ${l.cls}`} style={{ '--z': l.depth } as React.CSSProperties} aria-label={p.name}>
-              <span className="hl__shadow" aria-hidden="true" />
-              <img src={cut[l.key]} alt={p.name} fetchPriority={l.cls === 'hl--front' ? 'high' : 'auto'} draggable={false} />
-            </Link>
-          )
-        })}
-        <div className="gl gl--a"><span className="gl__in"><Icon name="shield" size={18} /> Garantía hasta 2 años</span></div>
+        {HERO_LAYERS.map((l) => (
+          <Link key={l.image} to={`/producto/${l.slug}`} className={`hl ${l.cls}`} style={{ '--z': l.depth } as React.CSSProperties}>
+            <span className="hl__shadow" aria-hidden="true" />
+            <img src={imageSrc(l.image)} alt="" fetchPriority={l.cls === 'hl--front' ? 'high' : 'auto'} draggable={false} />
+          </Link>
+        ))}
+        <div className="gl gl--a"><span className="gl__in"><Icon name="shield" size={18} /> Garantía de fábrica</span></div>
         <div className="gl gl--b"><span className="gl__in"><Icon name="doc" size={18} /> Factura en línea</span></div>
         <div className="gl gl--c"><span className="gl__in"><Icon name="truck" size={18} /> Entrega a todo el país</span></div>
       </div>
@@ -101,76 +105,78 @@ function HeroStudio() {
 }
 
 /* =====================================================================
-   SALA DE EXHIBICIÓN: la pantalla se queda fija y, con el scroll,
-   cada producto entra girando sobre el piso mientras su ficha se arma.
+   LA SALA: la pantalla queda fija y, con el scroll, cada producto sale girando
+   y entra el siguiente mientras su cifra clave y su ficha se arman al lado.
    ===================================================================== */
 
-const SALA = [
-  { id: 5, key: 'gsx' as const, cat: 'Motos', big: '199', unit: 'hp', label: 'de potencia' },
-  { id: 7, key: 'z800' as const, cat: 'Motos', big: '806', unit: 'cc', label: 'cuatro cilindros' },
-  { id: 9, key: 'corolla' as const, cat: 'Vehículos', big: '21', unit: 'km/L', label: 'híbrida' },
-  { id: 8, key: 'tracker' as const, cat: 'Vehículos', big: '1.2', unit: 'turbo', label: 'automática' },
-  { id: 13, key: 'genmaq' as const, cat: 'Plantas', big: '30', unit: 'kVA', label: 'insonorizada' },
-  { id: 15, key: 'ducati' as const, cat: 'Plantas', big: '2,5', unit: 'kVA', label: 'arranque eléctrico' },
-].map((s) => ({ ...s, p: productById.get(s.id)! }))
+const SALA_DEF = [
+  { slug: 'vento-dakar-300', big: '25', unit: 'HP', label: 'doble propósito, 300 cc' },
+  { slug: 'forza-evo-450', big: '152', unit: 'km/h', label: 'velocidad máxima, inyección' },
+  { slug: 'loncin-xwolf-1000', big: '2', unit: 'puestos', label: 'la cuatrimoto más potente de Loncin' },
+  { slug: 'zx-auto-terralord', big: '3', unit: 'años', label: 'de garantía o 100.000 km' },
+  { slug: 'zx-auto-grandlion', big: '4x4', unit: '', label: 'automática, doble cabina' },
+  { slug: 'hyundai-gd-power-generador-100-kva', big: '100', unit: 'kVA', label: 'insonorizada, diésel' },
+  { slug: 'greenenergy-inversor-de-almacenamiento-vs', big: '12.500', unit: 'VA', label: 'inversor híbrido' },
+  { slug: 'greenenergy-panel-solar-m10-hi-eff-twin-mono-550-w', big: '550', unit: 'W', label: '25 años de garantía de energía' },
+]
 
 function Sala() {
+  const { bySlug } = useStore()
+  const sala = useMemo(() => SALA_DEF.flatMap((s) => (bySlug.get(s.slug) ? [{ ...s, p: bySlug.get(s.slug)! }] : [])), [bySlug])
   const [active, setActive] = useState(0)
   const items = useRef<HTMLDivElement>(null)
   const bar = useRef<HTMLDivElement>(null)
 
   const ref = useScrollProgress<HTMLElement>((prog) => {
-    const n = SALA.length
-    const x = prog * (n - 1) // posición continua entre productos
+    const n = sala.length
+    const x = prog * (n - 1)
     const reduce = reducedMotion()
     items.current?.querySelectorAll<HTMLElement>('.sala__item').forEach((el, k) => {
-      const d = x - k // <0: viene; >0: ya pasó
-      // Cada producto queda quieto la mayor parte del tramo y el cambio ocurre en una ventana corta:
-      // el que sale termina de girar antes de que entre el siguiente (nunca se ven dos encimados).
+      const d = x - k
+      // Cada producto queda quieto la mayor parte del tramo; el cambio ocurre en una ventana corta
       const t = Math.max(0, Math.min(1, (Math.abs(d) - 0.22) / 0.28))
-      const e = t * t * (3 - 2 * t) // suavizado
+      const e = t * t * (3 - 2 * t)
       const dir = Math.sign(d)
       el.style.opacity = String(1 - e)
       el.style.visibility = e >= 1 ? 'hidden' : 'visible'
-      el.style.transform = reduce
-        ? ''
-        : `translateX(${-dir * e * 38}%) rotateY(${dir * e * 55}deg) scale(${1 - e * 0.12})`
+      el.style.transform = reduce ? '' : `translateX(${-dir * e * 38}%) rotateY(${dir * e * 55}deg) scale(${1 - e * 0.12})`
     })
     bar.current?.style.setProperty('transform', `scaleX(${prog})`)
     const idx = Math.round(x)
-    setActive((a) => (a === idx ? a : idx)) // solo re-renderiza al cambiar de producto
+    setActive((a) => (a === idx ? a : idx))
   }, 0, 1)
 
-  const s = SALA[active]
+  if (!sala.length) return null
+  const s = sala[Math.min(active, sala.length - 1)]
   return (
-    <section className="sala" ref={ref} style={{ '--n': SALA.length } as React.CSSProperties}>
+    <section className="sala" ref={ref} style={{ '--n': sala.length } as React.CSSProperties}>
       <div className="sala__pin">
         <div className="wrap sala__grid">
           <div className="sala__left">
             <span className="tag">La sala</span>
             <h2 className="sec__title">Recorre la sala sin salir de casa.</h2>
             <ol className="sala__list">
-              {SALA.map((x, k) => (
-                <li key={x.id} data-on={k === active ? '' : undefined}>
-                  <span className="sala__cat">{x.cat}</span>
+              {sala.map((x, k) => (
+                <li key={x.slug} data-on={k === active ? '' : undefined}>
+                  <span className="sala__cat">{x.p.brand}</span>
                   <span className="sala__nm">{x.p.name}</span>
                 </li>
               ))}
             </ol>
           </div>
           <div className="sala__stage" ref={items}>
-            <span className="sala__bg" aria-hidden="true" key={s.cat}>{s.cat}</span>
+            <span className="sala__bg" aria-hidden="true" key={s.p.category}>{s.p.category.split(' ')[0]}</span>
             <div className="sala__floor" aria-hidden="true" />
-            {SALA.map((x) => (
-              <div key={x.id} className="sala__item">
-                <img src={cut[x.key]} alt={x.p.name} loading="lazy" draggable={false} />
+            {sala.map((x) => (
+              <div key={x.slug} className="sala__item">
+                <img src={imageSrc(x.p.image)} alt={x.p.name} loading="lazy" draggable={false} />
               </div>
             ))}
           </div>
-          <div className="sala__info" key={s.id} aria-live="polite">
-            <p className="sala__big display num">{s.big}<small>{s.unit}</small></p>
+          <div className="sala__info" key={s.slug} aria-live="polite">
+            <p className="sala__big display num">{s.big}{s.unit ? <small>{s.unit}</small> : null}</p>
             <p className="muted">{s.label}</p>
-            <h3 className="sala__name">{s.p.name}</h3>
+            <h3 className="sala__name">{s.p.brand} {s.p.name}</h3>
             <table className="spec sala__spec">
               <tbody>
                 {Object.entries(s.p.specs).slice(0, 3).map(([k, v]) => (
@@ -179,7 +185,7 @@ function Sala() {
               </tbody>
             </table>
             <div className="sala__buy">
-              <span className="sala__price num">{money(s.p.price)}</span>
+              <span className="sala__price num">{s.p.price ? money(s.p.price) : 'Cotízala'}</span>
               <Link to={`/producto/${s.p.slug}`} className="btn">Ver ficha</Link>
             </div>
           </div>
@@ -190,81 +196,11 @@ function Sala() {
   )
 }
 
-/* =====================================================================
-   CATEGORÍAS: mosaico limpio, el producto gira levemente al pasar el mouse
-   ===================================================================== */
-
-const CAT_TILES: { slug: string; name: string; text: string; cut?: CutKey; photo?: ImgKey; cls: string }[] = [
-  { slug: 'motos', name: 'Motos', text: 'Urbanas, naked y deportivas.', cut: 'z800', cls: 'ct--wide' },
-  { slug: 'vehiculos', name: 'Vehículos', text: 'SUV y sedanes 0 km.', cut: 'k3', cls: 'ct--wide' },
-  { slug: 'plantas', name: 'Plantas', text: 'Venta y alquiler.', cut: 'toyama', cls: '' },
-  { slug: 'energia-solar', name: 'Energía solar', text: 'Inversores Greenenergy.', photo: 'solar', cls: '' },
-  { slug: 'accesorios', name: 'Accesorios', text: 'Cascos y chaquetas.', photo: 'casco', cls: '' },
-  { slug: 'ferreteria', name: 'Ferretería', text: 'Línea Maurer y más.', photo: 'tools', cls: '' },
-]
-
-function Categories() {
-  return (
-    <section className="sec wrap">
-      <div className="sec__head sec__head--row" data-rv>
-        <div style={{ display: 'grid', gap: 12 }}>
-          <span className="tag">Categorías</span>
-          <h2 className="sec__title">Todo lo que mueve tu día.</h2>
-        </div>
-        <Link to="/catalogo" className="btn btn--line btn--sm">Ver catálogo</Link>
-      </div>
-      <div className="ctg" data-rv>
-        {CAT_TILES.map((c) => (
-          <Link key={c.slug} to={`/catalogo/${c.slug}`} className={`ct ${c.cls} ${c.cut ? 'ct--cut' : 'ct--photo'}`} onPointerMove={glow}>
-            <div className="ct__txt">
-              <h3>{c.name}</h3>
-              <p>{c.text}</p>
-            </div>
-            <span className="ct__go" aria-hidden="true"><Icon name="arrowRight" size={18} /></span>
-            {c.cut ? <img className="ct__img" src={cut[c.cut]} alt="" loading="lazy" /> : <img className="ct__img" src={img[c.photo!]} alt="" loading="lazy" />}
-          </Link>
-        ))}
-      </div>
-    </section>
-  )
-}
-
-/* =====================================================================
-   HERRAMIENTAS: calculadora de planta y de cuotas en pestañas
-   ===================================================================== */
-
-function Tools() {
-  const [tab, setTab] = useState<'planta' | 'cuotas'>('planta')
-  return (
-    <section className="sec wrap">
-      <div className="tools" data-rv>
-        <div className="tools__head">
-          <div style={{ display: 'grid', gap: 12 }}>
-            <span className="tag">Herramientas</span>
-            <h2 className="sec__title">Decide con números, no con dudas.</h2>
-          </div>
-          <div className="seg tools__tabs" role="tablist" aria-label="Herramienta">
-            <button role="tab" className="seg__opt" aria-selected={tab === 'planta'} aria-pressed={tab === 'planta'} onClick={() => setTab('planta')}>
-              <Icon name="bolt" size={16} /> Calcular mi planta
-            </button>
-            <button role="tab" className="seg__opt" aria-selected={tab === 'cuotas'} aria-pressed={tab === 'cuotas'} onClick={() => setTab('cuotas')}>
-              <Icon name="card" size={16} /> Simular cuotas
-            </button>
-          </div>
-        </div>
-        <div className="tools__body" key={tab} role="tabpanel">
-          {tab === 'planta' ? <PowerPlanner /> : <FinanceHome />}
-        </div>
-      </div>
-    </section>
-  )
-}
-
 /* ---------------- Cinta de marcas ---------------- */
 
 function Marquee() {
   return (
-    <section className="mq" aria-label="Marcas que distribuimos">
+    <section className="mq" aria-label="Marcas que vendemos">
       <div className="mq__track">
         {[0, 1].map((k) => (
           <ul key={k} aria-hidden={k === 1}>
@@ -276,17 +212,18 @@ function Marquee() {
   )
 }
 
+/* ---------------- Cifras (salen del catálogo real) ---------------- */
 
-/* ---------------- Cifras ---------------- */
-
-const COUNTERS = [
-  { to: 12, s: '+', l: 'años en el mercado' },
-  { to: 3500, s: '+', l: 'clientes atendidos' },
-  { to: 12, s: '', l: 'marcas aliadas' },
-  { to: 24, s: ' h', l: 'para responder una cotización' },
-]
-
-function Counters() {
+function Counters({ refs }: { refs: number }) {
+  const { products } = useStore()
+  const vehicles = products.filter((p) => ['Motos', 'Cuatrimotos y UTV', 'Vehículos'].includes(p.category)).length
+  const brands = new Set(products.map((p) => p.brand)).size
+  const COUNTERS = [
+    { to: brands, s: '', l: 'marcas en un solo lugar' },
+    { to: vehicles, s: '', l: 'modelos de motos, cuatrimotos y vehículos' },
+    { to: refs, s: '+', l: 'referencias de ferretería con precio' },
+    { to: 24, s: ' h', l: 'para responder una cotización' },
+  ]
   return (
     <section className="wrap cnts">
       {COUNTERS.map((c) => (
@@ -299,18 +236,59 @@ function Counters() {
   )
 }
 
+/* ---------------- Categorías ---------------- */
 
-/* ---------------- Destacados (riel) ---------------- */
+const CAT_IMG: Record<string, { image: string; cls: string }> = {
+  motos: { image: 'vento-nitrox', cls: 'ct--wide' },
+  cuatrimotos: { image: 'loncin-xwolf1000', cls: 'ct--wide' },
+  vehiculos: { image: 'grandlion', cls: 'ct--wide' },
+  plantas: { image: 'gd-100', cls: '' },
+  'energia-solar': { image: 'green-inv', cls: '' },
+  ferreteria: { image: 'construy-cunete-importado', cls: 'ct--wide' },
+}
 
-const FEATURED = [5, 9, 13, 4, 8, 6, 12, 16].map((id) => productById.get(id)!)
+function Categories() {
+  const { products } = useStore()
+  return (
+    <section className="sec wrap">
+      <div className="sec__head sec__head--row" data-rv>
+        <div style={{ display: 'grid', gap: 12 }}>
+          <span className="tag">Categorías</span>
+          <h2 className="sec__title">Todo lo que mueve tu día.</h2>
+        </div>
+        <Link to="/catalogo" className="btn btn--line btn--sm">Ver catálogo</Link>
+      </div>
+      <div className="ctg" data-rv>
+        {CATEGORIES.map((c) => {
+          const v = CAT_IMG[c.slug]
+          const n = products.filter((p) => p.category === c.name).length
+          return (
+            <Link key={c.slug} to={`/catalogo/${c.slug}`} className={`ct ct--cut ${v?.cls ?? ''}`} onPointerMove={glow}>
+              <div className="ct__txt">
+                <h3>{c.name}</h3>
+                <p>{n} productos</p>
+              </div>
+              <span className="ct__go" aria-hidden="true"><Icon name="arrowRight" size={18} /></span>
+              {v ? <img className="ct__img" src={imageSrc(v.image)} alt="" loading="lazy" /> : null}
+            </Link>
+          )
+        })}
+      </div>
+    </section>
+  )
+}
+
+/* ---------------- Destacados (riel con física) ---------------- */
 
 function Featured() {
+  const { products } = useStore()
+  const list = useMemo(() => products.filter((p) => p.featured && p.category !== 'Ferretería').slice(0, 12), [products])
   const { ref: rail, step } = useFluidRail<HTMLDivElement>()
   return (
     <section className="sec">
-      <div className="wrap sec__head sec__head--row">
-        <div>
-          <span className="tag">Lo más buscado</span>
+      <div className="wrap sec__head sec__head--row" data-rv>
+        <div style={{ display: 'grid', gap: 12 }}>
+          <span className="tag">Destacados</span>
           <h2 className="sec__title">Desliza y descubre.</h2>
         </div>
         <div className="rail__ctrl">
@@ -329,7 +307,7 @@ function Featured() {
           if (e.key === 'ArrowLeft') { e.preventDefault(); step(-1) }
         }}
       >
-        {FEATURED.map((p) => (
+        {list.map((p) => (
           <div className="rail__item" key={p.id}>
             <Tilt><ProductCard product={p} /></Tilt>
           </div>
@@ -339,76 +317,50 @@ function Featured() {
   )
 }
 
+/* ---------------- Ferretería: tres marcas ---------------- */
 
-/* ---------------- ¿Qué planta necesitas? ---------------- */
-
-const LOADS = [
-  { id: 'luces', label: 'Luces y ventiladores', w: 400 },
-  { id: 'nevera', label: 'Nevera', w: 700 },
-  { id: 'tv', label: 'TV, internet y cargadores', w: 300 },
-  { id: 'pc', label: 'Computadoras o punto de venta', w: 600 },
-  { id: 'bomba', label: 'Bomba de agua', w: 1100 },
-  { id: 'aire1', label: 'Un aire acondicionado', w: 1800 },
-  { id: 'aire3', label: 'Tres o más aires', w: 6000 },
-  { id: 'local', label: 'Local comercial completo', w: 14000 },
-]
-
-function pickGenerator(watts: number): Product {
-  if (watts <= 2000) return productById.get(15)! // Ducati 2,5 kVA
-  if (watts <= 2600) return productById.get(14)! // Toyama 3 kVA
-  if (watts <= 11000) return productById.get(12)! // Cummins 13 kW
-  return productById.get(13)! // Genmaq 30 kVA
-}
-
-function PowerPlanner() {
-  const [on, setOn] = useState<Set<string>>(() => new Set(['luces', 'nevera', 'tv']))
-  const watts = LOADS.reduce((s, l) => (on.has(l.id) ? s + l.w : s), 0)
-  const rec = pickGenerator(watts * 1.25) // 25 % de margen para el arranque
-  const toggle = (id: string) =>
-    setOn((prev) => {
-      const next = new Set(prev)
-      if (next.has(id)) next.delete(id)
-      else next.add(id)
-      return next
-    })
-
+function Hardware({ refs }: { refs: number }) {
+  const { products } = useStore()
+  const pick = (brand: string, n: number) => products.filter((p) => p.brand === brand).slice(0, n)
+  const cols = [
+    { brand: 'Tolsen', text: 'Herramientas manuales, eléctricas, inalámbricas, de medición, jardín y más.', items: pick('Tolsen', 3) },
+    { brand: 'Nexon', text: 'Mallas, alambre, pintura, cerrajería, electrodos y electricidad.', items: pick('Nexon', 3) },
+    { brand: 'ConstruY', text: 'Pintura de caucho y esmalte Clase A, en cuñete y galón.', items: pick('ConstruY', 3) },
+  ]
   return (
-    <div className="planner">
-        <div className="planner__q">
-          <h3 className="tool__title">¿Qué planta necesitas?</h3>
-          <p className="sec__lead">Marca lo que quieres mantener encendido durante un corte y te decimos qué equipo te sirve, para comprar o alquilar.</p>
-          <div className="planner__loads" role="group" aria-label="Equipos a conectar">
-            {LOADS.map((l) => (
-              <button key={l.id} className="seg__opt" aria-pressed={on.has(l.id)} onClick={() => toggle(l.id)}>
-                {l.label}
-              </button>
-            ))}
-          </div>
+    <section className="sec wrap">
+      <div className="sec__head sec__head--row" data-rv>
+        <div style={{ display: 'grid', gap: 12 }}>
+          <span className="tag">Ferretería</span>
+          <h2 className="sec__title">La obra completa, con precio a la vista.</h2>
+          <p className="sec__lead">{refs.toLocaleString('es-VE')} referencias de Tolsen, Nexon y ConstruY. Busca por nombre o por código del catálogo.</p>
         </div>
-        <div className="planner__a" aria-live="polite">
-          <p className="planner__watts num">
-            <span>{(watts / 1000).toLocaleString('es-VE', { maximumFractionDigits: 1 })}</span> kW
-          </p>
-          <p className="muted">Consumo estimado, más 25 % de margen para el arranque.</p>
-          <hr className="rule" />
-          <div className="planner__rec">
-            <ProductShot product={rec} />
-            <div>
-              <p className="muted">Te recomendamos</p>
-              <h3 className="planner__name">{rec.name}</h3>
-              <p className="num"><strong>{money(rec.price)}</strong> para comprar{rec.rentPerDay ? <> o <strong>{money(rec.rentPerDay)}</strong> por día en alquiler</> : null}</p>
+        <Link to="/ferreteria/referencias" className="btn btn--sm">Buscar referencia</Link>
+      </div>
+      <div className="hw" data-rv>
+        {cols.map((c) => (
+          <div className="hw__col" key={c.brand}>
+            <div className="hw__head">
+              <h3>{c.brand}</h3>
+              <p className="muted">{c.text}</p>
             </div>
+            <ul className="hw__list">
+              {c.items.map((p) => (
+                <li key={p.id}>
+                  <Link to={`/producto/${p.slug}`}>
+                    <ProductShot product={p} />
+                    <span><strong>{p.name}</strong><small className="muted">{p.price ? money(p.price) : p.highlight}</small></span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <Link className="link" to="/catalogo/ferreteria">Ver todo {c.brand}</Link>
           </div>
-          <div className="planner__actions">
-            <Link to={`/producto/${rec.slug}`} className="btn">Ver la planta</Link>
-            <Link to="/energia" className="btn btn--line">Cotizar alquiler</Link>
-          </div>
-          <p className="planner__note">Valores orientativos. Un técnico confirma la carga antes de instalar.</p>
-        </div>
-    </div>
+        ))}
+      </div>
+    </section>
   )
 }
-
 
 /* ---------------- Por qué ARIA (bento con brillo) ---------------- */
 
@@ -421,22 +373,169 @@ function Bento() {
       </div>
       <div className="bt" data-rv>
         <div className="bti bti--im" onPointerMove={glow}>
-          <img src={img.mt03} alt="" loading="lazy" />
-          <div><h3>Garantía real</h3><p>Hasta 2 años de respaldo en vehículos y equipos, escrita en tu factura.</p></div>
+          <img src={showroom} alt="Nissan Sentra en la sala de exhibición" loading="lazy" />
+          <div><h3>Ven a verlo en persona</h3><p>Vehículos en exhibición, listos para prueba y entrega con papeles al día.</p></div>
         </div>
         <div className="bti" onPointerMove={glow}><span className="ib"><Icon name="shield" size={24} /></span><h3>Póliza incluida</h3><p>Todas las motos Vento salen aseguradas.</p></div>
-        <div className="bti bti--gr" onPointerMove={glow}><b className="display">24 h</b><p>Para responder tu cotización</p></div>
+        <div className="bti bti--gr" onPointerMove={glow}><b className="display">3 años</b><p>De garantía en pickups ZX Auto, o 100.000 km</p></div>
         <div className="bti" onPointerMove={glow}><span className="ib"><Icon name="truck" size={24} /></span><h3>Entrega coordinada</h3><p>A todo el país, con seguimiento.</p></div>
         <div className="bti" onPointerMove={glow}><span className="ib"><Icon name="card" size={24} /></span><h3>Paga como quieras</h3><p>Zelle, pago móvil, transferencia o efectivo.</p></div>
-        <div className="bti bti--wd" onPointerMove={glow}><span className="ib"><Icon name="wrench" size={24} /></span><h3>Servicio técnico propio</h3><p>Mantenimiento, diagnóstico y repuestos originales para tu moto, tu vehículo o tu planta.</p></div>
+        <div className="bti bti--wd" onPointerMove={glow}><span className="ib"><Icon name="bolt" size={24} /></span><h3>Energía sin cortes</h3><p>Plantas Hyundai GD Power de 25 a 1000 kVA, Cummins residenciales y energía solar Greenenergy con instalación.</p></div>
         <div className="bti bti--wd" onPointerMove={glow}><span className="ib"><Icon name="users" size={24} /></span><h3>Un asesor que te conoce</h3><p>Te atiende la misma persona por WhatsApp, por teléfono y en la tienda.</p></div>
       </div>
     </section>
   )
 }
 
+/* ---------------- Herramientas: planta y cuotas ---------------- */
 
-/* ---------------- Cómo funciona (línea que se llena) ---------------- */
+const LOADS = [
+  { id: 'casa', label: 'Casa: luces, nevera y TV', w: 1500 },
+  { id: 'bomba', label: 'Bomba de agua', w: 1100 },
+  { id: 'aire1', label: 'Un aire acondicionado', w: 1800 },
+  { id: 'aire3', label: 'Tres o más aires', w: 6000 },
+  { id: 'local', label: 'Local comercial', w: 12000 },
+  { id: 'edificio', label: 'Edificio o conjunto', w: 40000 },
+  { id: 'industria', label: 'Industria o galpón', w: 70000 },
+]
+const GENS: { max: number; slug: string }[] = [
+  { max: 11000, slug: 'cummins-generador-residencial-con-transferencia-automatica' },
+  { max: 20000, slug: 'hyundai-gd-power-generador-25-kva-monofasico' },
+  { max: 26000, slug: 'hyundai-gd-power-generador-33-kva-trifasico' },
+  { max: 40000, slug: 'hyundai-gd-power-generador-50-kva' },
+  { max: 60000, slug: 'hyundai-gd-power-generador-75-kva' },
+  { max: 80000, slug: 'hyundai-gd-power-generador-100-kva' },
+  { max: Infinity, slug: 'hyundai-gd-power-generador-1000-kva' },
+]
+
+function PowerPlanner() {
+  const { bySlug } = useStore()
+  const [on, setOn] = useState<Set<string>>(() => new Set(['casa', 'bomba', 'aire1']))
+  const watts = LOADS.reduce((s, l) => (on.has(l.id) ? s + l.w : s), 0)
+  const need = watts * 1.25
+  const rec = GENS.map((g) => (need <= g.max ? bySlug.get(g.slug) : undefined)).find(Boolean)
+  const toggle = (id: string) =>
+    setOn((prev) => {
+      const next = new Set(prev)
+      if (next.has(id)) next.delete(id)
+      else next.add(id)
+      return next
+    })
+  return (
+    <div className="planner">
+      <div className="planner__q">
+        <h3 className="tool__title">¿Qué planta necesitas?</h3>
+        <p className="sec__lead">Marca lo que quieres mantener encendido durante un corte y te decimos qué equipo te sirve.</p>
+        <div className="planner__loads" role="group" aria-label="Equipos a conectar">
+          {LOADS.map((l) => (
+            <button key={l.id} className="seg__opt" aria-pressed={on.has(l.id)} onClick={() => toggle(l.id)}>{l.label}</button>
+          ))}
+        </div>
+      </div>
+      <div className="planner__a" aria-live="polite">
+        <p className="planner__watts num"><span>{(watts / 1000).toLocaleString('es-VE', { maximumFractionDigits: 1 })}</span> kW</p>
+        <p className="muted">Consumo estimado, más 25 % de margen para el arranque.</p>
+        <hr className="rule" />
+        {rec ? (
+          <>
+            <div className="planner__rec">
+              <ProductShot product={rec} />
+              <div>
+                <p className="muted">Te recomendamos</p>
+                <h3 className="planner__name">{rec.brand} {rec.name}</h3>
+                <p className="muted">{rec.highlight}</p>
+              </div>
+            </div>
+            <div className="planner__actions">
+              <Link to={`/producto/${rec.slug}`} className="btn">Ver la planta</Link>
+              <Link to="/energia" className="btn btn--line">Cotizar con instalación</Link>
+            </div>
+          </>
+        ) : (
+          <p className="muted">Marca al menos un equipo.</p>
+        )}
+        <p className="planner__note">Valores orientativos. Un técnico confirma la carga antes de instalar.</p>
+      </div>
+    </div>
+  )
+}
+
+const TERMS = [6, 12, 24, 36]
+
+function FinanceHome() {
+  const { products } = useStore()
+  const options = useMemo(() => products.filter((p) => ['Motos', 'Cuatrimotos y UTV', 'Vehículos'].includes(p.category)), [products])
+  const [id, setId] = useState(() => options.find((p) => p.slug === 'zx-auto-terralord')?.id ?? options[0]?.id)
+  const p = options.find((x) => x.id === id) ?? options[0]
+  const [value, setValue] = useState(p?.price ?? 15000)
+  const [down, setDown] = useState(30)
+  const [months, setMonths] = useState(12)
+  if (!p) return null
+  const fee = (value * (1 - down / 100)) / months
+  return (
+    <div className="fin">
+      <div className="fin__q">
+        <h3 className="tool__title">Estrena hoy, paga en cuotas.</h3>
+        <p className="sec__lead">Elige tu moto o vehículo, indica su valor, mueve la inicial y el plazo, y mira tu cuota al instante.</p>
+        <label className="field">
+          <span className="field__label">Quiero financiar</span>
+          <select className="input" value={p.id} onChange={(e) => { const n = options.find((x) => x.id === +e.target.value); setId(+e.target.value); if (n?.price) setValue(n.price) }}>
+            {options.map((f) => <option key={f.id} value={f.id}>{f.brand} {f.name}</option>)}
+          </select>
+        </label>
+        <label className="field">
+          <span className="finance__row"><span className="field__label">Valor del vehículo</span><strong className="num">{money(value)}</strong></span>
+          <input type="range" min={1000} max={60000} step={500} value={value} onChange={(e) => setValue(+e.target.value)} />
+          <span className="field__hint">{p.price ? 'Precio publicado.' : 'Ajústalo con el precio que te dio tu asesor.'}</span>
+        </label>
+        <label className="field">
+          <span className="finance__row"><span className="field__label">Inicial</span><strong className="num">{down} % ({money((value * down) / 100)})</strong></span>
+          <input type="range" min={20} max={70} step={5} value={down} onChange={(e) => setDown(+e.target.value)} />
+        </label>
+        <div className="field">
+          <span className="field__label">Plazo</span>
+          <div className="seg" role="group" aria-label="Plazo en meses">
+            {TERMS.map((t) => <button key={t} className="seg__opt" aria-pressed={months === t} onClick={() => setMonths(t)}>{t} meses</button>)}
+          </div>
+        </div>
+      </div>
+      <div className="fin__a" aria-live="polite">
+        <ProductShot product={p} className="fin__shot" key={p.id} />
+        <p className="muted">Tu cuota mensual</p>
+        <p className="fin__fee num display">{money(fee)}</p>
+        <p className="muted">durante {months} meses, después de una inicial de {money((value * down) / 100)}.</p>
+        <div className="planner__actions">
+          <Link to={`/producto/${p.slug}`} className="btn">Ver {p.brand}</Link>
+          <Link to="/contacto" className="btn btn--line">Solicitar crédito</Link>
+        </div>
+        <p className="planner__note">Simulación sin intereses, sujeta a aprobación.</p>
+      </div>
+    </div>
+  )
+}
+
+function Tools() {
+  const [tab, setTab] = useState<'planta' | 'cuotas'>('planta')
+  return (
+    <section className="sec wrap">
+      <div className="tools" data-rv>
+        <div className="tools__head">
+          <div style={{ display: 'grid', gap: 12 }}>
+            <span className="tag">Herramientas</span>
+            <h2 className="sec__title">Decide con números, no con dudas.</h2>
+          </div>
+          <div className="seg tools__tabs" role="tablist" aria-label="Herramienta">
+            <button role="tab" className="seg__opt" aria-selected={tab === 'planta'} aria-pressed={tab === 'planta'} onClick={() => setTab('planta')}><Icon name="bolt" size={16} /> Calcular mi planta</button>
+            <button role="tab" className="seg__opt" aria-selected={tab === 'cuotas'} aria-pressed={tab === 'cuotas'} onClick={() => setTab('cuotas')}><Icon name="card" size={16} /> Simular cuotas</button>
+          </div>
+        </div>
+        <div className="tools__body" key={tab} role="tabpanel">{tab === 'planta' ? <PowerPlanner /> : <FinanceHome />}</div>
+      </div>
+    </section>
+  )
+}
+
+/* ---------------- Cómo funciona ---------------- */
 
 function HowItWorks() {
   const fill = useRef<HTMLDivElement>(null)
@@ -466,44 +565,44 @@ function HowItWorks() {
   )
 }
 
+/* ---------------- Marcas ---------------- */
 
-/* ---------------- Testimonios que rotan ---------------- */
-
-function Voices() {
-  const [n, setN] = useState(0)
-  const [hold, setHold] = useState(false)
-  useEffect(() => {
-    if (hold || reducedMotion()) return
-    const t = window.setTimeout(() => setN((x) => (x + 1) % TESTIMONIALS.length), 6500)
-    return () => window.clearTimeout(t)
-  }, [n, hold])
-  const t = TESTIMONIALS[n]
+function BrandWall() {
+  const { products } = useStore()
+  const counts = useMemo(() => {
+    const m = new Map<string, number>()
+    for (const p of products) m.set(p.brand, (m.get(p.brand) ?? 0) + 1)
+    return [...m.entries()].sort((a, b) => b[1] - a[1])
+  }, [products])
   return (
-    <section className="sec wrap tq" onPointerEnter={() => setHold(true)} onPointerLeave={() => setHold(false)}>
-      <span className="tag" data-rv>Clientes</span>
-      <figure className="tq__fig" key={n} aria-live="polite">
-        <blockquote>“{t.quote}”</blockquote>
-        <figcaption><b>{t.name}</b><span className="muted">{t.role}</span></figcaption>
-      </figure>
-      <div className="dots dots--c" role="tablist" aria-label="Testimonios">
-        {TESTIMONIALS.map((x, k) => (
-          <button key={x.name} role="tab" aria-selected={k === n} aria-label={x.name} className="dot dot--static" data-on={k === n ? '' : undefined} onClick={() => setN(k)} />
-        ))}
+    <section className="sec wrap">
+      <div className="center-head" data-rv>
+        <span className="tag">Marcas</span>
+        <h2 className="sec__title">Las marcas que vendemos.</h2>
       </div>
+      <ul className="bw" data-rv>
+        {counts.map(([b, n]) => (
+          <li key={b}>
+            <Link to={`/catalogo?marca=${encodeURIComponent(b)}`} onPointerMove={glow}>
+              <strong>{b}</strong>
+              <span className="muted">{n} {n === 1 ? 'producto' : 'productos'}</span>
+            </Link>
+          </li>
+        ))}
+      </ul>
     </section>
   )
 }
 
-
-/* ---------------- Aliados (tarjeta verde) ---------------- */
+/* ---------------- Aliados ---------------- */
 
 function AlliesCta() {
   return (
     <section className="sec wrap">
       <div className="alc" data-rv onPointerMove={glow}>
         <div className="alc__txt">
-          <h2 className="sec__title">¿Tienes un negocio o un taller?</h2>
-          <p>Únete como aliado: precios por volumen, crédito para empresas y un asesor dedicado.</p>
+          <h2 className="sec__title">¿Tienes un negocio, un taller o una obra?</h2>
+          <p>Únete como aliado: precios por volumen en ferretería y repuestos, crédito para empresas y un asesor dedicado.</p>
           <Magnetic><Link className="btn btn--white btn--lg" to="/aliados">Postúlate aquí</Link></Magnetic>
         </div>
         <div className="alg">
@@ -517,11 +616,10 @@ function AlliesCta() {
   )
 }
 
-
-
-/* ---------------- Noticias + visita + FAQ ---------------- */
+/* ---------------- Visita y preguntas ---------------- */
 
 function Visit() {
+  const { site } = useStore()
   return (
     <section className="sec wrap">
       <div className="visit" data-rv>
@@ -529,9 +627,9 @@ function Visit() {
           <h2 className="sec__title">Ven a verlo en persona.</h2>
           <p className="sec__lead">Agenda una cita y te tenemos el producto listo para que lo pruebes.</p>
           <ul className="visit__info">
-            <li><Icon name="pin" /> {SITE.city}</li>
-            <li><Icon name="clock" /> {SITE.hours}</li>
-            <li><Icon name="phone" /> {SITE.phone}</li>
+            <li><Icon name="pin" /> {site.city}</li>
+            <li><Icon name="clock" /> {site.hours}</li>
+            <li><Icon name="phone" /> {site.phone}</li>
           </ul>
           <table className="spec visit__cov">
             <caption className="vh">Tiempos de entrega</caption>
@@ -542,39 +640,14 @@ function Visit() {
               <tr><th scope="row">Resto de Venezuela</th><td>3 a 5 días</td></tr>
             </tbody>
           </table>
-          <div className="hero__cta">
+          <div className="hs__cta" style={{ justifyContent: 'flex-start', opacity: 1, animation: 'none', marginTop: 0 }}>
             <Link to="/contacto" className="btn">Agendar cita</Link>
-            <a className="btn btn--line" href={`https://wa.me/${SITE.whatsapp}`} target="_blank" rel="noreferrer">
-              <Icon name="chat" size={18} /> WhatsApp
-            </a>
+            <a className="btn btn--line" href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noreferrer"><Icon name="chat" size={18} /> WhatsApp</a>
           </div>
         </div>
-        <MapArt />
+        <img className="visit__photo" src={showroom} alt="Sala de exhibición con un Nissan Sentra" loading="lazy" />
       </div>
     </section>
-  )
-}
-
-function MapArt() {
-  return (
-    <svg className="visit__map" viewBox="0 0 560 420" role="img" aria-label="Mapa ilustrativo de Lechería">
-      <rect width="560" height="420" rx="24" fill="#fff" />
-      <path d="M0 300c90-30 160 10 250-10s170-70 310-40v170H0z" fill="#f2f3f4" />
-      <g fill="none" stroke="#e4e5e7" strokeWidth="14" strokeLinecap="round">
-        <path d="M-10 120 570 70" />
-        <path d="M150-10 200 430" />
-        <path d="M390-10 350 300" />
-        <path d="M0 220 560 190" />
-      </g>
-      <g fill="none" stroke="#c9cbcf" strokeWidth="1">
-        <path d="M-10 120 570 70" />
-        <path d="M150-10 200 430" />
-      </g>
-      <text x="40" y="370" fill="#5e6166" fontSize="14" fontFamily="inherit">Mar Caribe</text>
-      <circle cx="280" cy="150" r="34" fill="#1d1d1f" opacity=".08" />
-      <circle cx="280" cy="150" r="12" fill="#1d1d1f" stroke="#fff" strokeWidth="4" />
-      <text x="304" y="140" fill="#1d1d1f" fontSize="16" fontWeight="600" fontFamily="inherit">ARIA</text>
-    </svg>
   )
 }
 
@@ -585,10 +658,7 @@ function Faq() {
       <div>
         {FAQ.map((f) => (
           <details key={f.q} className="faq">
-            <summary>
-              {f.q}
-              <Icon name="plus" />
-            </summary>
+            <summary>{f.q}<Icon name="plus" /></summary>
             <p>{f.a}</p>
           </details>
         ))}
@@ -597,70 +667,13 @@ function Faq() {
   )
 }
 
-
-/* ---------------- Financiación ---------------- */
-
-const FINANCEABLE = PRODUCTS.filter((p) => p.price >= 1000 && (p.category === 'Motos' || p.category === 'Vehículos'))
-const TERMS = [6, 12, 24, 36]
-
-function FinanceHome() {
-  const [id, setId] = useState(FINANCEABLE[0].id)
-  const [down, setDown] = useState(30)
-  const [months, setMonths] = useState(12)
-  const p = productById.get(id)!
-  const fee = (p.price * (1 - down / 100)) / months
-
-  return (
-    <div className="fin">
-        <div className="fin__q">
-          <h3 className="tool__title">Estrena hoy, paga en cuotas.</h3>
-          <p className="sec__lead">Elige tu moto o vehículo, mueve la inicial y el plazo, y mira tu cuota al instante. Sin papeleo para simular.</p>
-          <label className="field">
-            <span className="field__label">Quiero financiar</span>
-            <select className="input" value={id} onChange={(e) => setId(+e.target.value)}>
-              {FINANCEABLE.map((f) => (
-                <option key={f.id} value={f.id}>{f.name} ({money(f.price)})</option>
-              ))}
-            </select>
-          </label>
-          <label className="field">
-            <span className="finance__row"><span className="field__label">Inicial</span><strong className="num">{down} % ({money((p.price * down) / 100)})</strong></span>
-            <input type="range" min={20} max={70} step={5} value={down} onChange={(e) => setDown(+e.target.value)} />
-          </label>
-          <div className="field">
-            <span className="field__label">Plazo</span>
-            <div className="seg" role="group" aria-label="Plazo en meses">
-              {TERMS.map((t) => (
-                <button key={t} className="seg__opt" aria-pressed={months === t} onClick={() => setMonths(t)}>{t} meses</button>
-              ))}
-            </div>
-          </div>
-        </div>
-        <div className="fin__a" aria-live="polite">
-          <ProductShot product={p} className="fin__shot" key={p.id} />
-          <p className="muted">Tu cuota mensual</p>
-          <p className="fin__fee num display">{money(fee)}</p>
-          <p className="muted">durante {months} meses, después de una inicial de {money((p.price * down) / 100)}.</p>
-          <div className="planner__actions">
-            <Link to={`/producto/${p.slug}`} className="btn">Ver {p.brand}</Link>
-            <Link to="/contacto" className="btn btn--line">Solicitar crédito</Link>
-          </div>
-          <p className="planner__note">Simulación sin intereses, sujeta a aprobación.</p>
-        </div>
-    </div>
-  )
-}
-
-
-/* ---------------- Cierre ---------------- */
-
 function Closing() {
   return (
     <section className="closing wrap">
-      <h2 className="closing__title display">Tu próxima moto ya está en Lechería.</h2>
+      <h2 className="closing__title display" data-rv>Tu próxima moto ya está en Lechería.</h2>
       <div className="closing__row">
         <p className="sec__lead">Ven a verla, pruébala y llévatela con factura y garantía. O pídela desde aquí y te la llevamos.</p>
-        <div className="hero__cta">
+        <div className="hs__cta" style={{ opacity: 1, animation: 'none' }}>
           <Link to="/catalogo/motos" className="btn">Ver motos</Link>
           <Link to="/contacto" className="btn btn--line">Agendar visita</Link>
         </div>
@@ -669,25 +682,26 @@ function Closing() {
   )
 }
 
-
 /* ---------------- Página ---------------- */
 
 export default function Home() {
+  const refs = (refsInfo as { count: number }).count
   return (
     <>
       <HeroStudio />
       <Marquee />
       <Sala />
       <section className="sec wrap lit-wrap">
-        <LitText text="Somos ARIA. Seleccionamos motos, vehículos, plantas eléctricas y energía solar para que muevas tu vida e ilumines tu negocio, con garantía real y una atención que te conoce por tu nombre." />
+        <LitText text="Somos ARIA. Reunimos motos, cuatrimotos, vehículos, plantas eléctricas, energía solar y ferretería de marcas reconocidas para que muevas tu vida e ilumines tu negocio, con garantía real y una atención que te conoce por tu nombre." />
       </section>
-      <Counters />
+      <Counters refs={refs} />
       <Categories />
       <Featured />
+      <Hardware refs={refs} />
       <Bento />
       <Tools />
       <HowItWorks />
-      <Voices />
+      <BrandWall />
       <AlliesCta />
       <Visit />
       <Faq />
@@ -695,3 +709,4 @@ export default function Home() {
     </>
   )
 }
+

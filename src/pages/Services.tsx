@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Icon, type IconName } from '../components/Icon'
 import { PageHead } from '../components/PageHead'
-import { img } from '../data/images'
+import interior from '../assets/photos/sentra-interior.jpg'
 import { SERVICES } from '../data/site'
 import './pages.css'
 
@@ -10,7 +10,7 @@ const DETAIL: Record<string, string> = {
   'Póliza y garantía': 'Las motos Vento salen con póliza de Seguros Caracas. Todos los productos tienen garantía de fábrica y nosotros hacemos el trámite por ti.',
   'Entrega coordinada': 'Entregamos en Lechería, Barcelona y Puerto La Cruz el mismo día o el siguiente. Al resto del país despachamos por transporte con seguimiento.',
   'Servicio técnico': 'Taller propio para motos y plantas eléctricas: mantenimiento preventivo, diagnóstico y repuestos originales de las marcas que vendemos.',
-  'Alquiler de plantas': 'Plantas de 2,5 a 30 kVA por día, semana o mes, con transporte, combustible inicial y soporte durante el alquiler.',
+  'Alquiler de plantas': 'Plantas Hyundai GD Power de 25 a 1000 kVA por días, semanas o meses, con transporte, instalación y soporte durante el alquiler.',
   Asesoría: 'Te ayudamos a escoger la moto, el vehículo o la planta según tu uso y presupuesto, por WhatsApp, por teléfono o en la tienda.',
 }
 
@@ -30,7 +30,7 @@ export default function Services() {
         </ul>
       </section>
       <section className="sec wrap">
-        <img className="photo-band" src={img.worker} alt="Asesor de ferretería de ARIA" loading="lazy" />
+        <img className="photo-band" src={interior} alt="Interior de un Nissan Sentra en la sala de ARIA" loading="lazy" />
         <div className="two" style={{ marginTop: 40 }}>
           <h2 className="sec__title">¿No sabes qué necesitas?</h2>
           <div style={{ display: 'grid', gap: 18, justifyItems: 'start' }}>

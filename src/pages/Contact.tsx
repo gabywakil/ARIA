@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import { Icon } from '../components/Icon'
 import { PageHead } from '../components/PageHead'
-import { SITE } from '../data/site'
+import { useStore } from '../state/store'
 import './pages.css'
 
 const TOPICS = ['Comprar un producto', 'Agendar una visita', 'Alquiler de plantas', 'Servicio técnico', 'Otro']
 
 export default function Contact() {
+  const { site: SITE } = useStore()
   const [topic, setTopic] = useState(TOPICS[0])
   const [name, setName] = useState('')
   const [phone, setPhone] = useState('')

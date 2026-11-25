@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Icon } from '../components/Icon'
 import { PageHead } from '../components/PageHead'
 import { CATEGORIES } from '../data/products'
+import { useStore } from '../state/store'
 import './pages.css'
 
 const BENEFITS = [
@@ -36,6 +37,7 @@ export default function Allies() {
   const [touched, setTouched] = useState<ReadonlySet<string>>(() => new Set())
   const blur = (k: string) => () => setTouched((t) => new Set(t).add(k))
   const [done, setDone] = useState(false)
+  const { addAlly } = useStore()
   const errors = check(f, interests)
   const err = (k: keyof typeof errors) => (tried || touched.has(k) ? errors[k] : undefined)
   const set = <K extends keyof F>(k: K, v: F[K]) => setF((x) => ({ ...x, [k]: v }))
@@ -79,7 +81,10 @@ export default function Allies() {
                 onSubmit={(e) => {
                   e.preventDefault()
                   setTried(true)
-                  if (!Object.keys(errors).length) setDone(true)
+                  if (Object.keys(errors).length) return
+                  // La solicitud llega al panel admin, sección Aliados
+                  addAlly({ company: f.company, rif: f.rif, type: f.type, contact: f.contact, email: f.email, phone: f.phone, city: f.city, interests: [...interests], message: f.message })
+                  setDone(true)
                 }}
               >
                 <h2 className="pdp__h">Postúlate como aliado</h2>

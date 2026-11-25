@@ -1,36 +1,23 @@
 import { Link } from 'react-router-dom'
+import showroom from '../assets/photos/showroom-sentra-2.jpg'
 import { PageHead } from '../components/PageHead'
-import { img } from '../data/images'
-import { STATS } from '../data/site'
+import { CATEGORIES } from '../data/products'
+import { BRANDS } from '../data/site'
+import { useStore } from '../state/store'
 import './pages.css'
 
-// Historia, equipo y fechas son de ejemplo: se reemplazan con la información real de ARIA.
-const TIMELINE = [
-  { y: '2014', t: 'Abrimos la primera tienda en Lechería con motos HJM y Aichi.' },
-  { y: '2017', t: 'Somos distribuidores de motos Vento con póliza incluida.' },
-  { y: '2019', t: 'Sumamos plantas eléctricas Cummins y el servicio de alquiler.' },
-  { y: '2022', t: 'Llega la línea solar Greenenergy y la ferretería.' },
-  { y: '2024', t: 'Vendemos vehículos nuevos de Chevrolet, Toyota y Kia.' },
-  { y: '2026', t: 'Abrimos la tienda en línea con factura y pago desde el celular.' },
-]
-const TEAM = [
-  { n: 'Andrea Rivas', r: 'Dirección general' },
-  { n: 'Luis Pereira', r: 'Ventas de motos y vehículos' },
-  { n: 'María González', r: 'Energía y alquileres' },
-  { n: 'José Tovar', r: 'Servicio técnico' },
-]
-
 export default function About() {
+  const { products } = useStore()
   return (
     <>
-      <PageHead crumb="Nosotros" title="Somos ARIA Inventory & Mobility." lead="Una comercializadora de Lechería que vende movilidad y energía como nos gustaría que nos vendieran a nosotros: con precio claro, garantía y seguimiento." />
+      <PageHead crumb="Nosotros" title="Somos ARIA Inventory & Mobility." lead="Una comercializadora de Lechería que reúne movilidad, energía y ferretería de marcas reconocidas, con precio claro, garantía y seguimiento después de la venta." />
       <section className="sec wrap">
-        <img className="photo-band" src={img.z800} alt="Moto Kawasaki Z800 en exhibición" />
+        <img className="photo-band" src={showroom} alt="Nissan Sentra en la sala de exhibición de ARIA" />
         <div className="two" style={{ marginTop: 48 }}>
-          <h2 className="sec__title">Empezamos con cinco motos y una promesa.</h2>
+          <h2 className="sec__title">Todo lo que mueve tu día, en un solo lugar.</h2>
           <div style={{ display: 'grid', gap: 16 }}>
-            <p className="sec__lead">En 2014 abrimos un local pequeño en Lechería. La promesa era sencilla: decir el precio completo desde el principio y responder después de la venta.</p>
-            <p className="muted">Hoy distribuimos doce marcas de motos, vehículos, plantas eléctricas, energía solar y ferretería, y atendemos a personas, talleres, obras y comercios de todo el oriente del país. (Texto de ejemplo.)</p>
+            <p className="sec__lead">Vendemos motos, cuatrimotos, vehículos, plantas eléctricas, energía solar y ferretería, para personas, talleres, obras, comercios e industria.</p>
+            <p className="muted">Trabajamos con {BRANDS.length} marcas y más de {products.length} productos publicados, con atención directa por WhatsApp, en la tienda y desde esta página, donde puedes cotizar, facturar y pagar.</p>
           </div>
         </div>
       </section>
@@ -42,34 +29,20 @@ export default function About() {
         </div>
       </section>
       <section className="sec wrap">
-        <div className="two">
-          <h2 className="sec__title">Nuestra trayectoria.</h2>
-          <ol className="tl">
-            {TIMELINE.map((t) => (
-              <li key={t.y}><strong className="num">{t.y}</strong><span className="muted">{t.t}</span></li>
-            ))}
-          </ol>
-        </div>
-      </section>
-      <section className="sec wrap">
-        <div className="trio" style={{ gridTemplateColumns: 'repeat(4, 1fr)' }}>
-          {STATS.map((s) => (
-            <div key={s.label}><p className="stats__v display num" style={{ fontSize: 'var(--fs-3xl)' }}>{s.value}</p><p>{s.label}</p></div>
-          ))}
-        </div>
-      </section>
-      <section className="sec wrap">
-        <div className="sec__head"><h2 className="sec__title">El equipo que te atiende.</h2></div>
-        <ul className="team">
-          {TEAM.map((t) => (
-            <li key={t.n}>
-              <div className="team__ph" aria-hidden="true">{t.n.split(' ').map((w) => w[0]).join('')}</div>
-              <strong>{t.n}</strong>
-              <span className="muted">{t.r}</span>
+        <div className="sec__head"><h2 className="sec__title">Lo que vendemos.</h2></div>
+        <ul className="list-rows">
+          {CATEGORIES.map((c) => (
+            <li key={c.slug} style={{ gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1.4fr) auto' }}>
+              <h3>{c.name}</h3>
+              <p>{c.blurb}</p>
+              <Link className="link" to={`/catalogo/${c.slug}`}>{products.filter((p) => p.category === c.name).length} productos</Link>
             </li>
           ))}
         </ul>
-        <div style={{ marginTop: 48 }}><Link className="btn" to="/contacto">Agendar una visita</Link></div>
+        <div style={{ marginTop: 48, display: 'flex', gap: 10, flexWrap: 'wrap' }}>
+          <Link className="btn" to="/contacto">Agendar una visita</Link>
+          <Link className="btn btn--line" to="/aliados">Ser aliado</Link>
+        </div>
       </section>
     </>
   )

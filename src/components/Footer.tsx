@@ -42,7 +42,7 @@ export function Footer() {
       </div>
       <div className="wrap ftr__legal">
         <span>© {year} ARIA Inventory & Mobility. Precios en dólares, IVA 16 % aparte.</span>
-        <span>Diseño y desarrollo: GW Studios</span>
+        <span><Link to="/admin" className="link-quiet">Administración</Link> · Diseño y desarrollo: GW Studios</span>
       </div>
     </footer>
   )

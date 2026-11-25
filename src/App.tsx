@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { CartSheet } from './components/CartSheet'
 import { Footer } from './components/Footer'
+import { RevealOnScroll, ScrollProgress } from './components/fx'
 import { Header } from './components/Header'
 import { ScrollToTop } from './components/ScrollToTop'
 import { CartProvider } from './state/cart'
@@ -28,6 +29,8 @@ export function App() {
     <ToastProvider>
       <CartProvider>
         <ScrollToTop />
+        <ScrollProgress />
+        <RevealOnScroll />
         <a className="skip" href="#contenido">Saltar al contenido</a>
         <Header />
         <main id="contenido">

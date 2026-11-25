@@ -22,7 +22,7 @@
 .pdp__media .shot { aspect-ratio: 1; border-radius: var(--r-lg); }
 .pdp__info { display: grid; gap: 20px; }
 .pdp__title { font-size: var(--fs-3xl); }
-.pdp__price { font-size: var(--fs-4xl); font-stretch: var(--narrow); font-weight: 600; letter-spacing: -0.035em; line-height: 1; }
+.pdp__price { font-size: var(--fs-4xl); font-weight: var(--dw); letter-spacing: -0.035em; line-height: 1; }
 .pdp__tax { font-size: var(--fs-sm); color: var(--ink-2); margin-top: 6px; }
 .pdp__buy { display: grid; grid-template-columns: auto 1fr 1fr; gap: 8px; align-items: center; }
 .stepper { display: inline-flex; align-items: center; border: 1px solid var(--line-strong); border-radius: var(--r-pill); height: 48px; }
@@ -32,7 +32,7 @@
 .pdp__wa { justify-self: start; }
 .pdp__h { font-size: var(--fs-lg); font-weight: 600; margin-bottom: 4px; }
 .finance { display: grid; gap: 14px; }
-.finance__fee { font-size: var(--fs-2xl); font-stretch: var(--narrow); font-weight: 600; letter-spacing: -0.02em; }
+.finance__fee { font-size: var(--fs-2xl); font-weight: var(--dw); letter-spacing: -0.02em; }
 @media (max-width: 860px) {
   .pdp { grid-template-columns: 1fr; }
   .pdp__media { position: static; }
@@ -81,7 +81,7 @@
 .doc__top { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; align-items: start; }
 
 .doc__id { text-align: right; font-size: var(--fs-sm); color: var(--ink-2); }
-.doc__id strong { display: block; color: var(--ink); font-size: var(--fs-xl); font-stretch: var(--narrow); letter-spacing: -0.02em; }
+.doc__id strong { display: block; color: var(--ink); font-size: var(--fs-xl);  letter-spacing: -0.02em; }
 .doc__parties { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; font-size: var(--fs-sm); }
 .doc__parties h2 { font-size: var(--fs-sm); color: var(--ink-2); font-weight: 400; margin-bottom: 6px; }
 .doc table { width: 100%; border-collapse: collapse; font-size: var(--fs-sm); font-variant-numeric: tabular-nums; }
@@ -101,19 +101,19 @@
 /* ---------- Páginas de contenido ---------- */
 .list-rows { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
 .list-rows > li { display: grid; grid-template-columns: 56px minmax(0, 1fr) minmax(0, 1.4fr); gap: 24px; padding: 28px 0; border-bottom: 1px solid var(--line); align-items: start; }
-.list-rows h3 { font-size: var(--fs-xl); font-stretch: var(--narrow); font-weight: 600; letter-spacing: -0.02em; line-height: 1.05; }
+.list-rows h3 { font-size: var(--fs-xl); font-weight: var(--dw); letter-spacing: -0.02em; line-height: 1.05; }
 .list-rows p { color: var(--ink-2); }
 .tl { list-style: none; margin: 0; padding: 0; border-left: 1px solid var(--line-strong); margin-left: 4px; }
 .tl li { position: relative; padding: 0 0 32px 28px; }
 .tl li::before { content: ''; position: absolute; left: -5px; top: 8px; width: 9px; height: 9px; border-radius: 50%; background: var(--ink); }
-.tl strong { display: block; font-size: var(--fs-xl); font-stretch: var(--narrow); letter-spacing: -0.02em; }
+.tl strong { display: block; font-size: var(--fs-xl);  letter-spacing: -0.02em; }
 .trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.5rem, 1rem + 2vw, 3rem); }
 .trio > div { border-top: 1px solid var(--ink); padding-top: 18px; display: grid; gap: 8px; align-content: start; }
-.trio h3 { font-size: var(--fs-xl); font-stretch: var(--narrow); font-weight: 600; letter-spacing: -0.02em; }
+.trio h3 { font-size: var(--fs-xl); font-weight: var(--dw); letter-spacing: -0.02em; }
 .trio p { color: var(--ink-2); }
 .team { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
 .team li { display: grid; gap: 4px; }
-.team__ph { aspect-ratio: 4 / 5; border-radius: var(--r-md); border: 1px solid var(--line); display: grid; place-items: center; font-size: var(--fs-4xl); font-stretch: var(--narrow); font-weight: 600; color: #b5b8bc; margin-bottom: 10px; }
+.team__ph { aspect-ratio: 4 / 5; border-radius: var(--r-md); border: 1px solid var(--line); display: grid; place-items: center; font-size: var(--fs-4xl); font-weight: var(--dw); color: #b5b8bc; margin-bottom: 10px; }
 .photo-band { width: 100%; aspect-ratio: 21 / 8; object-fit: cover; border-radius: var(--r-lg); }
 .article { max-width: 720px; padding-block: 24px var(--section); display: grid; gap: 22px; }
 .article p { font-size: var(--fs-lg); line-height: 1.6; }

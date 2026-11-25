@@ -17,12 +17,10 @@
 | `--green-press` | `#066A34` | Botón presionado o en hover |
 
 ## Tipografía
-Una sola familia: **Instrument Sans** (variable, con eje de ancho).
-- **Títulos:** ancho condensado (`wdth` 78), peso 600, interlineado apretado. El ancho condensado recuerda las placas y fichas técnicas del mundo motor y permite titulares enormes en el celular.
-- **Texto:** ancho normal, peso 400, 17 px, interlineado 1,5.
-- **Cifras y precios:** números tabulares (`tabular-nums`) para que las columnas de specs se alineen.
-- Escala: 13 · 15 · 17 · 21 · 28 · 40 · 56 · 80 · 128.
-- Sin etiquetas en mayúsculas sostenidas, sin flechas pegadas al texto de botones.
+Fuente del sistema, como en el prototipo aprobado: SF Pro en iPhone y Mac, Segoe en Windows y Roboto en Android.
+- **Títulos:** peso 700, interletrado apretado (−0,04 a −0,05 em) e interlineado 1,0–1,04.
+- **Texto:** 17 px, interlineado 1,5.
+- **Cifras y precios:** números tabulares.
 
 ## Layout
 **Concepto: la sala de exhibición.** Fondo blanco como el piso de un showroom; los productos recortados se apoyan sobre una línea de horizonte fina, como en un estudio fotográfico. Las fichas técnicas se leen como tablas, no como tarjetas decoradas.
@@ -51,7 +49,13 @@ Una sola familia: **Instrument Sans** (variable, con eje de ancho).
 4. **El movimiento responde a la persona** (seleccionar, abrir, agregar al carrito). No hay animaciones de entrada en cada sección.
 5. **Base de calidad:** contraste AA, foco visible, `prefers-reduced-motion`, móvil desde 360 px.
 
-## Revisión contra el brief
+## Inicio (versión aprobada por el cliente)
+El inicio retoma el prototipo HTML que le gustó al cliente: hero centrado con palabras que entran con desenfoque, escenario con carrusel y píldoras de vidrio con profundidad, cinta de marcas, texto que se ilumina con el scroll, cifras que cuentan, tarjetas apiladas, buscador por presupuesto, riel con inclinación 3D, bento con brillo, pasos con línea que se llena, testimonios que rotan, tarjeta verde de aliados y botones magnéticos. Todo con resortes (`src/lib/spring.ts`) y efectos en `src/components/fx.tsx`.
+
+## Logo
+Se usa el logo original de ARIA en PNG transparente (sin el fondo blanco), a 2x.
+
+## Revisión contra el brief (primera versión, descartada en el inicio)
 - *Primer borrador:* hero centrado con carrusel automático, tarjetas flotantes de vidrio y cifras que cuentan solas. **Lo cambié** porque es el tratamiento por defecto de cualquier tienda y el carrusel automático le quita el control al visitante. Ahora el visitante elige qué ver.
 - *Primer borrador:* etiquetas pequeñas en mayúsculas encima de cada título. **Las quité**: son plantilla y no informan nada.
 - *Primer borrador:* tarjetas idénticas con la misma sombra para todo. **Lo cambié** por tablas y filas con líneas finas; las tarjetas quedan solo para productos.
@@ -66,6 +70,3 @@ Una sola familia: **Instrument Sans** (variable, con eje de ancho).
 - **Materiales:** encabezado, barra del catálogo, hoja del carrito y tarjeta del destacado son capas translúcidas con desenfoque; el borde del encabezado es una sombra difusa que solo aparece al hacer scroll.
 - **Simetría espacial:** el panel del carrito nace del ícono del carrito y vuelve a él; el menú del celular entra y sale por arriba.
 - **Accesibilidad:** con menos movimiento todo pasa a fundidos; con menos transparencia, las capas se vuelven sólidas; con más contraste, los bordes se oscurecen.
-
-## Logo
-Logotipo en vector (`src/components/Logo.tsx`): símbolo verde con la A como un camino, palabra ARIA en la tipografía de la marca condensada y descriptor “Inventory & Mobility”. Reemplaza la imagen PNG con fondo blanco.

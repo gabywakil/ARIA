@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
-import { NAV } from '../data/site'
+import { NAV, NAV_MORE } from '../data/site'
 import { useCart } from '../state/cart'
 import { Icon } from './Icon'
 import { Logo } from './Logo'
+import { Search } from './Search'
 
 export function Header() {
   const { count } = useCart()
   const [open, setOpen] = useState(false)
+  const [search, setSearch] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const { pathname } = useLocation()
 
@@ -43,6 +45,9 @@ export function Header() {
             </NavLink>
           ))}
         </nav>
+        <button className="hdr__cart hdr__search" aria-label="Buscar productos" onClick={() => setSearch(true)}>
+          <Icon name="search" />
+        </button>
         <Link to="/carrito" className="hdr__cart" aria-label={`Carrito, ${count} productos`}>
           <Icon name="cart" />
           <span key={count} className="hdr__count" data-empty={count === 0 ? '' : undefined}>{count}</span>
@@ -60,8 +65,13 @@ export function Header() {
             {n.label}
           </NavLink>
         ))}
-        <NavLink to="/noticias" className="hdr__sheetlink">Noticias</NavLink>
+        <div className="hdr__more">
+          {NAV_MORE.map((n) => (
+            <NavLink key={n.to} to={n.to}>{n.label}</NavLink>
+          ))}
+        </div>
       </nav>
+      <Search open={search} onClose={() => setSearch(false)} />
     </>
   )
 }

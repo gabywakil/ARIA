@@ -15,10 +15,10 @@ export default function Catalog() {
   const { cat } = useParams()
   const { products } = useStore()
   const category = cat ? categoryBySlug.get(cat) : undefined
-  const [query, setQuery] = useState('')
+  const [params] = useSearchParams()
+  const [query, setQuery] = useState(params.get('q') ?? '')
   const [sort, setSort] = useState<Sort>('destacados')
   const [sub, setSub] = useState('Todas')
-  const [params] = useSearchParams()
   const [brand, setBrand] = useState(params.get('marca') ?? 'Todas')
   const [limit, setLimit] = useState(PAGE)
   const q = useDeferredValue(norm(query.trim()))

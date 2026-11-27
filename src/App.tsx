@@ -24,6 +24,11 @@ const Contact = lazy(() => import('./pages/Contact'))
 const Cart = lazy(() => import('./pages/Cart'))
 const Checkout = lazy(() => import('./pages/Checkout'))
 const Receipt = lazy(() => import('./pages/Receipt'))
+const Tracking = lazy(() => import('./pages/Tracking'))
+const Faq = lazy(() => import('./pages/Faq'))
+const HowToBuy = lazy(() => import('./pages/HowToBuy'))
+const Business = lazy(() => import('./pages/Business'))
+const Legal = lazy(() => import('./pages/Legal'))
 const NotFound = lazy(() => import('./pages/NotFound'))
 const Admin = lazy(() => import('./admin/Admin'))
 
@@ -76,6 +81,11 @@ export function App() {
               <Route path="/carrito" element={<Cart />} />
               <Route path="/pago" element={<Checkout />} />
               <Route path="/recibo/:number" element={<Receipt />} />
+              <Route path="/seguimiento" element={<Tracking />} />
+              <Route path="/preguntas" element={<Faq />} />
+              <Route path="/como-comprar" element={<HowToBuy />} />
+              <Route path="/empresas" element={<Business />} />
+              <Route path="/legal/:doc" element={<Legal />} />
               <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>

@@ -10,6 +10,10 @@ export type Invoice = {
   date: string
   kind: 'Factura' | 'Cotización'
   customer: { name: string; doc: string; email: string; phone: string }
+  /** Cómo recibe el pedido el cliente */
+  delivery?: { mode: string; state?: string; city?: string; address?: string; notes?: string }
+  /** Fecha y hora exactas (ISO) para el seguimiento */
+  createdAt?: string
   method: string
   lines: { name: string; qty: number; price: number | null }[]
   subtotal: number

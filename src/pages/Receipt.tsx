@@ -5,15 +5,10 @@ import { money } from '../data/products'
 import { useStore } from '../state/store'
 import { useCart } from '../state/cart'
 import { Flow } from '../components/Flow'
+import { Timeline } from '../components/Timeline'
+import { payInfo } from '../data/site'
 import NotFound from './NotFound'
 import './pages.css'
-
-const payInfo = (city: string): Record<string, string> => ({
-  Zelle: 'Envía el total a pagos@aria.com (dato de ejemplo) y responde el correo con el comprobante.',
-  'Pago móvil': 'Banco de Venezuela, 0414 000 0000, RIF J-00000000-0 (datos de ejemplo). Monto en bolívares a la tasa BCV del día.',
-  Transferencia: 'Te enviamos los datos bancarios al correo. Indica el número del documento en la referencia.',
-  'Efectivo en tienda': `Paga al retirar en ${city}. Agenda tu cita por WhatsApp.`,
-})
 
 export default function Receipt() {
   const { site: SITE } = useStore()
@@ -29,9 +24,19 @@ export default function Receipt() {
   return (
     <div className="wrap receipt">
       <div className="noprint">
-        <Flow step={3} />
-        <h1 className="phead__title">{inv.kind === 'Factura' ? 'Pedido confirmado' : 'Cotización lista'}</h1>
+        <Flow step={6} />
+        <h1 className="phead__title">{inv.kind === 'Factura' ? 'Pedido recibido' : 'Cotización enviada'}</h1>
+        <p className="phead__lead">
+          Tu número es <strong>{inv.number}</strong>. Guárdalo para{' '}
+          <Link className="link" to={`/seguimiento?n=${inv.number}`}>seguir tu pedido</Link> sin crear cuenta.
+        </p>
       </div>
+      {inv.kind === 'Factura' ? (
+        <div className="order-card noprint">
+          <h2 className="pdp__h">Estado</h2>
+          <Timeline inv={inv} />
+        </div>
+      ) : null}
       <div className="notice noprint" role="status">
         <Icon name="mail" />
         <span>Enviamos una copia a <strong>{inv.customer.email}</strong>. Si no la ves en unos minutos, revisa la carpeta de spam.</span>
@@ -51,6 +56,12 @@ export default function Receipt() {
             <h2>Cliente</h2>
             <p><strong>{inv.customer.name}</strong><br />{inv.customer.doc}<br />{inv.customer.email}<br />{inv.customer.phone}</p>
           </div>
+          {inv.delivery ? (
+            <div>
+              <h2>Entrega</h2>
+              <p><strong>{inv.delivery.mode}</strong>{inv.delivery.address ? <><br />{inv.delivery.address}<br />{inv.delivery.city}, {inv.delivery.state}</> : <><br />{SITE.address}</>}{inv.delivery.notes ? <><br />{inv.delivery.notes}</> : null}</p>
+            </div>
+          ) : null}
         </div>
         <table>
           <thead><tr><th>Producto</th><th>Cant.</th><th>Precio</th><th>Total</th></tr></thead>
@@ -79,7 +90,12 @@ export default function Receipt() {
       </article>
 
       <div className="receipt__actions noprint">
-        <button className="btn" onClick={() => window.print()}><Icon name="download" size={18} /> Descargar PDF</button>
+        {inv.kind === 'Factura' ? (
+          <a className="btn" href={`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(`Hola ARIA, envío el comprobante de pago del pedido ${inv.number} por ${money(inv.total)}.`)}`} target="_blank" rel="noreferrer">
+            <Icon name="chat" size={18} /> Enviar comprobante por WhatsApp
+          </a>
+        ) : null}
+        <button className="btn btn--line" onClick={() => window.print()}><Icon name="download" size={18} /> Descargar PDF</button>
         <a className="btn btn--line" href={mail}><Icon name="mail" size={18} /> Reenviar al correo</a>
         <Link className="btn btn--line" to="/catalogo">Seguir comprando</Link>
       </div>

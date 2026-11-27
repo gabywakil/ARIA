@@ -414,3 +414,33 @@
 
 .visit__photo { width: 100%; aspect-ratio: 4 / 5; max-height: 640px; object-fit: cover; border-radius: 28px; }
 @media (max-width: 1024px) { .hw { grid-template-columns: 1fr; } }
+
+/* ---------- Método de compra: promesas, comparación, CTA ---------- */
+.prm { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; padding-bottom: clamp(2rem, 1rem + 3vw, 4rem); }
+.prm > div { display: grid; gap: 6px; align-content: start; padding: 22px; border-radius: 24px; background: #f6f7f8; }
+.prm svg { color: var(--green); margin-bottom: 6px; }
+.prm strong { font-size: var(--fs-lg); letter-spacing: -0.02em; }
+.prm span { font-size: var(--fs-sm); }
+.ct__buy { margin-top: 8px; font-size: var(--fs-sm); font-weight: 700; color: var(--green); }
+.how__cta { display: flex; gap: 12px; flex-wrap: wrap; }
+.cmp { max-width: 980px; margin: clamp(2rem, 1rem + 2vw, 3rem) auto 0; border: 1px solid var(--line); border-radius: 28px; overflow: hidden; }
+.cmp__row { display: grid; grid-template-columns: 0.8fr 1.2fr 1fr; }
+.cmp__row > span { display: flex; gap: 10px; align-items: flex-start; padding: 18px 22px; border-top: 1px solid var(--line); font-size: var(--fs-sm); line-height: 1.45; }
+.cmp__row--head > span { border-top: 0; font-weight: 700; font-size: var(--fs-sm); padding-block: 20px; }
+.cmp__k { font-weight: 600; }
+.cmp__aria { background: rgb(7 128 63 / 0.05); }
+.cmp__row--head .cmp__aria { color: var(--green); }
+.cmp__aria svg { color: var(--green); flex: none; margin-top: 1px; }
+.cmp__row .muted svg { flex: none; margin-top: 1px; }
+.alc__btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn--ghost-white { background: transparent; color: #fff; box-shadow: inset 0 0 0 1.5px rgb(255 255 255 / 0.7); }
+.btn--ghost-white:hover { background: rgb(255 255 255 / 0.12); }
+@media (max-width: 980px) { .prm { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) {
+  .prm { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .prm > div { padding: 16px; }
+  .cmp__row { grid-template-columns: 1fr 1fr; }
+  .cmp__row > .cmp__k { grid-column: 1 / -1; padding-bottom: 0; background: none; }
+  .cmp__row > .cmp__k + span, .cmp__row > .cmp__k + span + span { border-top: 0; }
+  .cmp__row--head > span:first-child { display: none; }
+}

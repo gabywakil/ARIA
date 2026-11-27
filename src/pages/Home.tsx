@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import showroom from '../assets/photos/showroom-sentra.jpg'
 import trunk from '../assets/photos/sentra-maleta.jpg'
 import { CountUp, LitText, Magnetic, Tilt, Words, glow, useScrollProgress } from '../components/fx'
-import { Icon } from '../components/Icon'
+import { Icon, type IconName } from '../components/Icon'
 import { ProductCard, ProductShot } from '../components/ProductCard'
 import { CATEGORIES, imageSrc, money } from '../data/products'
 // Cantidad de referencias del catálogo completo de ferretería (se fija al armar el catálogo)
@@ -83,8 +83,8 @@ function HeroStudio() {
         </h1>
         <p className="hs__lead">{site.heroLead}</p>
         <div className="hs__cta">
-          <Magnetic><Link to="/catalogo" className="btn btn--lg">Explorar catálogo</Link></Magnetic>
-          <Magnetic><Link to="/contacto" className="btn btn--line btn--lg">Agendar una visita</Link></Magnetic>
+          <Magnetic><Link to="/catalogo" className="btn btn--lg">Comprar ahora</Link></Magnetic>
+          <Magnetic><Link to="/como-comprar" className="btn btn--line btn--lg">Cómo comprar</Link></Magnetic>
         </div>
       </div>
 
@@ -267,6 +267,7 @@ function Categories() {
               <div className="ct__txt">
                 <h3>{c.name}</h3>
                 <p>{n} productos</p>
+                <span className="ct__buy">{c.slug === 'plantas' || c.slug === 'vehiculos' ? 'Cotizar' : 'Comprar'} →</span>
               </div>
               <span className="ct__go" aria-hidden="true"><Icon name="arrowRight" size={18} /></span>
               {v ? <img className="ct__img" src={imageSrc(v.image)} alt="" loading="lazy" /> : null}
@@ -577,7 +578,68 @@ function HowItWorks() {
           </li>
         ))}
       </ol>
-      <Magnetic><Link className="btn btn--lg" to="/catalogo">Empieza ahora</Link></Magnetic>
+      <div className="how__cta">
+        <Magnetic><Link className="btn btn--lg" to="/catalogo">Empezar a comprar</Link></Magnetic>
+        <Link className="btn btn--line btn--lg" to="/seguimiento">Seguir mi pedido</Link>
+      </div>
+    </section>
+  )
+}
+
+/* ---------------- Promesas de compra (debajo de las cifras) ---------------- */
+
+const PROMISES: { icon: IconName; t: string; d: string }[] = [
+  { icon: 'truck', t: 'Envíos a todo el país', d: 'Retiro gratis en Lechería, entrega local o encomienda nacional.' },
+  { icon: 'card', t: 'Pago sin riesgos', d: 'No cobramos en la web. Instrucciones verificadas y pedido reservado 48 h.' },
+  { icon: 'shield', t: 'Garantía de fábrica', d: 'En todo el catálogo, con factura a tu nombre.' },
+  { icon: 'chat', t: 'Un asesor real', d: 'Por WhatsApp, antes, durante y después de tu compra.' },
+]
+
+function Promises() {
+  return (
+    <section className="wrap prm" aria-label="Por qué comprar en ARIA">
+      {PROMISES.map((p) => (
+        <div key={p.t} data-rv>
+          <Icon name={p.icon} size={22} />
+          <strong>{p.t}</strong>
+          <span className="muted">{p.d}</span>
+        </div>
+      ))}
+    </section>
+  )
+}
+
+/* ---------------- Comparación: comprar en ARIA o por tu cuenta ---------------- */
+
+const CMP = [
+  { k: 'Precio', a: 'Publicado en la web o cotizado por escrito en 24 horas.', b: 'Cambia en cada conversación.' },
+  { k: 'Pago', a: 'Instrucciones verificadas y tu pedido reservado mientras confirmamos.', b: 'Transfieres a alguien que no conoces.' },
+  { k: 'Factura y garantía', a: 'Factura a tu nombre y garantía de fábrica.', b: 'Sin factura, no hay a quién reclamar.' },
+  { k: 'Seguimiento', a: 'Número de pedido y estado en línea en cada paso.', b: 'Preguntar y esperar respuesta.' },
+  { k: 'Entrega', a: 'Retiro, entrega local o envío nacional coordinado.', b: 'Te toca resolver el traslado.' },
+]
+
+function Compare() {
+  return (
+    <section className="sec wrap">
+      <div className="center-head" data-rv>
+        <span className="tag">Por qué ARIA</span>
+        <h2 className="sec__title">La diferencia entre comprar y arriesgar.</h2>
+      </div>
+      <div className="cmp" data-rv role="table" aria-label="Comprar en ARIA comparado con comprar por tu cuenta">
+        <div className="cmp__row cmp__row--head" role="row">
+          <span role="columnheader" />
+          <span role="columnheader" className="cmp__aria">Comprar en ARIA</span>
+          <span role="columnheader">Comprar por tu cuenta</span>
+        </div>
+        {CMP.map((r) => (
+          <div key={r.k} className="cmp__row" role="row">
+            <span role="rowheader" className="cmp__k">{r.k}</span>
+            <span role="cell" className="cmp__aria"><Icon name="check" size={18} />{r.a}</span>
+            <span role="cell" className="muted"><Icon name="minus" size={18} />{r.b}</span>
+          </div>
+        ))}
+      </div>
     </section>
   )
 }
@@ -618,9 +680,12 @@ function AlliesCta() {
     <section className="sec wrap">
       <div className="alc" data-rv onPointerMove={glow}>
         <div className="alc__txt">
-          <h2 className="sec__title">¿Tienes un negocio, un taller o una obra?</h2>
-          <p>Únete como aliado: precios por volumen en ferretería y repuestos, crédito para empresas y un asesor dedicado.</p>
-          <Magnetic><Link className="btn btn--white btn--lg" to="/aliados">Postúlate aquí</Link></Magnetic>
+          <h2 className="sec__title">¿Compras para una empresa, una flota o una obra?</h2>
+          <p>Te armamos una sola propuesta con precio por volumen, una factura y un asesor dedicado. Si compras seguido, postúlate como aliado.</p>
+          <div className="alc__btns">
+            <Magnetic><Link className="btn btn--white btn--lg" to="/empresas">Pedir propuesta</Link></Magnetic>
+            <Link className="btn btn--ghost-white btn--lg" to="/aliados">Ser aliado</Link>
+          </div>
         </div>
         <div className="alg">
           <div><Icon name="tag" size={22} /> Precios por volumen</div>
@@ -673,12 +738,13 @@ function Faq() {
     <section className="sec wrap faqsec" data-rv>
       <h2 className="sec__title">Preguntas frecuentes.</h2>
       <div>
-        {FAQ.map((f) => (
+        {FAQ.filter((_, i) => [0, 1, 3, 5, 8, 11].includes(i)).map((f) => (
           <details key={f.q} className="faq">
             <summary>{f.q}<Icon name="plus" /></summary>
             <p>{f.a}</p>
           </details>
         ))}
+        <Link className="link" to="/preguntas" style={{ marginTop: 20 }}>Ver todas las preguntas</Link>
       </div>
     </section>
   )
@@ -712,12 +778,14 @@ export default function Home() {
         <LitText text="Somos ARIA. Reunimos motos, cuatrimotos, vehículos, plantas eléctricas, energía solar y ferretería de marcas reconocidas para que muevas tu vida e ilumines tu negocio, con garantía real y una atención que te conoce por tu nombre." />
       </section>
       <Counters refs={refs} />
+      <Promises />
       <Categories />
       <Featured />
       <Hardware refs={refs} />
       <Bento />
       <Tools />
       <HowItWorks />
+      <Compare />
       <BrandWall />
       <AlliesCta />
       <Visit />

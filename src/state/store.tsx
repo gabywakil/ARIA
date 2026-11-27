@@ -6,7 +6,27 @@ import { BASE_PRODUCTS, type Product } from '../data/products'
 import { SITE as SITE_BASE } from '../data/site'
 
 export type SiteContent = typeof SITE_BASE & { heroTitle: string; heroLead: string; announcement: string }
-export type OrderStatus = 'Pendiente' | 'Pagado' | 'Entregado' | 'Cancelado'
+/** Estados de un pedido, en el orden en que avanza */
+export const ORDER_FLOW = ['Recibido', 'Pago confirmado', 'Preparando', 'Listo para entregar', 'Entregado'] as const
+export type OrderStatus = (typeof ORDER_FLOW)[number] | 'Cancelado'
+export const ORDER_STATUSES: OrderStatus[] = [...ORDER_FLOW, 'Cancelado']
+const LEGACY: Record<string, OrderStatus> = { Pendiente: 'Recibido', Pagado: 'Pago confirmado' }
+export const normStatus = (s?: string): OrderStatus => (s ? LEGACY[s] ?? (s as OrderStatus) : 'Recibido')
+
+/** Solicitud de una empresa, flota u obra (página Empresas) */
+export type Lead = {
+  id: string
+  date: string
+  company: string
+  rif: string
+  contact: string
+  email: string
+  phone: string
+  need: string
+  volume: string
+  message: string
+  status: 'Nueva' | 'Contactada' | 'Cerrada'
+}
 export type AllyRequest = {
   id: string
   date: string
@@ -28,11 +48,16 @@ type Data = {
   deleted: number[]
   content: Partial<SiteContent>
   orderStatus: Record<string, OrderStatus>
+  /** Fecha de cada cambio de estado, para la línea de tiempo del seguimiento */
+  statusLog: Record<string, { s: OrderStatus; at: string }[]>
   allies: AllyRequest[]
+  leads: Lead[]
+  /** Notas internas del admin sobre cada cliente (clave: cédula o RIF) */
+  customerNotes: Record<string, string>
 }
 
 const KEY = 'aria:store:v1'
-const EMPTY: Data = { edited: {}, added: [], deleted: [], content: {}, orderStatus: {}, allies: [] }
+const EMPTY: Data = { edited: {}, added: [], deleted: [], content: {}, orderStatus: {}, statusLog: {}, allies: [], leads: [], customerNotes: {} }
 
 function load(): Data {
   try {
@@ -64,7 +89,12 @@ type Ctx = {
   restoreProduct: (id: number) => void
   setContent: (c: Partial<SiteContent>) => void
   setOrderStatus: (number: string, s: OrderStatus) => void
+  /** Estado actual de un pedido (los pedidos nuevos empiezan en Recibido) */
+  statusOf: (number: string) => OrderStatus
   addAlly: (a: Omit<AllyRequest, 'id' | 'date' | 'status'>) => void
+  addLead: (l: Omit<Lead, 'id' | 'date' | 'status'>) => void
+  setLeadStatus: (id: string, s: Lead['status']) => void
+  setCustomerNote: (doc: string, note: string) => void
   setAllyStatus: (id: string, s: AllyRequest['status']) => void
   resetAll: () => void
 }
@@ -100,7 +130,23 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const deleteProduct = useCallback((id: number) => setData((d) => ({ ...d, deleted: [...new Set([...d.deleted, id])] })), [])
   const restoreProduct = useCallback((id: number) => setData((d) => ({ ...d, deleted: d.deleted.filter((x) => x !== id) })), [])
   const setContent = useCallback((c: Partial<SiteContent>) => setData((d) => ({ ...d, content: { ...d.content, ...c } })), [])
-  const setOrderStatus = useCallback((n: string, s: OrderStatus) => setData((d) => ({ ...d, orderStatus: { ...d.orderStatus, [n]: s } })), [])
+  const setOrderStatus = useCallback(
+    (n: string, s: OrderStatus) =>
+      setData((d) => ({
+        ...d,
+        orderStatus: { ...d.orderStatus, [n]: s },
+        statusLog: { ...d.statusLog, [n]: [...(d.statusLog[n] ?? []), { s, at: new Date().toISOString() }] },
+      })),
+    [],
+  )
+  const today = () => new Date().toLocaleDateString('es-VE', { day: '2-digit', month: 'short', year: 'numeric' })
+  const addLead = useCallback(
+    (l: Omit<Lead, 'id' | 'date' | 'status'>) =>
+      setData((d) => ({ ...d, leads: [{ ...l, id: `EM-${Date.now().toString().slice(-6)}`, date: today(), status: 'Nueva' }, ...d.leads] })),
+    [],
+  )
+  const setLeadStatus = useCallback((id: string, s: Lead['status']) => setData((d) => ({ ...d, leads: d.leads.map((l) => (l.id === id ? { ...l, status: s } : l)) })), [])
+  const setCustomerNote = useCallback((doc: string, note: string) => setData((d) => ({ ...d, customerNotes: { ...d.customerNotes, [doc]: note } })), [])
   const addAlly = useCallback(
     (a: Omit<AllyRequest, 'id' | 'date' | 'status'>) =>
       setData((d) => ({
@@ -128,11 +174,15 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       restoreProduct,
       setContent,
       setOrderStatus,
+      statusOf: (n: string) => normStatus(data.orderStatus[n]),
       addAlly,
       setAllyStatus,
+      addLead,
+      setLeadStatus,
+      setCustomerNote,
       resetAll,
     }
-  }, [data, saveProduct, deleteProduct, restoreProduct, setContent, setOrderStatus, addAlly, setAllyStatus, resetAll])
+  }, [data, saveProduct, deleteProduct, restoreProduct, setContent, setOrderStatus, addAlly, setAllyStatus, addLead, setLeadStatus, setCustomerNote, resetAll])
 
   return <StoreContext.Provider value={value}>{children}</StoreContext.Provider>
 }

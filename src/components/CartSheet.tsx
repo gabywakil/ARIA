@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { money } from '../data/products'
 import { SpringValue, VelocityTracker, project, rubberband } from '../lib/spring'
 import { lineName, unitPrice, useCart, type Added } from '../state/cart'
@@ -25,6 +25,11 @@ export function CartSheet() {
   const timer = useRef(0)
   const hovering = useRef(false)
   const mode = useRef<'panel' | 'sheet'>('panel')
+  const { pathname } = useLocation()
+  // En el carrito y en el pago ya no hace falta el aviso
+  useEffect(() => {
+    if (added && (pathname === '/carrito' || pathname === '/pago')) onClose()
+  }, [pathname, added, onClose])
 
 
   // Resortes creados una sola vez. Panel: progreso 0→1. Hoja: desplazamiento en px.

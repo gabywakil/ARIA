@@ -1,10 +1,22 @@
-export function Flow({ step }: { step: 1 | 2 | 3 }) {
-  const steps = ['Carrito', 'Datos y pago', 'Recibo']
+const STEPS = ['Carrito', 'Datos', 'Entrega', 'Pago', 'Revisar', 'Listo'] as const
+
+/** Pasos de la compra. `onPick` permite volver a un paso ya completado. */
+export function Flow({ step, onPick }: { step: number; onPick?: (step: number) => void }) {
   return (
     <ol className="flow" aria-label="Pasos de la compra">
-      {steps.map((s, i) => (
-        <li key={s} aria-current={i + 1 === step ? 'step' : undefined}>{s}</li>
-      ))}
+      {STEPS.map((s, i) => {
+        const n = i + 1
+        const done = n < step
+        return (
+          <li key={s} aria-current={n === step ? 'step' : undefined} data-done={done || undefined}>
+            {done && onPick && n > 1 ? (
+              <button type="button" className="flow__back" onClick={() => onPick(n)}>{s}</button>
+            ) : (
+              s
+            )}
+          </li>
+        )
+      })}
     </ol>
   )
 }

@@ -46,6 +46,11 @@ export default function ProductPage() {
   const variant = p.variants?.find((v) => v.code === code) ?? p.variants?.[0]
   const price = unitPrice(p, variant?.code)
   const related = products.filter((x) => x.category === p.category && x.id !== p.id && (x.sub === p.sub || !p.sub)).slice(0, 4)
+  const buyNow = () => {
+    add(p.id, qty, variant?.code)
+    clearAdded()
+    nav(price !== null ? '/pago' : '/pago?tipo=cotizacion')
+  }
   const wa = `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(`Hola ARIA, me interesa: ${p.brand} ${p.name}${variant ? ` (código ${variant.code})` : ''}.`)}`
 
   return (
@@ -100,13 +105,20 @@ export default function ProductPage() {
                 <button aria-label="Agregar uno" onClick={() => setQty((q) => q + 1)}><Icon name="plus" size={18} /></button>
               </div>
               <button className="btn" onClick={() => add(p.id, qty, variant?.code)}>{price !== null ? 'Agregar al carrito' : 'Agregar a cotización'}</button>
-              <button className="btn btn--line" onClick={() => { add(p.id, qty, variant?.code); clearAdded(); nav('/carrito') }}>{price !== null ? 'Comprar ahora' : 'Cotizar ahora'}</button>
+              <button className="btn btn--line" onClick={buyNow}>{price !== null ? 'Comprar ahora' : 'Cotizar ahora'}</button>
             </div>
+            {typeof p.stock === 'number' ? (
+              <p className={`pdp__stock${p.stock < 1 ? ' pdp__stock--out' : ''}`}>
+                <span aria-hidden="true" />
+                {p.stock < 1 ? 'Agotado por ahora: pídelo y te avisamos cuando llegue' : p.stock <= 3 ? `Quedan pocas unidades (${p.stock})` : 'Disponible para entrega inmediata'}
+              </p>
+            ) : null}
             <a className="link pdp__wa" href={wa} target="_blank" rel="noreferrer"><Icon name="chat" size={18} /> Preguntar por WhatsApp</a>
             <ul className="feature-list" style={{ fontSize: 'var(--fs-sm)' }}>
               {p.specs['Garantía'] ? <li><Icon name="shield" size={18} /> Garantía: {p.specs['Garantía']}</li> : <li><Icon name="shield" size={18} /> Garantía de fábrica</li>}
-              <li><Icon name="doc" size={18} /> Factura o cotización en línea, descargable en PDF</li>
-              <li><Icon name="truck" size={18} /> Entrega coordinada o retiro en Lechería</li>
+              <li><Icon name="truck" size={18} /> Retiro gratis en Lechería o envío a todo el país</li>
+              <li><Icon name="card" size={18} /> Sin cobros en la web: pagas con instrucciones verificadas</li>
+              <li><Icon name="doc" size={18} /> Factura a tu nombre y seguimiento del pedido en línea</li>
             </ul>
             {p.features?.length ? (
               <div>
@@ -132,6 +144,13 @@ export default function ProductPage() {
             {price !== null && price >= 1000 ? <Finance price={price} /> : null}
           </div>
         </div>
+      </div>
+      <div className="pdp__sticky" aria-hidden="false">
+        <div>
+          <strong>{p.name}</strong>
+          <span className="num">{price !== null ? money(price) : 'Precio a consultar'}</span>
+        </div>
+        <button className="btn" onClick={buyNow}>{price !== null ? 'Comprar' : 'Cotizar'}</button>
       </div>
       {related.length ? (
         <section className="sec wrap">

@@ -29,8 +29,18 @@ export function Footer() {
           <Link to="/nosotros">Quiénes somos</Link>
           <Link to="/servicios">Servicios</Link>
           <Link to="/energia">Alquiler de plantas</Link>
+          <Link to="/empresas">Empresas y flotas</Link>
           <Link to="/aliados">Ser aliado</Link>
           <Link to="/noticias">Noticias</Link>
+        </div>
+        <div>
+          <h2 className="ftr__h">Ayuda</h2>
+          <Link to="/como-comprar">Cómo comprar</Link>
+          <Link to="/seguimiento">Seguir mi pedido</Link>
+          <Link to="/preguntas">Preguntas frecuentes</Link>
+          <Link to="/legal/envios">Envíos y garantía</Link>
+          <Link to="/legal/terminos">Términos de compra</Link>
+          <Link to="/legal/privacidad">Privacidad</Link>
         </div>
         <div>
           <h2 className="ftr__h">Contacto</h2>
@@ -38,7 +48,13 @@ export function Footer() {
           <a href={`tel:${SITE.phone.replace(/\s/g, '')}`}>{SITE.phone}</a>
           <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
           <Link to="/contacto">Agendar una cita</Link>
+          <a href={`https://wa.me/${SITE.whatsapp}`} target="_blank" rel="noreferrer">WhatsApp</a>
         </div>
+      </div>
+      <div className="wrap ftr__pay">
+        <span className="muted">Formas de pago</span>
+        {['Zelle', 'Pago móvil', 'Transferencia', 'Efectivo'].map((m) => <span key={m} className="ftr__chip">{m}</span>)}
+        <span className="muted" style={{ marginLeft: 'auto' }}>Envíos a todo el país</span>
       </div>
       <div className="wrap ftr__legal">
         <span>© {year} ARIA Inventory & Mobility. Precios en dólares, IVA 16 % aparte.</span>

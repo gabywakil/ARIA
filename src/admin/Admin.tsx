@@ -7,7 +7,8 @@ import { Icon, type IconName } from '../components/Icon'
 import { Logo } from '../components/Logo'
 import { CATEGORIES, fromPrice, imageSrc, money, priceLabel, type Category, type Product, type Variant } from '../data/products'
 import { useCart, type Invoice } from '../state/cart'
-import { useStore, type AllyRequest, type OrderStatus } from '../state/store'
+import { ORDER_STATUSES, useStore, type AllyRequest, type Lead, type OrderStatus } from '../state/store'
+import { Timeline } from '../components/Timeline'
 import './admin.css'
 
 const SESSION = 'aria:admin:session'
@@ -54,7 +55,8 @@ const NAV: { to: string; label: string; icon: IconName }[] = [
   { to: '/admin', label: 'Resumen', icon: 'tag' },
   { to: '/admin/productos', label: 'Productos', icon: 'cart' },
   { to: '/admin/pedidos', label: 'Pedidos', icon: 'doc' },
-  { to: '/admin/aliados', label: 'Aliados', icon: 'users' },
+  { to: '/admin/clientes', label: 'Clientes', icon: 'users' },
+  { to: '/admin/aliados', label: 'Aliados', icon: 'shield' },
   { to: '/admin/contenido', label: 'Contenido', icon: 'wrench' },
 ]
 
@@ -87,6 +89,7 @@ export default function Admin() {
           <Route index element={<Dashboard />} />
           <Route path="productos" element={<Products />} />
           <Route path="pedidos" element={<Orders />} />
+          <Route path="clientes" element={<Customers />} />
           <Route path="aliados" element={<Allies />} />
           <Route path="contenido" element={<Content />} />
           <Route path="*" element={<Navigate to="/admin" replace />} />
@@ -111,11 +114,13 @@ function Head({ title, lead, children }: { title: string; lead?: string; childre
 /* ------------------------------------------------------------------ resumen */
 
 function Dashboard() {
-  const { allProducts, data } = useStore()
+  const { allProducts, data, statusOf } = useStore()
   const { invoices } = useCart()
   const facturas = invoices.filter((i) => i.kind === 'Factura')
   const cotiz = invoices.filter((i) => i.kind === 'Cotización')
-  const ventas = facturas.filter((f) => data.orderStatus[f.number] !== 'Cancelado').reduce((s, f) => s + f.total, 0)
+  const ventas = facturas.filter((f) => statusOf(f.number) !== 'Cancelado').reduce((s, f) => s + f.total, 0)
+  const porAtender = facturas.filter((f) => !['Entregado', 'Cancelado'].includes(statusOf(f.number))).length
+  const clientes = new Set(invoices.map((i) => i.customer.doc.toUpperCase())).size
   const byCat = CATEGORIES.map((c) => ({ c: c.name, n: allProducts.filter((p) => p.category === c.name).length }))
   const max = Math.max(...byCat.map((x) => x.n), 1)
   const pendientesAliados = data.allies.filter((a) => a.status === 'Nueva').length
@@ -125,8 +130,9 @@ function Dashboard() {
     <>
       <Head title="Resumen" lead="Lo más importante de la tienda, de un vistazo." />
       <div className="kpis">
-        <Kpi label="Ventas facturadas" value={money(ventas)} hint={`${facturas.length} facturas`} strong />
+        <Kpi label="Ventas" value={money(ventas)} hint={`${facturas.length} pedidos, ${porAtender} por atender`} strong />
         <Kpi label="Cotizaciones" value={String(cotiz.length)} hint="Solicitadas desde la web" />
+        <Kpi label="Clientes" value={String(clientes)} hint={`${data.leads.filter((l) => l.status === 'Nueva').length} empresas por contactar`} />
         <Kpi label="Productos" value={allProducts.length.toLocaleString('es-VE')} hint={`${allProducts.filter((p) => p.hidden).length} ocultos`} />
         <Kpi label="Aliados por revisar" value={String(pendientesAliados)} hint={`${data.allies.length} solicitudes en total`} />
       </div>
@@ -152,7 +158,7 @@ function Dashboard() {
                 <li key={i.number}>
                   <span><strong>{i.number}</strong><small className="muted">{i.customer.name}</small></span>
                   <span className="num">{money(i.total)}</span>
-                  <StatusPill s={i.kind === 'Factura' ? data.orderStatus[i.number] ?? 'Pendiente' : 'Cotización'} />
+                  <StatusPill s={i.kind === 'Factura' ? statusOf(i.number) : 'Cotización'} />
                 </li>
               ))}
             </ul>
@@ -176,7 +182,7 @@ function Kpi({ label, value, hint, strong }: { label: string; value: string; hin
 }
 
 function StatusPill({ s }: { s: string }) {
-  const cls = s === 'Pagado' || s === 'Entregado' || s === 'Aprobada' ? 'pill--ok' : s === 'Cancelado' || s === 'Rechazada' ? 'pill--off' : 'pill--wait'
+  const cls = ['Pago confirmado', 'Entregado', 'Aprobada', 'Cerrada', 'Listo para entregar'].includes(s) ? 'pill--ok' : s === 'Cancelado' || s === 'Rechazada' ? 'pill--off' : 'pill--wait'
   return <span className={`pill ${cls}`}>{s}</span>
 }
 
@@ -452,11 +458,10 @@ function Editor({ product, onClose, onSave }: { product: Product; onClose: () =>
 
 /* ------------------------------------------------------------------ pedidos */
 
-const STATUSES: OrderStatus[] = ['Pendiente', 'Pagado', 'Entregado', 'Cancelado']
 
 function Orders() {
   const { invoices } = useCart()
-  const { data, setOrderStatus } = useStore()
+  const { setOrderStatus, statusOf } = useStore()
   const [tab, setTab] = useState<'Todos' | Invoice['kind']>('Todos')
   const [open, setOpen] = useState<Invoice | null>(null)
   const list = invoices.filter((i) => tab === 'Todos' || i.kind === tab)
@@ -472,19 +477,19 @@ function Orders() {
         {list.length ? (
           <div className="scrollx">
             <table className="ptable">
-              <thead><tr><th>Documento</th><th>Cliente</th><th>Fecha</th><th>Pago</th><th>Total</th><th>Estado</th></tr></thead>
+              <thead><tr><th>Documento</th><th>Cliente</th><th>Fecha</th><th>Entrega y pago</th><th>Total</th><th>Estado</th></tr></thead>
               <tbody>
                 {list.map((i) => (
                   <tr key={i.number}>
                     <td><button className="linkbtn" onClick={() => setOpen(i)}>{i.number}</button><small className="muted" style={{ display: 'block' }}>{i.kind}</small></td>
                     <td><strong>{i.customer.name}</strong><small className="muted" style={{ display: 'block' }}>{i.customer.phone}</small></td>
                     <td>{i.date}</td>
-                    <td>{i.kind === 'Factura' ? i.method : '—'}</td>
+                    <td>{i.delivery?.mode ?? '—'}<small className="muted" style={{ display: 'block' }}>{i.kind === 'Factura' ? i.method : 'Sin pago'}</small></td>
                     <td className="num">{money(i.total)}{i.pending ? <small className="muted" style={{ display: 'block' }}>+ {i.pending} por cotizar</small> : null}</td>
                     <td>
                       {i.kind === 'Factura' ? (
-                        <select className="input input--sm" aria-label={`Estado de ${i.number}`} value={data.orderStatus[i.number] ?? 'Pendiente'} onChange={(e) => setOrderStatus(i.number, e.target.value as OrderStatus)}>
-                          {STATUSES.map((s) => <option key={s}>{s}</option>)}
+                        <select className="input input--sm" aria-label={`Estado de ${i.number}`} value={statusOf(i.number)} onChange={(e) => setOrderStatus(i.number, e.target.value as OrderStatus)}>
+                          {ORDER_STATUSES.map((s) => <option key={s}>{s}</option>)}
                         </select>
                       ) : (
                         <a className="btn btn--line btn--sm" href={`https://wa.me/${i.customer.phone.replace(/\D/g, '').replace(/^0/, '58')}?text=${encodeURIComponent(`Hola ${i.customer.name}, te escribimos de ARIA por tu cotización ${i.number}.`)}`} target="_blank" rel="noreferrer">Responder</a>
@@ -506,6 +511,25 @@ function Orders() {
             <header className="sheet__head"><h2 id="od-t">{open.kind} {open.number}</h2><button className="iconbtn" aria-label="Cerrar" onClick={() => setOpen(null)}><Icon name="close" size={18} /></button></header>
             <div className="sheet__body">
               <p><strong>{open.customer.name}</strong><br />{open.customer.doc}<br />{open.customer.email}<br />{open.customer.phone}</p>
+              {open.delivery ? (
+                <p>
+                  <strong>{open.delivery.mode}</strong>
+                  {open.delivery.address ? <><br />{open.delivery.address}, {open.delivery.city}, {open.delivery.state}</> : null}
+                  {open.delivery.notes ? <><br /><span className="muted">Nota: {open.delivery.notes}</span></> : null}
+                </p>
+              ) : null}
+              {open.kind === 'Factura' ? (
+                <>
+                  <label className="field">
+                    <span className="field__label">Estado del pedido</span>
+                    <select className="input" value={statusOf(open.number)} onChange={(e) => setOrderStatus(open.number, e.target.value as OrderStatus)}>
+                      {ORDER_STATUSES.map((s) => <option key={s}>{s}</option>)}
+                    </select>
+                    <span className="field__hint">El cliente ve cada cambio en “Seguir mi pedido”.</span>
+                  </label>
+                  <Timeline inv={open} />
+                </>
+              ) : null}
               <table className="spec">
                 <tbody>
                   {open.lines.map((l) => <tr key={l.name}><th scope="row">{l.qty} × {l.name}</th><td className="num">{l.price !== null ? money(l.price * l.qty) : 'Por cotizar'}</td></tr>)}
@@ -516,7 +540,170 @@ function Orders() {
                 <div><span>IVA 16 %</span><span>{money(open.tax)}</span></div>
                 <div className="totals__grand"><span>Total</span><span>{money(open.total)}</span></div>
               </div>
-              <Link className="btn btn--line" to={`/recibo/${open.number}`} target="_blank">Abrir el documento</Link>
+              <div className="ally__act">
+                <a className="btn btn--sm" href={waLink(open.customer.phone, `Hola ${open.customer.name}, te escribimos de ARIA por tu ${open.kind === 'Factura' ? 'pedido' : 'cotización'} ${open.number}.`)} target="_blank" rel="noreferrer"><Icon name="chat" size={16} /> Escribir</a>
+                <Link className="btn btn--line btn--sm" to={`/recibo/${open.number}`} target="_blank">Abrir el documento</Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : null}
+    </>
+  )
+}
+
+/* ------------------------------------------------------------------ clientes */
+
+const waLink = (phone: string, text: string) => `https://wa.me/${phone.replace(/\D/g, '').replace(/^0/, '58')}?text=${encodeURIComponent(text)}`
+
+type Customer = {
+  doc: string
+  name: string
+  phone: string
+  email: string
+  place: string
+  orders: Invoice[]
+  spent: number
+  last: string
+}
+
+function useCustomers(): Customer[] {
+  const { invoices } = useCart()
+  const { statusOf } = useStore()
+  return useMemo(() => {
+    const map = new Map<string, Customer>()
+    // invoices viene del más reciente al más antiguo: el primero que aparece trae los datos al día
+    for (const i of invoices) {
+      const doc = i.customer.doc.toUpperCase()
+      let c = map.get(doc)
+      if (!c) {
+        c = { doc, name: i.customer.name, phone: i.customer.phone, email: i.customer.email, place: i.delivery?.city ? `${i.delivery.city}, ${i.delivery.state}` : '', orders: [], spent: 0, last: i.date }
+        map.set(doc, c)
+      }
+      if (!c.place && i.delivery?.city) c.place = `${i.delivery.city}, ${i.delivery.state}`
+      c.orders.push(i)
+      if (i.kind === 'Factura' && statusOf(i.number) !== 'Cancelado') c.spent += i.total
+    }
+    return [...map.values()]
+  }, [invoices, statusOf])
+}
+
+function toCsv(rows: Customer[]) {
+  const esc = (v: string | number) => `"${String(v).replace(/"/g, '""')}"`
+  const head = ['Nombre', 'Cédula/RIF', 'Teléfono', 'Correo', 'Ubicación', 'Pedidos', 'Cotizaciones', 'Total comprado (US$)', 'Última actividad']
+  const body = rows.map((c) => [c.name, c.doc, c.phone, c.email, c.place, c.orders.filter((o) => o.kind === 'Factura').length, c.orders.filter((o) => o.kind === 'Cotización').length, c.spent.toFixed(2), c.last].map(esc).join(','))
+  return '\ufeff' + [head.map(esc).join(','), ...body].join('\n')
+}
+
+function Customers() {
+  const all = useCustomers()
+  const { data, setCustomerNote, setLeadStatus, statusOf } = useStore()
+  const [tab, setTab] = useState<'Compradores' | 'Empresas'>('Compradores')
+  const [q, setQ] = useState('')
+  const dq = useDeferredValue(q.trim().toLowerCase())
+  const [open, setOpen] = useState<Customer | null>(null)
+  const list = all.filter((c) => !dq || `${c.name} ${c.doc} ${c.phone} ${c.email}`.toLowerCase().includes(dq))
+
+  const download = () => {
+    const url = URL.createObjectURL(new Blob([toCsv(list)], { type: 'text/csv;charset=utf-8' }))
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `clientes-aria-${new Date().toISOString().slice(0, 10)}.csv`
+    a.click()
+    URL.revokeObjectURL(url)
+  }
+
+  return (
+    <>
+      <Head title="Clientes" lead="Se guardan solos con cada compra o cotización. El cliente no necesita crear cuenta.">
+        {tab === 'Compradores' && list.length ? <button className="btn btn--line btn--sm" onClick={download}><Icon name="download" size={16} /> Exportar a Excel (CSV)</button> : null}
+      </Head>
+      <div className="seg" role="group" aria-label="Tipo de cliente" style={{ marginBottom: 18 }}>
+        {(['Compradores', 'Empresas'] as const).map((t) => (
+          <button key={t} className="seg__opt seg__opt--sm" aria-pressed={tab === t} onClick={() => setTab(t)}>
+            {t} <span className="muted">{t === 'Compradores' ? all.length : data.leads.length}</span>
+          </button>
+        ))}
+      </div>
+
+      {tab === 'Compradores' ? (
+        <>
+          <label className="cat__search" style={{ marginBottom: 16, maxWidth: 420 }}>
+            <Icon name="search" size={18} />
+            <input className="input" type="search" placeholder="Buscar por nombre, cédula, teléfono o correo" value={q} onChange={(e) => setQ(e.target.value)} />
+          </label>
+          <div className="card card--flush">
+            {list.length ? (
+              <div className="scrollx">
+                <table className="ptable">
+                  <thead><tr><th>Cliente</th><th>Contacto</th><th>Pedidos</th><th>Total comprado</th><th>Última actividad</th></tr></thead>
+                  <tbody>
+                    {list.map((c) => (
+                      <tr key={c.doc}>
+                        <td><button className="linkbtn" onClick={() => setOpen(c)}>{c.name}</button><small className="muted" style={{ display: 'block' }}>{c.doc}{c.place ? ` · ${c.place}` : ''}</small></td>
+                        <td>{c.phone}<small className="muted" style={{ display: 'block' }}>{c.email}</small></td>
+                        <td>{c.orders.filter((o) => o.kind === 'Factura').length}<small className="muted" style={{ display: 'block' }}>{c.orders.filter((o) => o.kind === 'Cotización').length} cotizaciones</small></td>
+                        <td className="num">{money(c.spent)}</td>
+                        <td>{c.last}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ) : (
+              <p className="muted" style={{ padding: 24 }}>{all.length ? 'Ningún cliente coincide con la búsqueda.' : 'Aún no hay clientes. Aparecen aquí con su primera compra o cotización.'}</p>
+            )}
+          </div>
+        </>
+      ) : data.leads.length ? (
+        <div className="allies-list">
+          {data.leads.map((l: Lead) => (
+            <article className="card ally" key={l.id}>
+              <div className="ally__top">
+                <div>
+                  <h2 className="card__t">{l.company}</h2>
+                  <p className="muted">{l.need}{l.volume ? `, ${l.volume}` : ''}. RIF {l.rif || '—'} · {l.date}</p>
+                </div>
+                <StatusPill s={l.status} />
+              </div>
+              <p><strong>{l.contact}</strong>, {l.email}, {l.phone}</p>
+              {l.message ? <p className="ally__msg">“{l.message}”</p> : null}
+              <div className="ally__act">
+                <a className="btn btn--sm" href={waLink(l.phone, `Hola ${l.contact}, te escribimos de ARIA por la solicitud de ${l.company}.`)} target="_blank" rel="noreferrer" onClick={() => l.status === 'Nueva' && setLeadStatus(l.id, 'Contactada')}><Icon name="chat" size={16} /> Escribir</a>
+                <button className="btn btn--line btn--sm" disabled={l.status === 'Cerrada'} onClick={() => setLeadStatus(l.id, 'Cerrada')}>Marcar como cerrada</button>
+              </div>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <div className="card"><p className="muted">Aún no hay solicitudes de empresas. Llegan desde la página Empresas y flotas.</p></div>
+      )}
+
+      {open ? (
+        <div className="sheet" role="dialog" aria-modal="true" aria-labelledby="cu-t">
+          <button className="sheet__scrim" aria-label="Cerrar" onClick={() => setOpen(null)} />
+          <div className="sheet__panel">
+            <header className="sheet__head"><h2 id="cu-t">{open.name}</h2><button className="iconbtn" aria-label="Cerrar" onClick={() => setOpen(null)}><Icon name="close" size={18} /></button></header>
+            <div className="sheet__body">
+              <p>{open.doc}<br />{open.phone}<br />{open.email}{open.place ? <><br />{open.place}</> : null}</p>
+              <div className="ally__act">
+                <a className="btn btn--sm" href={waLink(open.phone, `Hola ${open.name}, te escribimos de ARIA.`)} target="_blank" rel="noreferrer"><Icon name="chat" size={16} /> WhatsApp</a>
+                <a className="btn btn--line btn--sm" href={`mailto:${open.email}`}><Icon name="mail" size={16} /> Correo</a>
+              </div>
+              <h3 className="card__t">Historial</h3>
+              <ul className="mini">
+                {open.orders.map((o) => (
+                  <li key={o.number}>
+                    <span><Link to={`/recibo/${o.number}`} target="_blank"><strong>{o.number}</strong></Link><small className="muted">{o.date} · {o.lines.length} productos</small></span>
+                    <span className="num">{money(o.total)}</span>
+                    <StatusPill s={o.kind === 'Factura' ? statusOf(o.number) : 'Cotización'} />
+                  </li>
+                ))}
+              </ul>
+              <label className="field">
+                <span className="field__label">Notas internas</span>
+                <textarea className="input" rows={4} defaultValue={data.customerNotes[open.doc] ?? ''} onBlur={(e) => setCustomerNote(open.doc, e.target.value)} placeholder="Preferencias, acuerdos, próximos pasos… Solo las ve el equipo." />
+              </label>
             </div>
           </div>
         </div>
